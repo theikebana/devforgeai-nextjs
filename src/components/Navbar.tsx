@@ -88,16 +88,16 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-6">
           {/* Logo */}
           <button
-            onClick={() => handleScroll("hero")}
-            className="flex items-center hover:opacity-80 transition"
-            aria-label="Go to top"
-          >
-            <img
-              src="/site-logo.svg"
-              alt="DevForge"
-              className="h-7 w-auto"
-            />
-          </button>
+  onClick={() => router.push("/")}
+  className="flex items-center hover:opacity-80 transition"
+  aria-label="Go to homepage"
+>
+  <img
+    src="/site-logo.svg"
+    alt="DevForge"
+    className="h-7 w-auto"
+  />
+</button>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">

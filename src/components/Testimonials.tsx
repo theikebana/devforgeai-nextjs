@@ -246,7 +246,7 @@ export default function Testimonials() {
     splashGradients[index % splashGradients.length];
 
   return (
-    <section className="relative py-8  md:py-12 lg:py-16 lg:py-20  overflow-hidden">
+    <section className="relative py-8  md:py-12   overflow-hidden  custom-container rounded-4xl border-2 border-gray-900 shadow-sm shadow-black-900/20">
       {/* Top Background Image – Top Half Only */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 pointer-events-none">
         <div
