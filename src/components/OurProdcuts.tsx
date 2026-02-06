@@ -59,27 +59,19 @@ const newsCardsRowOne: NewsCard[] = [
 ];
 
 const newsCardsRowTwo: NewsCard[] = [
+  // {
+  //   title: "AssetWisp",
+  //   description:
+  //     "An AI platform for tracking and analyzing multi‑asset portfolios with smart insights.",
+  //   id: "assetwisp",
+  // },
   {
-    title: "AssetWisp",
+    title: "Elvis",
     description:
-      "An AI platform for tracking and analyzing multi‑asset portfolios with smart insights.",
+      "An environment lifecycle manager for ephemeral dev stacks.",
     id: "assetwisp",
   },
-  {
-    title: "Slim Snap",
-    description:
-      "An AI photo‑based calorie tracker that provides nutrition insights and shopping lists.",
-    id: "slimsnap",
-  },
-//   {
-//     title: "LotIQ",
-//     description:
-//       "An AI‑powered platform that streamlines parking with bookings, payments, and live availability.",
-//     id: "lotiq",
-//   },
 ];
-
-// --- Custom mini animations for each product card ---
 
 function MoogleMindMiniAnimation() {
   // Graph of connected knowledge nodes / queries
