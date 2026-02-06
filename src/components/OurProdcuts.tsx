@@ -6,6 +6,7 @@ import {
   ViraCardAnimation,
   IanCardAnimation,
 } from "./Hero copy";
+import Link from "next/link";
 import {
   Rocket,
   Shield,
@@ -548,6 +549,12 @@ export default function ProductSection() {
               <div className="mt-auto">
                 <RexCardAnimation />
               </div>
+              <Link
+                href="/rex"
+                className="mt-3 inline-flex items-center text-xs font-medium text-emerald-300 hover:text-emerald-200 transition-colors"
+              >
+                Explore REX →
+              </Link>
             </div>
           </motion.div>
 
@@ -596,6 +603,12 @@ export default function ProductSection() {
               <div className="mt-auto">
                 <ViraCardAnimation />
               </div>
+              <Link
+                href="/vira"
+                className="mt-3 inline-flex items-center text-xs font-medium text-emerald-300 hover:text-emerald-200 transition-colors"
+              >
+                Explore VIRA →
+              </Link>
             </div>
           </motion.div>
 
@@ -644,6 +657,12 @@ export default function ProductSection() {
               <div className="mt-auto">
                 <IanCardAnimation />
               </div>
+              <Link
+                href="/ian"
+                className="mt-3 inline-flex items-center text-xs font-medium text-emerald-300 hover:text-emerald-200 transition-colors"
+              >
+                Explore IAN →
+              </Link>
             </div>
           </motion.div>
 

@@ -9,8 +9,10 @@ import {
   Zap,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -139,7 +141,11 @@ export default function Navbar() {
                     return (
                       <button
                         key={item.href}
-                        onClick={() => handleTabNavigation(item.href)}
+                        onClick={() => {
+                          setIsProductsOpen(false);
+                          setIsOpen(false);
+                          router.push(`/${item.href}`);
+                        }}
                         className="flex gap-4 p-3 rounded-lg text-left hover:bg-white/5 transition w-full"
                       >
                         <div className="h-10 w-12 flex items-center justify-center rounded-md bg-white/10 border border-white/20">
