@@ -11,7 +11,7 @@ import AnimateSection from "@/components/AnimateSection"; // <-- import wrapper
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#07090E] text-white overflow-hidden ">
+    <div className="min-h-screen bg-[#07090e] text-white overflow-hidden ">
       <Navbar />
 
       <main>

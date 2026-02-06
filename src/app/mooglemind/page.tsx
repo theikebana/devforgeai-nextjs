@@ -2,26 +2,24 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CallToAction from "@/components/CallToAction";
+import MoogleMindHero from "@/components/MoogleMindHero";
+import MoogleMindOverview from "@/components/MoogleMindOverview";
+import MoogleMindHowItWorks from "@/components/MoogleMindHowItWorks";
+import MoogleMindKeyBenefits from "@/components/MoogleMindKeyBenefits";
 import TestimonialsInnerPages from "@/components/TestimonialsInnerPages";
-import IanHero from "@/components/IanHero";
-import IanOverview from "@/components/IanOverview";
-import IanHowItWorks from "@/components/IanHowItWorks";
-import IanKeyBenefits from "@/components/IanKeyBenefits";
-import IanIntegrationsSection from "@/components/IanIntegrationsSection";
+import CallToAction from "@/components/CallToAction";
 
-export default function IanPage() {
+export default function MoogleMindPage() {
   return (
     <div className="min-h-screen bg-[#07090E] text-white overflow-hidden">
       <Navbar />
       <main>
-        <IanHero />
-        <IanOverview />
+        <MoogleMindHero />
+        <MoogleMindOverview />
         <div className="max-w-7xl mx-auto rounded-4xl border-2 mt-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
-          <IanHowItWorks />
+          <MoogleMindHowItWorks />
         </div>
-        <IanIntegrationsSection />
-        <IanKeyBenefits />
+        <MoogleMindKeyBenefits />
         <TestimonialsInnerPages />
         <CallToAction />
       </main>
@@ -29,3 +27,4 @@ export default function IanPage() {
     </div>
   );
 }
+

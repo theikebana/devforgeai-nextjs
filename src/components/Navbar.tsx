@@ -7,6 +7,10 @@ import {
   ChevronDown,
   Rocket,
   Zap,
+  Search,
+  MessageCircle,
+  Users,
+  Layers,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -46,6 +50,34 @@ export default function Navbar() {
         "Manage all Azure services from one dashboard with real-time insights.",
       icon: Zap,
       href: "ian",
+    },
+    {
+      title: "MoogleMind",
+      description:
+        "Unified enterprise search, custom agents, and secure self-hosting.",
+      icon: Search,
+      href: "mooglemind",
+    },
+    {
+      title: "Review Attendant",
+      description:
+        "Centralizes reviews and automates responses with sentiment analysis.",
+      icon: MessageCircle,
+      href: "review-attendant",
+    },
+    {
+      title: "AttendAI",
+      description:
+        "Smart face-recognition attendance with IP camera support and reporting.",
+      icon: Users,
+      href: "attendai",
+    },
+    {
+      title: "Elvis",
+      description:
+        "Environment lifecycle manager for ephemeral dev stacks.",
+      icon: Layers,
+      href: "elvis",
     },
   ];
 

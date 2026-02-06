@@ -32,6 +32,7 @@ type NewsCard = {
     | "mooglemind"
     | "review-attendant"
     | "attendai"
+    | "elvis"
     | "assetwisp"
     | "slimsnap"
     | "lotiq";
@@ -69,7 +70,7 @@ const newsCardsRowTwo: NewsCard[] = [
     title: "Elvis",
     description:
       "An environment lifecycle manager for ephemeral dev stacks.",
-    id: "assetwisp",
+    id: "elvis",
   },
 ];
 
@@ -448,6 +449,8 @@ function renderNewsCardAnimation(id: NewsCard["id"]) {
       return <ReviewAttendantMiniAnimation />;
     case "attendai":
       return <AttendAIMiniAnimation />;
+    case "elvis":
+      return <AssetWispMiniAnimation />;
     case "assetwisp":
       return <AssetWispMiniAnimation />;
     case "slimsnap":
@@ -469,6 +472,8 @@ function renderNewsCardIcon(id: NewsCard["id"]) {
       return <MessageCircle className={commonIconClasses} />;
     case "attendai":
       return <Users className={commonIconClasses} />;
+    case "elvis":
+      return <Rocket className={commonIconClasses} />;
     case "assetwisp":
       return <LineChart className={commonIconClasses} />;
     case "slimsnap":
@@ -659,47 +664,69 @@ export default function ProductSection() {
           </motion.div>
 
           {/* Remaining product cards following the exact layout as the REX card */}
-          {[...newsCardsRowOne, ...newsCardsRowTwo].map((card, index) => (
-            <motion.div
-              key={card.title}
-              className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full"
-              variants={newsCardVariants}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{
-                duration: 0.4,
-                delay: (index + 3) * 0.08,
-                ease: "easeOut",
-              }}
-              whileHover={{
-                y: -6,
-                boxShadow: "0 22px 55px rgba(15,23,42,0.65)",
-                borderColor: "rgba(255,255,255,0.35)",
-              }}
-            >
-              <div className="absolute w-[150px] h-[150px] right-0 top-0 bg-white opacity-[0.08] blur-[60px] pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-100/0 via-white/5 to-orange-100/0 opacity-[0.25] pointer-events-none mix-blend-screen" />
-              <div className="relative z-10 flex flex-col gap-8 flex-1">
-                <div className="flex  gap-5">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white/5 flex items-center justify-center mb-2 sm:mb-4 text-white flex-shrink-0">
-                    {renderNewsCardIcon(card.id)}
+          {[...newsCardsRowOne, ...newsCardsRowTwo].map((card, index) => {
+            const productPages: Record<string, string> = {
+              mooglemind: "/mooglemind",
+              "review-attendant": "/review-attendant",
+              attendai: "/attendai",
+              elvis: "/elvis",
+            };
+            const href = productPages[card.id];
+
+            const CardContent = (
+              <motion.div
+                className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full"
+                variants={newsCardVariants}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{
+                  duration: 0.4,
+                  delay: (index + 3) * 0.08,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  y: -6,
+                  boxShadow: "0 22px 55px rgba(15,23,42,0.65)",
+                  borderColor: "rgba(255,255,255,0.35)",
+                }}
+              >
+                <div className="absolute w-[150px] h-[150px] right-0 top-0 bg-white opacity-[0.08] blur-[60px] pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-100/0 via-white/5 to-orange-100/0 opacity-[0.25] pointer-events-none mix-blend-screen" />
+                <div className="relative z-10 flex flex-col gap-8 flex-1">
+                  <div className="flex  gap-5">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white/5 flex items-center justify-center mb-2 sm:mb-4 text-white flex-shrink-0">
+                      {renderNewsCardIcon(card.id)}
+                    </div>
+                    <div className="flex flex-col  flex-1">
+                      <h3 className="text-xl  font-medium text-white ">
+                        {card.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
+                        {card.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex flex-col  flex-1">
-                    <h3 className="text-xl  font-medium text-white ">
-                      {card.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
-                      {card.description}
-                    </p>
+                  <div className="mt-auto">
+                    {renderNewsCardAnimation(card.id)}
                   </div>
+                  {href && (
+                    <span className="mt-3 inline-flex items-center text-xs font-medium text-emerald-300 group-hover:text-emerald-200 transition-colors">
+                      Explore {card.title} →
+                    </span>
+                  )}
                 </div>
-                <div className="mt-auto">
-                  {renderNewsCardAnimation(card.id)}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+
+            return href ? (
+              <Link key={card.title} href={href} className="block h-full">
+                {CardContent}
+              </Link>
+            ) : (
+              <div key={card.title}>{CardContent}</div>
+            );
+          })}
         </div>
 
       </div>
