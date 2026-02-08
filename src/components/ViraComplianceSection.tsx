@@ -32,7 +32,7 @@ export default function ViraComplianceSection() {
     <div className="bg-[#07090E] py-16">
       <AnimateSection type="fadeUp">
         <section className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <p className="text-xs font-semibold tracking-[0.2em] text-emerald-300 uppercase mb-2">
               Compliance frameworks
             </p>

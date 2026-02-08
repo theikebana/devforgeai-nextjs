@@ -16,7 +16,7 @@ export default function MoogleMindPage() {
       <main>
         <MoogleMindHero />
         <MoogleMindOverview />
-        <div className="max-w-7xl mx-auto rounded-4xl border-2 mt-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
+        <div className="max-w-7xl mx-auto rounded-4xl border-2  overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
           <MoogleMindHowItWorks />
         </div>
         <MoogleMindKeyBenefits />

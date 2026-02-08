@@ -52,7 +52,7 @@ export default function ReviewAttendantKeyBenefits() {
     <div className="bg-[#07090E] py-16">
       <AnimateSection type="fadeUp">
         <section className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-5xl mx-auto mb-12">
             <p className="text-xs font-semibold tracking-[0.2em] text-sky-300 uppercase mb-3">
               Key benefits
             </p>

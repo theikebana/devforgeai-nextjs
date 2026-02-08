@@ -30,7 +30,6 @@ export default function RexHero() {
 
       <div className="relative container p-12 mx-auto rounded-4xl bg-[#020617]">
         <motion.div
-          variants={heroContainer}
           initial="hidden"
           animate="visible"
           className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-center"
@@ -38,7 +37,7 @@ export default function RexHero() {
           {/* Left: copy */}
           <div className="space-y-2">
             <motion.div
-              variants={heroItem}
+
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-emerald-100/80 backdrop-blur-sm"
             >
               <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/20">
@@ -49,7 +48,7 @@ export default function RexHero() {
               </span>
             </motion.div>
 
-            <motion.div variants={heroItem} className="space-y-5">
+            <motion.div  className="space-y-5">
              
               <h1 className="text-3xl md:text-[34px] lg:text-[38px] xl:text-[42px] font-semibold tracking-tight text-white">
                 Rex reviews every pull request—
@@ -68,7 +67,7 @@ export default function RexHero() {
             </motion.div>
 
             <motion.div
-              variants={heroItem}
+
               className="grid gap-3 sm:grid-cols-2 max-w-xl mt-5"
             >
               <div className="rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-md shadow-[0_0_30px_rgba(15,23,42,0.7)]">
@@ -104,7 +103,7 @@ export default function RexHero() {
             </motion.div>
 
             <motion.div
-              variants={heroItem}
+
               className="flex flex-wrap items-center gap-3 text-[11px] text-white/55"
             >
               <div className="flex items-center gap-2">
@@ -121,7 +120,7 @@ export default function RexHero() {
 
           {/* Right: animated review card */}
           <motion.div
-            variants={heroItem}
+            
             className="relative mx-auto max-w-md w-full"
           >
             <motion.div

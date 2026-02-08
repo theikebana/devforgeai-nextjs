@@ -39,7 +39,7 @@ const useCases = [
 
 export default function MoogleMindKeyBenefits() {
   return (
-    <div className="bg-[#07090E] pb-20">
+    <div className="bg-[#07090E] py-12">
       <AnimateSection type="fadeUp">
         <section className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-start">

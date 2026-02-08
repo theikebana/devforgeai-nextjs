@@ -1,162 +1,154 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  CheckCircle,
+  Zap,
+  Users,
+  BarChart2,
+  Eye,
+  AlertTriangle,
+  Bell,
+  ShieldCheck,
+} from "lucide-react";
 import AnimateSection from "./AnimateSection";
 
-const bulletIconClasses = "mt-0.5 text-amber-400 font-bold text-sm shrink-0";
 const bulletContent = "text-xs md:text-sm text-white/80";
 
-const keyFeaturesLeft = [
-  "Unified dashboard for all review platforms in one place.",
-  "AI-driven sentiment analysis to classify feedback automatically.",
-  "Personalized response generation for timely customer engagement.",
-];
-
-const keyFeaturesRight = [
-  "Real-time notifications so you never miss a review.",
-  "Performance analytics to track reputation and response metrics.",
-  "Scalable architecture for growing review volume.",
-];
-
-const problemStatements = [
-  "Inconsistent Responses",
-  "Time-Consuming Review Management",
-  "Reputation Damage",
-  "Customer Retention",
-  "Resource Constraints",
+// Left & Right cards: 5 points each
+const keyFeatures = [
+  { icon: CheckCircle, text: "Unified dashboard for all review platforms." },
+  { icon: Zap, text: "AI-driven sentiment analysis." },
+  { icon: Users, text: "Personalized response generation." },
+  { icon: BarChart2, text: "Customizable workflow automation." },
+  { icon: Eye, text: "Intuitive reporting to track trends." },
 ];
 
 const solutions = [
-  "Automated Review Collection",
-  "AI-Driven Sentiment Analysis",
-  "Unified Dashboard",
-  "Personalized Response Generation",
-  "Real-Time Notifications",
-  "Scalable Architecture",
-  "Performance Analytics",
-  "Enhanced Customer Engagement",
+  { icon: CheckCircle, text: "Automated Review Collection" },
+  { icon: Zap, text: "AI-Driven Sentiment Analysis" },
+  { icon: Users, text: "Unified Dashboard" },
+  { icon: Bell, text: "Personalized Response Generation" },
+  { icon: BarChart2, text: "Real-Time Notifications" },
+];
+
+// Center card: 8 points with different values
+const problemStatements = [
+  { icon: AlertTriangle, text: "Inconsistent Responses across platforms" },
+  { icon: Bell, text: "Time-consuming review management" },
+  { icon: ShieldCheck, text: "Reputation damage due to delayed responses" },
+  { icon: Eye, text: "Difficulty tracking sentiment trends" },
+  { icon: Zap, text: "Manual response creation is inefficient" },
+  // { icon: Users, text: "Lack of team collaboration in managing reviews" },
+  { icon: BarChart2, text: "Limited performance analytics for metrics" },
+  // { icon: CheckCircle, text: "Customer retention challenges due to slow engagement" },
 ];
 
 export default function ReviewAttendantOverview() {
   return (
     <div className="bg-[#07090E] pb-16 pt-4">
+      {/* ---------------- INTRO ---------------- */}
       <AnimateSection type="fadeUp">
         <section className="max-w-7xl mx-auto px-6 lg:px-8 pt-6">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-start">
-            <div>
+          <div className="">
+            <div className="mx-auto text-center">
               <p className="text-xs font-semibold tracking-[0.2em] text-amber-300 uppercase mb-3">
                 Key Features
               </p>
               <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-3">
-                One portal for all your reviews and reputation.
+                One portal for all your reviews and reputation
               </h2>
-              <p className="text-sm md:text-base text-white/65 max-w-xl">
-                Review Attendant brings Yelp, Facebook, Google, and Twitter
-                reviews into a single dashboard with AI-powered sentiment
-                analysis and personalized response generation.
+              <p className="text-sm md:text-base text-white/65 max-w-5xl mb-4">
+                Review Attendant unifies Yelp, Facebook, Google, and Twitter reviews into a single dashboard.
+                Powered by AI, it analyzes sentiment, automates responses, and helps your team maintain
+                a consistent and timely engagement strategy.
               </p>
+             
             </div>
+          </div>
+        </section>
+      </AnimateSection>
 
+      {/* ---------------- KEY FEATURES & PROBLEMS & SOLUTIONS ---------------- */}
+      <AnimateSection type="scaleUp" delay={0.05}>
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 mt-14">
+          <div className="grid gap-5 lg:grid-cols-3 items-end">
+            
+            {/* Left — Key Features */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className="rounded-2xl border border-white/8 bg-gradient-to-br from-slate-900/80 via-slate-950 to-black/95 p-5 lg:p-6 shadow-[0_0_40px_rgba(15,23,42,0.9)]"
+              className="rounded-2xl border border-white/8 p-5 lg:p-6 "
             >
-              <div className="grid gap-4 md:grid-cols-2">
-                <ul className="space-y-2.5 text-xs md:text-sm text-white/75">
-                  {keyFeaturesLeft.map((item, i) => (
-                    <motion.li
-                      key={item}
-                      initial={{ opacity: 0, x: 12 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false, margin: "-30px" }}
-                      transition={{ duration: 0.35, delay: i * 0.04 }}
-                      className="flex gap-3"
-                    >
-                      <span className={bulletIconClasses}>»</span>
-                      <span className={bulletContent}>{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-                <ul className="space-y-2.5 text-xs md:text-sm text-white/75">
-                  {keyFeaturesRight.map((item, i) => (
-                    <motion.li
-                      key={item}
-                      initial={{ opacity: 0, x: 12 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false, margin: "-30px" }}
-                      transition={{ duration: 0.35, delay: (i + 3) * 0.04 }}
-                      className="flex gap-3"
-                    >
-                      <span className={bulletIconClasses}>»</span>
-                      <span className={bulletContent}>{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="space-y-3 text-white/80">
+                {keyFeatures.map((item, i) => (
+                  <motion.li
+                    key={item.text}
+                    initial={{ opacity: 0, x: 12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false, margin: "-30px" }}
+                    transition={{ duration: 0.35, delay: i * 0.05 }}
+                    className="flex items-center gap-3"
+                  >
+                    <item.icon className="h-4 w-4 text-amber-400 shrink-0" />
+                    <span className={bulletContent}>{item.text}</span>
+                  </motion.li>
+                ))}
+              </ul>
             </motion.div>
-          </div>
-        </section>
-      </AnimateSection>
 
-      <AnimateSection type="scaleUp" delay={0.05}>
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 mt-14">
-          <div className="grid gap-10 lg:grid-cols-2 items-start">
+            {/* Center — Problem Statements (Podium effect) */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "-40px" }}
               transition={{ duration: 0.5 }}
-              className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md shadow-[0_0_40px_rgba(15,23,42,0.7)]"
+              className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md  lg:translate-y-[-10%]"
             >
-              <p className="text-xs font-semibold tracking-[0.18em] text-amber-200/90 uppercase mb-3">
-                Problem Statements
-              </p>
-              <ul className="space-y-2.5 text-xs md:text-sm text-white/80">
+              <ul className="space-y-3 text-white/80">
                 {problemStatements.map((item, i) => (
                   <motion.li
-                    key={item}
+                    key={i}
                     initial={{ opacity: 0, x: -8 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: false }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
-                    className="flex gap-3"
+                    transition={{ duration: 0.3, delay: i * 0.03 }}
+                    className="flex items-center gap-3"
                   >
-                    <span className={bulletIconClasses}>»</span>
-                    <span className={bulletContent}>{item}</span>
+                    <item.icon className="h-4 w-4 text-amber-300 shrink-0" />
+                    <span className={bulletContent}>{item.text}</span>
                   </motion.li>
                 ))}
               </ul>
             </motion.div>
 
+            {/* Right — Solutions */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-2xl border border-sky-400/30 bg-gradient-to-b from-sky-500/15 via-slate-900/95 to-slate-950 p-5 backdrop-blur-md"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="rounded-2xl border border-sky-400/30 p-5 backdrop-blur-md "
             >
-              <p className="text-xs font-semibold tracking-[0.18em] text-sky-100 uppercase mb-3">
-                Our Solution
-              </p>
-              <ul className="space-y-2.5 text-xs md:text-sm text-sky-50/90">
+              <ul className="space-y-3 text-white/80">
                 {solutions.map((item, i) => (
                   <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -8 }}
+                    key={item.text}
+                    initial={{ opacity: 0, x: 8 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: false }}
-                    transition={{ duration: 0.3, delay: 0.08 + i * 0.05 }}
-                    className="flex gap-3"
+                    transition={{ duration: 0.3, delay: i * 0.05 }}
+                    className="flex items-center gap-3"
                   >
-                    <span className={bulletIconClasses}>»</span>
-                    <span className={bulletContent}>{item}</span>
+                    <item.icon className="h-4 w-4 text-sky-400 shrink-0" />
+                    <span className={bulletContent}>{item.text}</span>
                   </motion.li>
                 ))}
               </ul>
             </motion.div>
+
           </div>
         </section>
       </AnimateSection>

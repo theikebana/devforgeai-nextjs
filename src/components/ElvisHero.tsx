@@ -53,18 +53,17 @@ export default function ElvisHero() {
 
       <div className="relative container p-12 mx-auto rounded-4xl bg-[#020617] border border-white/5">
         <motion.div
-          variants={heroContainer}
           initial="hidden"
           animate="visible"
           className="max-w-4xl"
         >
           {/* Logo + Brand */}
           <motion.div
-            variants={heroItem}
+            
             className="flex items-center gap-3 mb-6"
           >
             <motion.div
-              variants={heroItem}
+
               className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-600 border border-violet-400/40 shadow-lg shadow-violet-500/20"
               whileHover={{ scale: 1.05, rotate: 2 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -84,7 +83,7 @@ export default function ElvisHero() {
           </motion.div>
 
           <motion.div
-            variants={heroItem}
+            
             className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-1 text-xs text-violet-100/80 backdrop-blur-sm mb-6"
           >
             <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-violet-500/20">
@@ -95,7 +94,7 @@ export default function ElvisHero() {
             </span>
           </motion.div>
 
-          <motion.div variants={heroItem} className="space-y-5">
+          <motion.div  className="space-y-5">
             <h2 className="text-3xl md:text-[34px] lg:text-[38px] font-semibold tracking-tight text-white">
               Job Leads Management & Analytics Platform for Sales Teams
             </h2>

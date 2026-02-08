@@ -37,7 +37,7 @@ const steps = [
 
 export default function ReviewAttendantHowItWorks() {
   return (
-    <div className="bg-[#07090E] py-12">
+    <div className="bg-[#07090E] ">
       <AnimateSection type="fadeUp">
         <section
           id="how-review-attendant-works"
@@ -68,7 +68,7 @@ export default function ReviewAttendantHowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, margin: "-100px" }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
-                className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-4 rounded-[28px] border border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-black/95 p-4 md:p-5 backdrop-blur-xl shadow-[0_0_10px_rgba(15,23,42,0.9)]"
+                className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-4 rounded-xl  border border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-black/95 p-2 backdrop-blur-xl shadow-[0_0_10px_rgba(15,23,42,0.9)]"
               >
                 {steps.map((step, index) => {
                   const Icon = step.icon;
@@ -95,9 +95,9 @@ export default function ReviewAttendantHowItWorks() {
                         <h3 className="text-sm font-semibold text-white">
                           {step.title}
                         </h3>
-                        <p className="text-[11px] text-white/70">
+                        {/* <p className="text-[11px] text-white/70">
                           {step.description}
-                        </p>
+                        </p> */}
                       </div>
                       <div className="relative mt-4 h-1 w-full rounded-full bg-white/5 overflow-hidden">
                         <motion.div

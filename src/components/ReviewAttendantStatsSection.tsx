@@ -34,11 +34,11 @@ const stats = [
 
 export default function ReviewAttendantStatsSection() {
   return (
-    <div className="bg-[#07090E] pb-20">
+    <div className="bg-[#07090E]">
       <AnimateSection type="scaleUp">
         <section
           id="review-attendant-stats"
-          className="max-w-6xl mx-auto px-6 lg:px-8 mt-10 md:mt-16"
+          className="max-w-7xl mx-auto px-6 lg:px-8 "
         >
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-stretch">
             <motion.div
