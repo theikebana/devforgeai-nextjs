@@ -37,55 +37,67 @@ const steps = [
 
 export default function ViraHowItWorks() {
   return (
-    <div className="bg-[#07090E] py-16">
+    <div className="bg-[#07090E] py-12">
       <AnimateSection type="fadeUp">
         <section className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          {/* Header */}
+          <div className="mb-12 grid gap-6 md:grid-cols-[1.3fr_0.7fr] items-end">
             <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-emerald-300 uppercase mb-2">
+              <p className="text-[10px] font-semibold tracking-[0.24em] text-emerald-300 uppercase mb-3">
                 How it works
               </p>
-              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white">
-                From reactive firefighting to proactive security.
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
+                From reactive firefighting <br /> to proactive security
               </h2>
             </div>
-            <p className="text-xs md:text-sm text-white/65 max-w-md">
-              VIRA connects to your Azure subscription, runs continuous scans,
-              and surfaces misconfigurations, excessive permissions, and
-              compliance gaps with clear remediation guidance.
+
+            <p className=" text-white/65  max-w-md">
+              VIRA connects to your Azure subscription, runs continuous scans, and
+              surfaces risks and compliance gaps with clear remediation guidance.
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {steps.map((step) => (
-              <motion.div
-                key={step.label}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-40px" }}
-                transition={{ duration: 0.4 }}
-                className="relative rounded-2xl border border-emerald-400/15 bg-gradient-to-b from-slate-900/80 via-slate-950 to-black/95 p-4 shadow-[0_0_30px_rgba(15,23,42,0.8)]"
-              >
-                <div className="mb-3 flex items-center justify-between gap-2">
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500/15 text-[11px] font-semibold tracking-[0.16em] text-emerald-200">
-                    {step.label}
-                  </span>
-                  <span className="h-px flex-1 rounded-full bg-gradient-to-r from-emerald-400/40 via-emerald-300/10 to-transparent" />
-                </div>
-                <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-xl bg-slate-900 border border-white/10">
-                  {(() => {
-                    const Icon = step.icon;
-                    return <Icon className="h-4 w-4 text-emerald-200" />;
-                  })()}
-                </div>
-                <h3 className="text-sm font-semibold tracking-tight text-white mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-xs md:text-sm text-white/70 leading-relaxed">
-                  {step.description}
-                </p>
-              </motion.div>
-            ))}
+          {/* Steps */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step, i) => {
+              const Icon = step.icon;
+
+              return (
+                <motion.div
+                  key={step.label}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.06 }}
+                  className="
+                    rounded-2xl
+                    border border-white/10
+                    bg-[#0b1220]/60
+                    p-6
+                  "
+                >
+                  {/* Top row */}
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500/10 text-[11px] font-semibold tracking-widest text-emerald-200">
+                      {step.label}
+                    </span>
+
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-black/40">
+                      <Icon className="h-4 w-4 text-emerald-300" />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="mb-2 text-lg font-medium text-white">
+                    {step.title}
+                  </h3>
+
+                  <p className="t text-white/65 leading-tight">
+                    {step.description}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </section>
       </AnimateSection>

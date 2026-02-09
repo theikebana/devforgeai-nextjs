@@ -502,166 +502,139 @@ export default function ProductSection() {
         {/* All product cards in a unified grid (REX / VIRA / IAN + others) */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* REX Card */}
-          <motion.div
-            className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full"
-            variants={newsCardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.4, delay: 0 * 0.08, ease: "easeOut" }}
-            whileHover={{
-              y: -6,
-              boxShadow: "0 22px 55px rgba(15,23,42,0.65)",
-              borderColor: "rgba(255,255,255,0.35)",
-            }}
-          >
-            <div
-              className="
-                absolute
-                w-[150px]
-                h-[150px]
-                right-0
-                top-[1.2px]
-                bg-white
-                opacity-[0.08]
-                blur-[60px]
-                pointer-events-none
-              "
-            />
-            <div className="relative z-10 flex flex-col gap-8 flex-1">
-              <div className="flex  gap-5">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white/5 flex items-center justify-center mb-2 sm:mb-4 text-white flex-shrink-0">
-                  <Rocket className="w-5 h-5 sm:w-6 sm:h-6" />
+          <Link href="/rex" className="block h-full">
+            <motion.div
+              className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full hover:scale-105 cursor-pointer transition-all duration-300"
+              variants={newsCardVariants}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.4, delay: 0 * 0.08, ease: "easeOut" }}
+            >
+              <div
+                className="
+                  absolute
+                  w-[150px]
+                  h-[150px]
+                  right-0
+                  top-[1.2px]
+                  bg-white
+                  opacity-[0.08]
+                  blur-[60px]
+                  pointer-events-none
+                "
+              />
+              <div className="relative z-10 flex flex-col gap-8 flex-1">
+                <div className="flex  gap-5">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white/5 flex items-center justify-center mb-2 sm:mb-4 text-white flex-shrink-0">
+                    <Rocket className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="flex flex-col  flex-1">
+                    <h3 className="text-xl  font-medium text-white ">
+                      REX
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
+                      Rex auto-reviews code, finds risks, and secures CI/CD
+                      before production.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-col  flex-1">
-                  <h3 className="text-xl  font-medium text-white ">
-                    REX
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
-                    Rex auto-reviews code, finds risks, and secures CI/CD
-                    before production.
-                  </p>
+                <div className="mt-auto">
+                  <RexCardAnimation />
                 </div>
               </div>
-              <div className="mt-auto">
-                <RexCardAnimation />
-              </div>
-              <Link
-                href="/rex"
-                className="mt-3 inline-flex items-center text-xs font-medium text-emerald-300 hover:text-emerald-200 transition-colors"
-              >
-                Explore REX →
-              </Link>
-            </div>
-          </motion.div>
+            </motion.div>
+          </Link>
 
           {/* VIRA Card */}
-          <motion.div
-            className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full"
-            variants={newsCardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.4, delay: 1 * 0.08, ease: "easeOut" }}
-            whileHover={{
-              y: -6,
-              boxShadow: "0 22px 55px rgba(15,23,42,0.65)",
-              borderColor: "rgba(255,255,255,0.35)",
-            }}
-          >
-            <div
-              className="
-                absolute
-                w-[150px]
-                h-[150px]
-                right-0
-                top-[1.2px]
-                bg-white
-                opacity-[0.08]
-                blur-[60px]
-                pointer-events-none
-              "
-            />
-            <div className="relative z-10 flex flex-col gap-8 flex-1">
-              <div className="flex  gap-5">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white/5 flex items-center justify-center mb-2 sm:mb-4 text-white flex-shrink-0">
-                  <Shield className="w-5 h-5 sm:w-6 sm:h-6" />
+          <Link href="/vira" className="block h-full">
+            <motion.div
+              className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full hover:scale-105 cursor-pointer transition-all duration-300"
+              variants={newsCardVariants}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.4, delay: 1 * 0.08, ease: "easeOut" }}
+            >
+              <div
+                className="
+                  absolute
+                  w-[150px]
+                  h-[150px]
+                  right-0
+                  top-[1.2px]
+                  bg-white
+                  opacity-[0.08]
+                  blur-[60px]
+                  pointer-events-none
+                "
+              />
+              <div className="relative z-10 flex flex-col gap-8 flex-1">
+                <div className="flex  gap-5">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white/5 flex items-center justify-center mb-2 sm:mb-4 text-white flex-shrink-0">
+                    <Shield className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="flex flex-col  flex-1">
+                    <h3 className="text-xl  font-medium text-white ">
+                      VIRA
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
+                      Cloud VIRA automates Azure security with continuous,
+                      enterprise-grade risk scanning.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-col  flex-1">
-                  <h3 className="text-xl  font-medium text-white ">
-                    VIRA
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
-                    Cloud VIRA automates Azure security with continuous,
-                    enterprise-grade risk scanning.
-                  </p>
+                <div className="mt-auto">
+                  <ViraCardAnimation />
                 </div>
               </div>
-              <div className="mt-auto">
-                <ViraCardAnimation />
-              </div>
-              <Link
-                href="/vira"
-                className="mt-3 inline-flex items-center text-xs font-medium text-emerald-300 hover:text-emerald-200 transition-colors"
-              >
-                Explore VIRA →
-              </Link>
-            </div>
-          </motion.div>
+            </motion.div>
+          </Link>
 
           {/* IAN Card */}
-          <motion.div
-            className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full"
-            variants={newsCardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.4, delay: 2 * 0.08, ease: "easeOut" }}
-            whileHover={{
-              y: -6,
-              boxShadow: "0 22px 55px rgba(15,23,42,0.65)",
-              borderColor: "rgba(255,255,255,0.35)",
-            }}
-          >
-            <div
-              className="
-                absolute
-                w-[150px]
-                h-[150px]
-                right-0
-                top-[1.2px]
-                bg-white
-                opacity-[0.08]
-                blur-[60px]
-                pointer-events-none
-              "
-            />
-            <div className="relative z-10 flex flex-col gap-8 flex-1">
-              <div className="flex gap-5">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white/5 flex items-center justify-center mb-2 sm:mb-4 text-white flex-shrink-0">
-                  <Zap className="w-5 h-5 sm:w-6 sm:h-6" />
+          <Link href="/ian" className="block h-full">
+            <motion.div
+              className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full hover:scale-105 cursor-pointer transition-all duration-300"
+              variants={newsCardVariants}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.4, delay: 2 * 0.08, ease: "easeOut" }}
+            >
+              <div
+                className="
+                  absolute
+                  w-[150px]
+                  h-[150px]
+                  right-0
+                  top-[1.2px]
+                  bg-white
+                  opacity-[0.08]
+                  blur-[60px]
+                  pointer-events-none
+                "
+              />
+              <div className="relative z-10 flex flex-col gap-8 flex-1">
+                <div className="flex gap-5">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white/5 flex items-center justify-center mb-2 sm:mb-4 text-white flex-shrink-0">
+                    <Zap className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </div>
+                  <div className="flex flex-col  flex-1">
+                    <h3 className="text-xl sm:text-2xl font-medium text-white ">
+                      IAN
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
+                      Manage all Azure services from one dashboard with
+                      real-time insights.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-col  flex-1">
-                  <h3 className="text-xl sm:text-2xl font-medium text-white ">
-                    IAN
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
-                    Manage all Azure services from one dashboard with
-                    real-time insights.
-                  </p>
+                <div className="mt-auto">
+                  <IanCardAnimation />
                 </div>
               </div>
-              <div className="mt-auto">
-                <IanCardAnimation />
-              </div>
-              <Link
-                href="/ian"
-                className="mt-3 inline-flex items-center text-xs font-medium text-emerald-300 hover:text-emerald-200 transition-colors"
-              >
-                Explore IAN →
-              </Link>
-            </div>
-          </motion.div>
+            </motion.div>
+          </Link>
 
           {/* Remaining product cards following the exact layout as the REX card */}
           {[...newsCardsRowOne, ...newsCardsRowTwo].map((card, index) => {
@@ -675,7 +648,7 @@ export default function ProductSection() {
 
             const CardContent = (
               <motion.div
-                className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full"
+                className="group relative p-4 sm:p-6 rounded-2xl bg-[#0A0C10] border border-white/5 overflow-hidden text-left animate-fade-in flex flex-col h-full w-full hover:scale-105 cursor-pointer transition-all duration-300"
                 variants={newsCardVariants}
                 initial="initial"
                 whileInView="animate"
@@ -684,11 +657,6 @@ export default function ProductSection() {
                   duration: 0.4,
                   delay: (index + 3) * 0.08,
                   ease: "easeOut",
-                }}
-                whileHover={{
-                  y: -6,
-                  boxShadow: "0 22px 55px rgba(15,23,42,0.65)",
-                  borderColor: "rgba(255,255,255,0.35)",
                 }}
               >
                 <div className="absolute w-[150px] h-[150px] right-0 top-0 bg-white opacity-[0.08] blur-[60px] pointer-events-none" />
@@ -710,21 +678,18 @@ export default function ProductSection() {
                   <div className="mt-auto">
                     {renderNewsCardAnimation(card.id)}
                   </div>
-                  {href && (
-                    <span className="mt-3 inline-flex items-center text-xs font-medium text-emerald-300 group-hover:text-emerald-200 transition-colors">
-                      Explore {card.title} →
-                    </span>
-                  )}
                 </div>
               </motion.div>
             );
 
             return href ? (
-              <Link key={card.title} href={href} className="block h-full">
+              <Link key={card.id} href={href} className="block h-full">
                 {CardContent}
               </Link>
             ) : (
-              <div key={card.title}>{CardContent}</div>
+              <div key={card.id} className="block h-full">
+                {CardContent}
+              </div>
             );
           })}
         </div>

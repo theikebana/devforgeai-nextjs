@@ -20,8 +20,9 @@ export default function ViraPage() {
         <div className="max-w-7xl mx-auto rounded-4xl border-2 mt-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
           <ViraHowItWorks />
         </div>
-        <ViraComplianceSection />
+      
         <ViraKeyBenefits />
+        <ViraComplianceSection />
         <TestimonialsInnerPages />
         <CallToAction />
       </main>
