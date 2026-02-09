@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Radar,
@@ -164,10 +165,13 @@ export default function ViraHero() {
   
                 className="flex flex-wrap items-center gap-4 pt-2"
               >
-                <button className="group inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:bg-emerald-400 transition">
+                <Link
+                  href="/book-demo"
+                  className="group inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(16,185,129,0.4)] hover:bg-emerald-400 transition"
+                >
                   Get a live demo
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                </button>
+                </Link>
 
                 <button className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm text-white/80 backdrop-blur hover:bg-white/10">
                   <Play className="h-4 w-4 text-emerald-300" />
@@ -300,10 +304,13 @@ export default function ViraHero() {
             exit={{ y: 80, opacity: 0 }}
             className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-2xl border border-white/10 bg-slate-950/90 px-4 py-3 backdrop-blur-xl shadow-xl"
           >
-            <button className="flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200">
+            <Link
+              href="/book-demo"
+              className="flex items-center gap-2 text-sm font-medium text-emerald-300 hover:text-emerald-200"
+            >
               Get a live demo
               <ArrowRight className="h-4 w-4" />
-            </button>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

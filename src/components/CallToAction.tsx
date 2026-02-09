@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CallToAction() {
   return (
     <section className=" relative overflow-hidden">
@@ -33,9 +35,12 @@ export default function CallToAction() {
         </p>
 
         <div className="flex flex-row gap-4 justify-center">
-          <button className="px-5 lg:px-8 py-2 lg:py-3 rounded-lg bg-[#0078D4] font-medium text-sm lg:text-base font-light text-white transition-all cursor-pointer hover:scale-105">
+          <Link
+            href="/book-demo"
+            className="px-5 lg:px-8 py-2 lg:py-3 rounded-lg bg-[#0078D4] font-medium text-sm lg:text-base font-light text-white transition-all cursor-pointer hover:scale-105"
+          >
             Schedule a Demo
-          </button>
+          </Link>
           <button className="px-5 lg:px-8 py-3 rounded-lg border cursor-pointer font-medium text-sm lg:text-base font-light border-white hover:border-gray-500 text-white transition-all">
             Contact Sales
           </button>

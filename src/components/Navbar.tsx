@@ -133,13 +133,6 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
-            <button
-              onClick={() => handleScroll("products")}
-              className="text-sm text-[#9C9D9F] hover:text-white transition"
-            >
-              Features
-            </button>
-
             {/* Products Dropdown */}
             <div className="relative group">
               <button className="flex items-center gap-1 text-sm text-[#9C9D9F] hover:text-white">
@@ -196,25 +189,22 @@ export default function Navbar() {
               </div>
             </div>
 
+            {/* Center links */}
             <button
-              onClick={() => handleScroll("why")}
-              className="text-sm text-[#9C9D9F] hover:text-white transition"
-            >
-              Why DevForge?
-            </button>
-
-            <button
-              onClick={() => handleScroll("services")}
-              className="text-sm text-[#9C9D9F] hover:text-white transition"
-            >
-              Services
-            </button>
-
-            <button
-              onClick={() => handleScroll("pricing")}
+              onClick={() => router.push("/pricing")}
               className="text-sm text-[#9C9D9F] hover:text-white transition"
             >
               Pricing
+            </button>
+
+            <div className="flex-1" />
+
+            {/* Book a demo pill */}
+            <button
+              onClick={() => router.push("/book-demo")}
+              className="inline-flex items-center rounded-full bg-emerald-500 px-5 py-2 text-sm font-medium text-black shadow-[0_0_24px_rgba(16,185,129,0.45)] hover:bg-emerald-400 transition"
+            >
+              Book a demo
             </button>
           </div>
 

@@ -65,7 +65,7 @@ const innerRing = [
 
 const tools = [
   {
-    title: "Moogle Mind",
+    title: "MoogleMind",
     description: "Context-aware AI search across your engineering knowledge.",
     Icon: FaBrain,
   },
@@ -95,7 +95,7 @@ const tools = [
     Icon: FaChartLine,
   },
   {
-    title: "ELVIS",
+    title: "Elvis",
     description: "Environment lifecycle manager for ephemeral dev stacks.",
     Icon: FaBolt,
   },
@@ -103,9 +103,11 @@ const tools = [
 
 export default function Hero() {
   const [orbitAngle, setOrbitAngle] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Smooth circular motion for the tool cards while keeping them upright
   useAnimationFrame((time) => {
+    if (isHovered) return;
     const speed = 0.00009; // smaller = slower, smoother orbit
     const angle = (time as number) * speed;
     setOrbitAngle(angle % (Math.PI * 2));
@@ -115,6 +117,8 @@ export default function Hero() {
     <section
       id="hero"
       className="relative min-h-[80vh] pt-24 lg:pt-32 pb-[500px] overflow-hidden bg-[#020617] rounded-4xl m-4"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
@@ -164,7 +168,10 @@ export default function Hero() {
           <div className="absolute inset-0 flex items-center justify-center">
             {tools.map(({ title, description, Icon }, index) => {
               const baseAngle = (2 * Math.PI * index) / tools.length;
-              const angle = orbitAngle + baseAngle;
+
+              // Normal state: cards orbit around the circle
+              // Hover state: freeze rotation but keep full circular layout
+              const angle = (isHovered ? 0 : orbitAngle) + baseAngle;
               const radius = 400;
               const x = radius * Math.cos(angle);
               const y = radius * Math.sin(angle);

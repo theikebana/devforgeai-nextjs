@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, ShieldCheck, ArrowRight } from "lucide-react";
 import { BsCameraVideo, BsRobot } from "react-icons/bs";
@@ -84,10 +85,13 @@ export default function AttendAIHero() {
 
             {/* CTA */}
             <div className="flex items-center gap-4 pt-2">
-              <button className="group inline-flex items-center gap-2 rounded-xl bg-sky-500 px-5 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(56,189,248,0.35)] hover:bg-sky-400">
+              <Link
+                href="/book-demo"
+                className="group inline-flex items-center gap-2 rounded-xl bg-sky-500 px-5 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(56,189,248,0.35)] hover:bg-sky-400"
+              >
                 View live demo
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-              </button>
+              </Link>
 
               <span className="flex items-center gap-2 text-xs text-white/55">
                 <ShieldCheck className="h-4 w-4 text-sky-400" />
