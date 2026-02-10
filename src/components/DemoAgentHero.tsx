@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import { Play, Mic, FileText, ArrowRight, ShieldCheck } from "lucide-react";
 
 const FEATURES = [
-  { label: "One-click walkthroughs", icon: Play },
-  { label: "AI voice narration", icon: Mic },
-  { label: "Docs-driven control", icon: FileText },
+  { label: "AI document classification", icon: Play },
+  { label: "Semantic search", icon: Mic },
+  { label: "Secure access control", icon: FileText },
 ];
 
 export default function DemoAgentHero() {
@@ -29,24 +29,25 @@ export default function DemoAgentHero() {
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-100/80 backdrop-blur">
               <Play className="h-3 w-3 text-emerald-300" />
               <span className="uppercase tracking-[0.18em] text-[10px]">
-                Demo automation • AI narration
+                AI document management • Semantic search
               </span>
             </div>
 
             <h2 className="text-3xl lg:text-[38px] font-semibold tracking-tight text-white">
-              Turn any web portal into{" "}
+              Turn scattered documents into{" "}
               <span className="text-emerald-400">
-                live-like, narrated demos
+                an AI-first, searchable system
               </span>
             </h2>
 
             <p className="text-base text-white/65 leading-relaxed">
-              STAGE watches real user flows, captures each step, generates a
-              clean demo flow, and pairs it with{" "}
+              ThinkDocs ingests documents from every source, runs OCR and NLP to
+              extract key information, classifies each file automatically, and
+              makes everything{" "}
               <span className="text-white/85 font-medium">
-                written narration + AI voice
+                instantly searchable and access controlled
               </span>{" "}
-              so your demos feel human, consistent, and repeatable.
+              — cutting manual document work by over 70%.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2 text-sm text-white/70">
@@ -71,12 +72,12 @@ export default function DemoAgentHero() {
                 href="/book-demo"
                 className="group inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(16,185,129,0.35)] hover:bg-emerald-400"
               >
-                See STAGE in action
+                See ThinkDocs in action
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
               </Link>
               <span className="flex items-center gap-2 text-xs text-white/55">
                 <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                Prototyping stage
+                Running in production
               </span>
             </div>
           </div>
@@ -146,7 +147,7 @@ export default function DemoAgentHero() {
                   }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <Play className="h-9 w-9 text-emerald-400" />
+                  <FileText className="h-9 w-9 text-emerald-400" />
                 </motion.div>
               </div>
 
@@ -184,9 +185,9 @@ export default function DemoAgentHero() {
               {/* FEATURE CHIPS */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
                 {[
-                  { label: "Capture", icon: Play },
-                  { label: "Narrate", icon: Mic },
-                  { label: "Run", icon: FileText },
+                  { label: "Ingest", icon: Play },
+                  { label: "Classify", icon: Mic },
+                  { label: "Search", icon: FileText },
                 ].map((item, i) => (
                   <motion.div
                     key={item.label}

@@ -17,6 +17,7 @@ import {
   Mic,
   Play,
   RefreshCw,
+  ShieldCheck,
   Video,
   Zap,
 } from "lucide-react";
@@ -25,27 +26,27 @@ import ShineCardsSection from "@/components/ShineCardsSection";
 
 const demoAgentSteps: ToolOverviewSectionProps["steps"] = [
   {
-    title: "Watch & capture",
+    title: "Ingest & upload",
     description:
-      "STAGE watches real user flows on your web portal and captures each step to build an accurate demo sequence.",
+      "Users and systems upload documents via UI or API; ThinkDocs ingests them and prepares them for AI processing.",
     status: "active",
   },
   {
-    title: "Generate demo flow",
+    title: "OCR & text extraction",
     description:
-      "Turns captured steps into a clean, runnable walkthrough that runs end-to-end without manual setup.",
+      "Python-based OCR pipelines convert scanned and native documents into machine-readable text at scale.",
     status: "idle",
   },
   {
-    title: "Narration + AI voice",
+    title: "AI classification & metadata",
     description:
-      "Pairs each step with written narration and natural AI voice (MP3) with timing that matches the demo.",
+      "ML models classify documents (Invoice, Contract, KYC, etc.) and extract key fields like names, dates, amounts, and IDs.",
     status: "idle",
   },
   {
-    title: "Run demo & Live Q&A",
+    title: "Indexing & secure storage",
     description:
-      "Deliver consistent, repeatable demos and handle technical and non-technical questions in real time.",
+      "Metadata and content are indexed in Elasticsearch while encrypted files are stored in S3 with strict, role-based access control.",
     status: "idle",
   },
 ];
@@ -53,73 +54,85 @@ const demoAgentSteps: ToolOverviewSectionProps["steps"] = [
 const demoAgentHowItWorksSteps: HowToolWorksSectionProps["steps"] = [
   {
     label: "01",
-    title: "Watch & capture",
+    title: "Upload & ingest",
     description:
-      "STAGE watches real user flows on your web portal and captures each step to build an accurate demo sequence.",
-    icon: Video,
+      "Documents are uploaded through UI or API gateways and queued for background processing, ready for large-scale ingestion.",
+    icon: FileText,
   },
   {
     label: "02",
-    title: "Generate demo flow",
+    title: "OCR + NLP pipelines",
     description:
-      "Turns captured steps into a clean, runnable walkthrough that runs end-to-end without manual setup.",
-    icon: Play,
-  },
-  {
-    label: "03",
-    title: "Narration + AI voice",
-    description:
-      "Pairs each step with written narration and natural AI voice (MP3) with timing that matches the demo.",
+      "Distributed OCR and NLP services extract raw text, normalize formats, and prepare content for downstream AI models.",
     icon: Mic,
   },
   {
-    label: "04",
-    title: "Run demo & Live Q&A",
+    label: "03",
+    title: "AI classification & extraction",
     description:
-      "Deliver consistent, repeatable demos and handle technical and non-technical questions in real time.",
+      "AI models detect document type with 95%+ accuracy and auto-extract key fields needed for finance, legal, and KYC workflows.",
+    icon: Zap,
+  },
+  {
+    label: "04",
+    title: "Semantic search & access",
+    description:
+      "Elasticsearch powers millisecond semantic search while secure APIs and RBAC ensure only the right teams can access each file.",
     icon: MessageCircle,
   },
 ];
 
 const pulseCenterData = {
   center: {
-    title: "STAGE Engine",
-    subtitle: "Demo automation core",
+    title: "ThinkDocs Engine",
+    subtitle: "AI document processing core",
   },
   items: [
-    { id: 1, icon: Video, label: "Capture flows" },
-    { id: 2, icon: Mic, label: "AI narration" },
-    { id: 3, icon: RefreshCw, label: "Auto-sync" },
-    { id: 4, icon: MessageCircle, label: "Live Q&A" },
-    { id: 5, icon: FileText, label: "Docs-driven" },
-    { id: 6, icon: Zap, label: "One-click run" },
+    { id: 1, icon: FileText, label: "AI ingestion" },
+    { id: 2, icon: Video, label: "OCR pipelines" },
+    { id: 3, icon: Mic, label: "NLP extraction" },
+    { id: 4, icon: RefreshCw, label: "Elasticsearch indexing" },
+    { id: 5, icon: MessageCircle, label: "Semantic search" },
+    { id: 6, icon: Zap, label: "Scalable processing" },
   ],
 };
 
 const keyFeatures = [
   {
-    icon: Play,
-    name: "One-click runnable walkthroughs",
+    icon: FileText,
+    name: "Smart document storage",
     description:
-      "Auto-build polished, live-like demos that run end-to-end without manual setup.",
+      "Folderless, tag-based organization with auto-generated metadata and full version history so teams never lose track of a file.",
   },
   {
-    icon: Mic,
-    name: "AI voice narration, auto-synced",
+    icon: Zap,
+    name: "AI classification",
     description:
-      "Natural narration per step with MP3 voice and timing that matches the audio.",
+      "ML models detect document types such as invoices, contracts, and KYC records with 95%+ accuracy, removing manual tagging.",
   },
   {
     icon: FileText,
-    name: "Docs-driven control & consistency",
+    name: "Semantic search",
     description:
-      "Your documentation governs what's shown, emphasized, and explained—no hardcoding.",
+      "Full-text and contextual search over content and metadata with filters for dates, types, owners, and tags—results in milliseconds.",
   },
   {
-    icon: MessageCircle,
-    name: "Intelligent Live Q&A",
+    icon: Mic,
+    name: "OCR & data extraction",
     description:
-      "Handles both technical and non-technical questions in real time during the demo, ensuring clear understanding for every audience.",
+      "Robust OCR for scanned documents plus NLP to extract names, dates, invoice numbers, amounts, IDs, and other key fields automatically.",
+  },
+  {
+    icon: ShieldCheck,
+    name: "Security & compliance",
+    description:
+      "Role-based access control, encryption in transit and at rest, detailed audit logs, and GDPR-aligned data handling for regulated teams.",
+  },
+  {
+    icon: Play,
+    name: "Performance & scalability",
+    description:
+      "Async job queues, horizontal scaling, and containerized services that reliably handle millions of documents in production.",
   },
 ];
 
@@ -130,20 +143,20 @@ export default function DemoAgentPage() {
       <main>
         <DemoAgentHero />
         <ToolOverviewSection
-          badge="Demo Automation — Powered by STAGE"
+          badge="AI Document Management — ThinkDocs"
           accent="emerald"
           title={
             <>
-              STAGE — Scripted Tour Automation & Generation Engine{" "}
+              ThinkDocs — AI-Driven Document Management System{" "}
               <br />
               <span className="text-emerald-400">
-                Live-like, narrated product demos
+                Intelligent storage, search, and processing at scale
               </span>
             </>
           }
-          description="Turn any web portal into a live-like, narrated product demo—automatically. STAGE watches real user flows, captures each step, generates a clean demo flow, and pairs it with written narration and AI voice so your demos feel human, consistent, and repeatable."
+          description="ThinkDocs is an AI-powered DMS that ingests documents from every source, runs OCR and NLP pipelines to extract key data, classifies each file automatically, and indexes everything in Elasticsearch and PostgreSQL. It replaces manual tagging and slow, scattered storage with semantic search, secure access control, and automation that cuts document handling time by more than 70%."
           steps={demoAgentSteps}
-          footerStatus="Prototyping stage · No screenshots yet"
+          footerStatus="Running in production · 1M+ documents managed"
         />
 
         <div className="max-w-7xl mx-auto rounded-4xl border-2 my-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
@@ -152,10 +165,10 @@ export default function DemoAgentPage() {
             accent="emerald"
             heading={
               <>
-                From real user flows to polished, narrated demos.
+                From raw uploads to AI-structured, searchable documents.
               </>
             }
-            description="STAGE connects to your web portal, captures how users move through it, builds a runnable walkthrough, and adds written narration plus AI voice—so every demo is consistent and repeatable, with live Q&A for every audience."
+            description="Documents are uploaded, processed through OCR and NLP services, classified by AI, and then indexed into Elasticsearch with rich metadata. Under the hood, queues, workers, and containerized services on AWS handle scale and resilience so teams always get fast, reliable search and retrieval."
             steps={demoAgentHowItWorksSteps}
           />
         </div>
@@ -163,16 +176,16 @@ export default function DemoAgentPage() {
         <PulseSection
           center={pulseCenterData.center}
           items={pulseCenterData.items}
-          sectionTitle="How STAGE Works"
-          sectionDescription="STAGE operates as an automation layer that turns your product into a scripted, narrated experience. It captures real flows, generates clean demo sequences, syncs them with AI voice, and keeps everything aligned with your documentation—so demos are human, consistent, and repeatable, with intelligent live Q&A for every audience."
+          sectionTitle="How ThinkDocs Works"
+          sectionDescription="ThinkDocs sits between your sources of documents and your teams, acting as an AI engine for ingestion, OCR, NLP, classification, indexing, and secure delivery. The result is a single, compliant system of record where millions of documents become searchable, actionable, and ready for downstream workflows instead of stuck in folders and email threads."
         />
 
         <ShineCardsSection
-          eyebrow="Key features"
-          title="Everything you need for world-class product demos"
-          subtitle="One-click walkthroughs, AI narration, docs-driven control, and intelligent live Q&A—so your demos feel human and scale without the manual work."
+          eyebrow="Key capabilities"
+          title="AI-first document management, end to end"
+          subtitle="From ingestion and OCR to AI classification, semantic search, and secure access control, ThinkDocs turns manual document operations into an automated, intelligent system that scales with your business."
           items={keyFeatures}
-          columns={4}
+          columns={3}
           backgroundClass="bg-[#07090E]"
         />
 

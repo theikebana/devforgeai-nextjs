@@ -75,7 +75,7 @@ const newsCardsRowTwo: NewsCard[] = [
   {
     title: "ThinkDocs",
     description:
-      "AI-based document management with semantic search and auto-tagging.",
+      "Think Docs is an AI-powered document intelligence platform for smart data extraction, analysis, and insights.",
     id: "thinkdocs",
   },
   {
@@ -87,7 +87,7 @@ const newsCardsRowTwo: NewsCard[] = [
   {
     title: "Demo Agent (STAGE)",
     description:
-      "Scripted demo automation that turns portals into narrated product tours.",
+      "An automated Demo Agent that simulates real users to deliver consistent, hands-free product walkthroughs.",
     id: "demo-agent",
   },
 ];

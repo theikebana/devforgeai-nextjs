@@ -172,8 +172,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 text-sm md:text-lg text-white/60 leading-relaxed">
-            DevForge.ai gives you full visibility and control over your Azure
-            infrastructure with enterprise-grade security.
+          Purpose-built AI products that help businesses work smarter, faster, and better.
           </p>
         </div>
 
