@@ -219,53 +219,9 @@ export default function Hero() {
 
               {/* CONTENT */}
               <div className="relative z-10">
-              <div className="relative max-w-7xl mx-auto p-5 px-16">
-  <div className="grid grid-cols-5 gap-3">
-    {tools.slice(0, 10).map(({ title, descriptionLong, Icon }, index) => {
-      const positions = [
-        "row-start-1 col-start-2 col-span-1",
-        "row-start-1 col-start-4 col-span-1",
-
-        "row-start-2 col-start-2",
-        "row-start-2 col-start-3",
-        "row-start-2 col-start-4",
-
-        "row-start-3 col-start-1",
-        "row-start-3 col-start-2",
-        "row-start-3 col-start-3",
-        "row-start-3 col-start-4",
-        "row-start-3 col-start-5",
-      ];
-
-      return (
-        <motion.div
-          key={title}
-          className={positions[index]}
-          initial={{ opacity: 0, y: 12, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: index * 0.04, duration: 0.35 }}
-        >
-          <div
-            className="h-full min-h-[120px] rounded-xl
-                       bg-slate-950/30 border border-sky-300/25
-                       shadow-[0_0_18px_rgba(56,189,248,0.15)]
-                       p-3 backdrop-blur-sm"
-          >
-            <div className="flex items-center gap-2">
-              <div className="h-7 w-7 rounded-md bg-sky-500/10 flex items-center justify-center">
-                <Icon className="text-sky-200" />
-              </div>
-              <span className="text-sm text-white">{title}</span>
-            </div>
-            <p className="text-xs text-sky-100/65 mt-1">
-              {descriptionLong}
-            </p>
-          </div>
-        </motion.div>
-      );
-    })}
-  </div>
-</div>
+                <div className="relative max-w-7xl mx-auto p-5 px-16">
+                  <div className="grid grid-cols-3 gap-3 max-w-7xl mx-auto p-5 px-16"> {tools.map(({ title, descriptionLong, Icon }, index) => (<motion.div key={title} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: index * 0.04, duration: 0.35 }} className={index === 4 ? "col-start-2" : ""} > <div className="h-full min-h-[120px] rounded-xl bg-slate-950/30 border border-sky-300/25 shadow-[0_0_18px_rgba(56,189,248,0.15)] p-3 backdrop-blur-sm"> <div className="flex items-center gap-2"> <div className="h-7 w-7 rounded-md bg-sky-500/10 flex items-center justify-center"> <Icon className="text-sky-200" /> </div> <span className="text-sm text-white">{title}</span> </div> <p className="text-xs text-sky-100/65 mt-1"> {descriptionLong} </p> </div> </motion.div>))} </div>
+                </div>
 
               </div>
             </div>
