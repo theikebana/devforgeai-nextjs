@@ -76,7 +76,7 @@ export default function Navbar() {
     {
       title: "Elvis",
       description:
-        "Environment lifecycle manager for ephemeral dev stacks.",
+        "Job leads management & analytics platform for sales teams.",
       icon: Layers,
       href: "elvis",
     },
@@ -86,6 +86,20 @@ export default function Navbar() {
         "AI-enabled data extraction from invoices, contracts, and digital documents.",
       icon: FileText,
       href: "alluvium",
+    },
+    {
+      title: "ThinkDocs",
+      description:
+        "AI-based document management with semantic search and auto-tagging.",
+      icon: FileText,
+      href: "think-docs",
+    },
+    {
+      title: "Demo Agent (STAGE)",
+      description:
+        "Scripted demo automation that turns portals into narrated product tours.",
+      icon: Layers,
+      href: "demo-agent",
     },
   ];
 
@@ -179,7 +193,7 @@ export default function Navbar() {
                           setIsOpen(false);
                           router.push(`/${item.href}`);
                         }}
-                        className="flex gap-4 p-3 rounded-lg text-left hover:bg-white/5 transition w-full"
+                        className="flex gap-4 p-3 rounded-lg text-left hover:bg-white/5 transition w-full cursor-pointer"
                       >
                         <div className="h-10 w-12 flex items-center justify-center rounded-md bg-white/10 border border-white/20">
                           <Icon size={18} />
