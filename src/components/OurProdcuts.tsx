@@ -22,6 +22,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { productsById } from "@/config/products";
 
 const newsCardVariants = {
   initial: { opacity: 0, y: 20 },
@@ -29,8 +30,6 @@ const newsCardVariants = {
 };
 
 type NewsCard = {
-  title: string;
-  description: string;
   id:
     | "mooglemind"
     | "review-attendant"
@@ -46,48 +45,27 @@ type NewsCard = {
 
 const newsCardsRowOne: NewsCard[] = [
   {
-    title: "MoogleMind",
-    description:
-      "An open‑source AI platform for unified enterprise search, custom agents, and secure self‑hosting.",
     id: "mooglemind",
   },
   {
-    title: "Review Attendant",
-    description:
-      "An AI platform that centralizes reviews and automates responses with sentiment analysis.",
     id: "review-attendant",
   },
   {
-    title: "AttendAI",
-    description:
-      "A smart face‑recognition attendance system with IP camera support and clear reporting.",
     id: "attendai",
   },
 ];
 
 const newsCardsRowTwo: NewsCard[] = [
   {
-    title: "Elvis",
-    description:
-      "Job leads management & analytics platform for sales teams.",
     id: "elvis",
   },
   {
-    title: "ThinkDocs",
-    description:
-      "Think Docs is an AI-powered document intelligence platform for smart data extraction, analysis, and insights.",
     id: "thinkdocs",
   },
   {
-    title: "Alluvium",
-    description:
-      "AI-enabled data extraction from invoices, contracts, and financial documents.",
     id: "alluvium",
   },
   {
-    title: "Demo Agent (STAGE)",
-    description:
-      "An automated Demo Agent that simulates real users to deliver consistent, hands-free product walkthroughs.",
     id: "demo-agent",
   },
 ];
@@ -811,11 +789,10 @@ export default function ProductSection() {
                   </div>
                   <div className="flex flex-col  flex-1">
                     <h3 className="text-xl  font-medium text-white ">
-                      REX
+                      {productsById["rex"].title}
                     </h3>
                     <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
-                      Rex auto-reviews code, finds risks, and secures CI/CD
-                      before production.
+                      {productsById["rex"].description}
                     </p>
                   </div>
                 </div>
@@ -858,11 +835,10 @@ export default function ProductSection() {
                   </div>
                   <div className="flex flex-col  flex-1">
                     <h3 className="text-xl  font-medium text-white ">
-                      VIRA
+                      {productsById["vira"].title}
                     </h3>
                     <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
-                      Cloud VIRA automates Azure security with continuous,
-                      enterprise-grade risk scanning.
+                      {productsById["vira"].description}
                     </p>
                   </div>
                 </div>
@@ -905,11 +881,10 @@ export default function ProductSection() {
                   </div>
                   <div className="flex flex-col  flex-1">
                     <h3 className="text-xl sm:text-2xl font-medium text-white ">
-                      IAN
+                      {productsById["ian"].title}
                     </h3>
                     <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
-                      Manage all Azure services from one dashboard with
-                      real-time insights.
+                      {productsById["ian"].description}
                     </p>
                   </div>
                 </div>
@@ -940,6 +915,7 @@ export default function ProductSection() {
 
             const renderCard = (card: NewsCard, index: number) => {
               const href = productPages[card.id];
+              const product = productsById[card.id as keyof typeof productsById];
 
               const CardContent = (
                 <motion.div
@@ -963,10 +939,10 @@ export default function ProductSection() {
                       </div>
                       <div className="flex flex-col  flex-1">
                         <h3 className="text-xl  font-medium text-white ">
-                          {card.title}
+                          {product.title}
                         </h3>
                         <p className="text-gray-400 text-sm leading-tight line-clamp-2 flex-grow">
-                          {card.description}
+                          {product.description}
                         </p>
                       </div>
                     </div>

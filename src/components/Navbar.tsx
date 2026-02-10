@@ -1,20 +1,9 @@
 "use client";
 
-import {
-  Menu,
-  X,
-  ShieldCheck,
-  ChevronDown,
-  Rocket,
-  Zap,
-  Search,
-  MessageCircle,
-  Users,
-  Layers,
-  FileText,
-} from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { products as productConfigs } from "@/config/products";
 
 export default function Navbar() {
   const router = useRouter();
@@ -30,78 +19,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const products = [
-    {
-      title: "REX",
-      description:
-        "Rex auto-reviews code, finds risks, and secures CI/CD before production.",
-      icon: Rocket,
-      href: "rex",
-    },
-    {
-      title: "VIRA",
-      description:
-        "Cloud VIRA automates Azure security with continuous, enterprise-grade risk scanning.",
-      icon: ShieldCheck,
-      href: "vira",
-    },
-    {
-      title: "IAN",
-      description:
-        "Manage all Azure services from one dashboard with real-time insights.",
-      icon: Zap,
-      href: "ian",
-    },
-    {
-      title: "MoogleMind",
-      description:
-        "Unified enterprise search, custom agents, and secure self-hosting.",
-      icon: Search,
-      href: "mooglemind",
-    },
-    {
-      title: "Review Attendant",
-      description:
-        "Centralizes reviews and automates responses with sentiment analysis.",
-      icon: MessageCircle,
-      href: "review-attendant",
-    },
-    {
-      title: "AttendAI",
-      description:
-        "Smart face-recognition attendance with IP camera support and reporting.",
-      icon: Users,
-      href: "attendai",
-    },
-    {
-      title: "Elvis",
-      description:
-        "Job leads management & analytics platform for sales teams.",
-      icon: Layers,
-      href: "elvis",
-    },
-    {
-      title: "Alluvium",
-      description:
-        "AI-enabled data extraction from invoices, contracts, and digital documents.",
-      icon: FileText,
-      href: "alluvium",
-    },
-    {
-      title: "ThinkDocs",
-      description:
-        "Think Docs is an AI-powered document intelligence platform for smart data extraction, analysis, and insights.",
-      icon: FileText,
-      href: "think-docs",
-    },
-    {
-      title: "Demo Agent (STAGE)",
-      description:
-        "An automated Demo Agent that simulates real users to deliver consistent, hands-free product walkthroughs.",
-      icon: Layers,
-      href: "demo-agent",
-    },
-  ];
+  const products = productConfigs.filter((product) => product.showInNavbar);
 
   const handleScroll = (id: string) => {
     const el = document.getElementById(id);
@@ -187,11 +105,11 @@ export default function Navbar() {
                     const Icon = item.icon;
                     return (
                       <button
-                        key={item.href}
+                        key={item.id}
                         onClick={() => {
                           setIsProductsOpen(false);
                           setIsOpen(false);
-                          router.push(`/${item.href}`);
+                          router.push(item.path);
                         }}
                         className="flex gap-4 p-3 rounded-lg text-left hover:bg-white/5 transition w-full cursor-pointer"
                       >

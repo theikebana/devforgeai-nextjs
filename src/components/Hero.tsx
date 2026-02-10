@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, useAnimationFrame, AnimatePresence } from "framer-motion";
 import { Shield, Cloud, Zap, Rocket } from "lucide-react";
+import { productsById } from "@/config/products";
 import {
   FaLock,
   FaCloud,
@@ -70,65 +71,56 @@ const ORBIT_RADIUS = 400;
 const tools = [
   {
     title: "MoogleMind",
-    description: "Context-aware AI search across your engineering knowledge.",
-    descriptionLong:
-      "AI-powered search to instantly find code, docs, and decisions across your engineering stack.",
+    description: productsById.mooglemind.description,
+    descriptionLong: productsById.mooglemind.description,
     Icon: FaBrain,
   },
   {
     title: "Review Attendant",
-    description: "Automated PR reviews that catch risks before production.",
-    descriptionLong:
-      "Automated PR reviews that enforce security, quality, and compliance standards.",
+    description: productsById["review-attendant"].description,
+    descriptionLong: productsById["review-attendant"].description,
     Icon: FaClipboardCheck,
   },
   {
     title: "Attend AI",
-    description: "Meeting intelligence that turns calls into clear actions.",
-    descriptionLong:
-      "AI meeting intelligence with summaries, action items, and follow-ups.",
+    description: productsById.attendai.description,
+    descriptionLong: productsById.attendai.description,
     Icon: FaUserCheck,
   },
   {
     title: "REX",
-    description: "Execution engine to orchestrate secure cloud workflows.",
-    descriptionLong:
-      "Workflow engine for secure cloud automation, approvals, and pipelines.",
+    description: productsById.rex.description,
+    descriptionLong: productsById.rex.description,
     Icon: FaRobot,
   },
   {
     title: "VIRA",
-    description: "Real-time vulnerability and compliance risk analytics.",
-    descriptionLong:
-      "Real-time security and compliance risk monitoring with continuous scanning.",
+    description: productsById.vira.description,
+    descriptionLong: productsById.vira.description,
     Icon: FaShieldAlt,
   },
   {
     title: "IAN",
-    description: "Insight assistant for cost, performance, and telemetry.",
-    descriptionLong:
-      "AI assistant for cloud cost optimization and performance insights.",
+    description: productsById.ian.description,
+    descriptionLong: productsById.ian.description,
     Icon: FaChartLine,
   },
   {
     title: "Elvis",
-    description: "Job leads management and analytics for sales teams.",
-    descriptionLong:
-      "Sales platform to discover, track, and analyze job leads.",
+    description: productsById.elvis.description,
+    descriptionLong: productsById.elvis.description,
     Icon: FaBolt,
   },
   {
     title: "ThinkDocs",
-    description: "AI-based document management with semantic search.",
-    descriptionLong:
-      "Smart document management with semantic search and automation.",
+    description: productsById.thinkdocs.description,
+    descriptionLong: productsById.thinkdocs.description,
     Icon: FaFileAlt,
   },
   {
     title: "Demo Agent (STAGE)",
-    description: "Scripted demo automation with AI narration.",
-    descriptionLong:
-      "AI-powered automation for creating narrated product demos.",
+    description: productsById["demo-agent"].description,
+    descriptionLong: productsById["demo-agent"].description,
     Icon: FaMicrophoneAlt,
   },
 ];

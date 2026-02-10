@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Play, Mic, FileText, ArrowRight, ShieldCheck } from "lucide-react";
+import { productsById } from "@/config/products";
 
 const FEATURES = [
   { label: "AI document classification", icon: Play },
@@ -11,6 +12,8 @@ const FEATURES = [
 ];
 
 export default function DemoAgentHero() {
+  const thinkDocs = productsById["thinkdocs"];
+
   return (
     <section className="relative overflow-hidden bg-[#07090E] py-12 lg:py-24">
       {/* Ambient glow */}
@@ -41,9 +44,9 @@ export default function DemoAgentHero() {
             </h2>
 
             <p className="text-base text-white/65 leading-relaxed">
-              ThinkDocs ingests documents from every source, runs OCR and NLP to
-              extract key information, classifies each file automatically, and
-              makes everything{" "}
+              {thinkDocs.description} It ingests documents from every source,
+              runs OCR and NLP to extract key information, classifies each file
+              automatically, and makes everything{" "}
               <span className="text-white/85 font-medium">
                 instantly searchable and access controlled
               </span>{" "}
