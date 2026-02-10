@@ -11,6 +11,7 @@ import {
   MessageCircle,
   Users,
   Layers,
+  FileText,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -78,6 +79,13 @@ export default function Navbar() {
         "Environment lifecycle manager for ephemeral dev stacks.",
       icon: Layers,
       href: "elvis",
+    },
+    {
+      title: "Alluvium",
+      description:
+        "AI-enabled data extraction from invoices, contracts, and digital documents.",
+      icon: FileText,
+      href: "alluvium",
     },
   ];
 

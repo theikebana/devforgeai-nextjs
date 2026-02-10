@@ -40,7 +40,8 @@ type NewsCard = {
     | "demo-agent"
     | "assetwisp"
     | "slimsnap"
-    | "lotiq";
+    | "lotiq"
+    | "alluvium";
 };
 
 const newsCardsRowOne: NewsCard[] = [
@@ -76,6 +77,12 @@ const newsCardsRowTwo: NewsCard[] = [
     description:
       "AI-based document management with semantic search and auto-tagging.",
     id: "thinkdocs",
+  },
+  {
+    title: "Alluvium",
+    description:
+      "AI-enabled data extraction from invoices, contracts, and financial documents.",
+    id: "alluvium",
   },
   {
     title: "Demo Agent (STAGE)",
@@ -391,6 +398,64 @@ function ElvisMiniAnimation() {
   );
 }
 
+function AlluviumMiniAnimation() {
+  // Document extraction preview — fields lighting up
+  return (
+    <div className="mt-4 h-full rounded-xl border border-red-400/30 bg-gradient-to-r from-slate-950 via-slate-950/85 to-red-950/40 px-3 py-2">
+      <div className="space-y-2">
+        {/* document header */}
+        <motion.div
+          className="flex items-center justify-between rounded-lg border border-white/10 bg-black/50 px-3 py-1.5"
+          animate={{ opacity: [0.8, 1, 0.9] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="flex items-center gap-2 text-[10px] text-white/70">
+            <FileText className="h-3.5 w-3.5 text-red-300" />
+            <span>invoice_schneider_q3.pdf</span>
+          </div>
+          <span className="text-[9px] text-emerald-300 inline-flex items-center gap-1">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            extracting…
+          </span>
+        </motion.div>
+
+        {/* extracted fields */}
+        <div className="grid grid-cols-2 gap-1.5">
+          {[
+            ["Vendor", "Schneider Electric"],
+            ["Total", "€48,920.00"],
+            ["Due date", "25 Aug 2024"],
+            ["Tax", "19% VAT"],
+          ].map(([label, value], idx) => (
+            <motion.div
+              key={label}
+              className="rounded-lg border border-white/8 bg-white/5 px-2 py-1.5"
+              animate={{
+                borderColor: [
+                  "rgba(148,163,184,0.4)",
+                  "rgba(248,113,113,0.9)",
+                  "rgba(148,163,184,0.4)",
+                ],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: idx * 0.18,
+              }}
+            >
+              <p className="text-[9px] text-white/55">{label}</p>
+              <p className="text-[10px] font-medium text-white/90 truncate">
+                {value}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ThinkDocsMiniAnimation() {
   // Search bar + document list with tags
   return (
@@ -656,7 +721,8 @@ function renderNewsCardAnimation(id: NewsCard["id"]) {
       return <AttendAIMiniAnimation />;
     case "elvis":
       return <ElvisMiniAnimation />;
-  
+    case "alluvium":
+      return <AlluviumMiniAnimation />;
     case "demo-agent":
       return <DemoAgentMiniAnimation />;
     case "assetwisp":
@@ -684,7 +750,8 @@ function renderNewsCardIcon(id: NewsCard["id"]) {
       return <Users className={commonIconClasses} />;
     case "elvis":
       return <Rocket className={commonIconClasses} />;
- 
+    case "alluvium":
+      return <FileText className={commonIconClasses} />;
     case "demo-agent":
       return <Mic className={commonIconClasses} />;
     case "assetwisp":
@@ -864,6 +931,7 @@ export default function ProductSection() {
               elvis: "/elvis",
               thinkdocs: "/think-docs",
               "demo-agent": "/demo-agent",
+              alluvium: "/alluvium",
             };
             const href = productPages[card.id];
 
