@@ -35,9 +35,10 @@ export default function ShineCardsSection({
       : "sm:grid-cols-2 lg:grid-cols-4";
 
   return (
-    <div className={`${backgroundClass} py-16`}>
+    <div className={`${backgroundClass} py-8 sm:py-12 lg:py-16`}>
       <AnimateSection type="fadeUp">
-        <section className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="max-w-7xl 2xl:max-w-[1440px] mx-auto px-6 lg:px-8">
+
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-12">
             {eyebrow && (
@@ -70,7 +71,7 @@ export default function ShineCardsSection({
                   viewport={{ once: false, margin: "-60px" }}
                   transition={{ duration: 0.45, delay: index * 0.08 }}
                   whileHover={{ y: -4 }}
-                  className="relative overflow-hidden rounded-2xl border border-emerald-400/15 bg-gradient-to-b from-slate-900/70 via-slate-950 to-black p-6"
+                  className="relative overflow-hidden rounded-2xl border border-emerald-400/15 bg-gradient-to-b from-slate-900/70 via-slate-950 to-black p-5 sm:p-6"
                 >
                   {/* Moving scan line */}
                   <motion.div
@@ -83,18 +84,31 @@ export default function ShineCardsSection({
                     }}
                   />
 
-                  <div className="relative z-10 flex flex-col items-center text-center">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/15 border border-emerald-400/30">
-                      <Icon className="h-6 w-6 text-emerald-300" />
+                  {/* CONTENT */}
+                  <div className="
+                    relative z-10
+                    flex items-start gap-4 text-left
+                    sm:flex-col sm:items-center sm:gap-0 sm:text-center
+                  ">
+                    {/* ICON */}
+                    <div className="
+                      flex h-10 w-10 shrink-0 items-center justify-center
+                      rounded-xl bg-emerald-500/15 border border-emerald-400/30
+                      sm:mb-4 sm:h-12 sm:w-12
+                    ">
+                      <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-300" />
                     </div>
 
-                    <h3 className="text-md font-medium text-white mb-1">
-                      {item.name}
-                    </h3>
+                    {/* TEXT */}
+                    <div>
+                      <h3 className="text-sm sm:text-md font-medium text-white mb-1">
+                        {item.name}
+                      </h3>
 
-                    <p className="text-sm text-white/65 leading-tight">
-                      {item.description}
-                    </p>
+                      <p className="text-sm text-white/65 leading-snug sm:leading-tight">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               );

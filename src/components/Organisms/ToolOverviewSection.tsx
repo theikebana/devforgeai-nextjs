@@ -54,9 +54,9 @@ export default function ToolOverviewSection({
   const c = accentMap[accent];
 
   return (
-    <div className="bg-[#07090E] pt-12 pb-20">
+    <div className="bg-[#07090E] ">
       <AnimateSection type="fadeUp">
-        <section className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="max-w-7xl 2xl:max-w-[1440px] mx-auto px-6 lg:px-8">
           {/* Badge */}
           <div
             className={`mb-4 inline-flex items-center gap-2 rounded-full border ${c.border} ${c.bg} px-3 py-1.5 text-[10px] tracking-widest ${c.text}`}
@@ -64,7 +64,7 @@ export default function ToolOverviewSection({
             {badge}
           </div>
 
-          <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] items-start">
+          <div className="grid 2xl:gap-12 gap-8 lg:grid-cols-[1.2fr_0.8fr] items-start">
             {/* LEFT */}
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">

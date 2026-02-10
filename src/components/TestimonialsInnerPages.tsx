@@ -248,7 +248,7 @@ export default function Testimonials() {
   return (
     <section className="relative py-8  md:py-12 lg:py-16 lg:py-20  overflow-hidden">
       {/* Top Background Image – Top Half Only */}
-    
+
 
       {/* Content */}
       <div className="relative custom-container mx-auto px-4 sm:px-0">
@@ -381,11 +381,10 @@ export default function Testimonials() {
               <button
                 key={`testimonial-page-${index}`}
                 onClick={() => setCurrentPage(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  currentPage === index
+                className={`transition-all duration-300 rounded-full ${currentPage === index
                     ? "w-8 h-2 bg-white"
                     : "w-2 h-2 bg-white/30 hover:bg-white/50"
-                }`}
+                  }`}
                 aria-label={`Go to page ${index + 1}`}
               />
             ))}

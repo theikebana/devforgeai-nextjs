@@ -110,7 +110,8 @@ export default function ViraPage() {
           steps={viraSteps}
           footerStatus="Live audit running · Continuous monitoring enabled"
         />
-        <div className="max-w-7xl mx-auto rounded-4xl border-2 mt-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
+        <div className="max-w-7xl 2xl:max-w-[1440px] mx-auto  rounded-3xl 2xl:rounded-4xl  border border-white/5 my-12 lg:my-16 xl:my-20 2xl:my-24 overflow-hidden                    shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.20)]
+ ">
           <HowToolWorksSection
             eyebrow="How it works"
             accent="emerald"
@@ -126,14 +127,17 @@ export default function ViraPage() {
         </div>
 
         <ViraKeyBenefits />
-        <ShineCardsSection
-       eyebrow="Compliance frameworks"
-       title="Stay audit-ready with automated compliance checks"
-       subtitle="VIRA continuously maps your Azure posture to industry frameworks, helping you identify gaps and maintain provable compliance."
+
+      <section className="max-w-7xl 2xl:max-w-[1440px] mx-auto rounded-4xl my-12 lg:my-16 xl:my-20 2xl:my-24 border-2 border-dashed border-white/5  bg-[#ffffff08] overflow-hidden shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.20)]">
+      <ShineCardsSection
+          eyebrow="Compliance frameworks"
+          title="Stay audit-ready with automated compliance checks"
+          subtitle="VIRA continuously maps your Azure posture to industry frameworks, helping you identify gaps and maintain provable compliance."
           items={frameworks}
           columns={4}
           backgroundClass="bg-[#07090E]"
         />
+      </section>
         <TestimonialsInnerPages />
         <CallToAction />
       </main>
