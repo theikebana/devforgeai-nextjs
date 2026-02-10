@@ -1,41 +1,48 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Scan, ShieldCheck, FileCheck, AlertTriangle } from "lucide-react";
 import AnimateSection from "./AnimateSection";
+import type { LucideIcon } from "lucide-react";
 
-const steps = [
-  {
-    label: "01",
-    title: "Continuous scanning",
-    description:
-      "VIRA continuously scans your Azure environment for misconfigurations, exposed resources, and drift from security baselines.",
-    icon: Scan,
-  },
-  {
-    label: "02",
-    title: "Detect risks",
-    description:
-      "Identify over-privileged accounts, excessive permissions, and configuration issues before they become incidents.",
-    icon: AlertTriangle,
-  },
-  {
-    label: "03",
-    title: "Compliance checks",
-    description:
-      "Automated checks aligned to HIPAA, PCI DSS, GDPR, and other frameworks. Stay audit-ready with clear evidence and remediation steps.",
-    icon: FileCheck,
-  },
-  {
-    label: "04",
-    title: "Remediate & harden",
-    description:
-      "Get actionable fix guidance and enforce least-privilege access. Track remediation and improve your security posture over time.",
-    icon: ShieldCheck,
-  },
-];
+type StepItem = {
+  label: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+};
 
-export default function ViraHowItWorks() {
+export type HowToolWorksSectionProps = {
+  eyebrow?: string;
+  heading: React.ReactNode;
+  description?: string;
+  steps: StepItem[];
+  accent?: "emerald" | "sky";
+};
+
+export default function HowToolWorksSection({
+  eyebrow,
+  heading,
+  description,
+  steps,
+  accent = "emerald",
+}: HowToolWorksSectionProps) {
+  const accentMap = {
+    emerald: {
+      eyebrow: "text-emerald-300",
+      labelBg: "bg-emerald-500/10",
+      labelText: "text-emerald-200",
+      iconText: "text-emerald-300",
+    },
+    sky: {
+      eyebrow: "text-sky-300",
+      labelBg: "bg-sky-500/10",
+      labelText: "text-sky-200",
+      iconText: "text-sky-300",
+    },
+  };
+
+  const c = accentMap[accent];
+
   return (
     <div className="bg-[#07090E] py-12">
       <AnimateSection type="fadeUp">
@@ -43,18 +50,24 @@ export default function ViraHowItWorks() {
           {/* Header */}
           <div className="mb-12 grid gap-6 md:grid-cols-[1.3fr_0.7fr] items-end">
             <div>
-              <p className="text-[10px] font-semibold tracking-[0.24em] text-emerald-300 uppercase mb-3">
-                How it works
-              </p>
+              {eyebrow && (
+                <p
+                  className={`mb-3 text-[10px] font-semibold tracking-[0.24em] uppercase ${c.eyebrow}`}
+                >
+                  {eyebrow}
+                </p>
+              )}
+
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
-                From reactive firefighting <br /> to proactive security
+                {heading}
               </h2>
             </div>
 
-            <p className=" text-white/65  max-w-md">
-              VIRA connects to your Azure subscription, runs continuous scans, and
-              surfaces risks and compliance gaps with clear remediation guidance.
-            </p>
+            {description && (
+              <p className="text-white/65 max-w-md">
+                {description}
+              </p>
+            )}
           </div>
 
           {/* Steps */}
@@ -76,14 +89,16 @@ export default function ViraHowItWorks() {
                     p-6
                   "
                 >
-                  {/* Top row */}
+                  {/* Top */}
                   <div className="mb-4 flex items-center gap-3">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500/10 text-[11px] font-semibold tracking-widest text-emerald-200">
+                    <span
+                      className={`inline-flex h-7 w-7 items-center justify-center rounded-lg text-[11px] font-semibold tracking-widest ${c.labelBg} ${c.labelText}`}
+                    >
                       {step.label}
                     </span>
 
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-black/40">
-                      <Icon className="h-4 w-4 text-emerald-300" />
+                      <Icon className={`h-4 w-4 ${c.iconText}`} />
                     </div>
                   </div>
 
@@ -92,7 +107,7 @@ export default function ViraHowItWorks() {
                     {step.title}
                   </h3>
 
-                  <p className="t text-white/65 leading-tight">
+                  <p className="text-white/65 leading-tight text-sm">
                     {step.description}
                   </p>
                 </motion.div>

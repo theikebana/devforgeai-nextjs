@@ -17,6 +17,9 @@ import {
   LineChart,
   Apple,
   Car,
+  FileText,
+  Mic,
+  Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -33,6 +36,8 @@ type NewsCard = {
     | "review-attendant"
     | "attendai"
     | "elvis"
+    | "thinkdocs"
+    | "demo-agent"
     | "assetwisp"
     | "slimsnap"
     | "lotiq";
@@ -60,17 +65,23 @@ const newsCardsRowOne: NewsCard[] = [
 ];
 
 const newsCardsRowTwo: NewsCard[] = [
-  // {
-  //   title: "AssetWisp",
-  //   description:
-  //     "An AI platform for tracking and analyzing multi‑asset portfolios with smart insights.",
-  //   id: "assetwisp",
-  // },
   {
     title: "Elvis",
     description:
-      "An environment lifecycle manager for ephemeral dev stacks.",
+      "Job leads management & analytics platform for sales teams.",
     id: "elvis",
+  },
+  {
+    title: "ThinkDocs",
+    description:
+      "AI-based document management with semantic search and auto-tagging.",
+    id: "thinkdocs",
+  },
+  {
+    title: "Demo Agent (STAGE)",
+    description:
+      "Scripted demo automation that turns portals into narrated product tours.",
+    id: "demo-agent",
   },
 ];
 
@@ -85,7 +96,7 @@ function MoogleMindMiniAnimation() {
   ];
 
   return (
-    <div className="mt-4 rounded-xl border border-emerald-400/20 bg-gradient-to-r from-emerald-950/60 via-slate-950/80 to-sky-950/60 px-3 py-2">
+    <div className="mt-4 h-full rounded-xl border border-emerald-400/20 bg-gradient-to-r from-emerald-950/60 via-slate-950/80 to-sky-950/60 px-3 py-2">
       <div className="relative h-16 w-full overflow-hidden rounded-lg bg-black/40">
         {/* flowing query beam */}
         <motion.div
@@ -129,7 +140,7 @@ function MoogleMindMiniAnimation() {
 function ReviewAttendantMiniAnimation() {
   // Sentiment bars + incoming review bubbles
   return (
-    <div className="mt-4 rounded-xl border border-amber-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-amber-950/40 px-3 py-2">
+    <div className="mt-4 h-full rounded-xl border border-amber-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-amber-950/40 px-3 py-2">
       <div className="flex items-center gap-3">
         {/* live bar graph */}
         <div className="flex items-end gap-1.5 flex-1">
@@ -183,7 +194,7 @@ function AttendAIMiniAnimation() {
   const cells = Array.from({ length: 8 });
 
   return (
-    <div className="mt-4 rounded-xl border border-sky-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-sky-950/40 px-3 py-2">
+    <div className="mt-4 h-full rounded-xl border border-sky-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-sky-950/40 px-3 py-2">
       <div className="flex items-center gap-3">
         <div className="grid grid-cols-4 gap-1.5 flex-1">
           {cells.map((_, idx) => (
@@ -249,7 +260,7 @@ function AssetWispMiniAnimation() {
   const lines = ["emerald", "sky", "violet"] as const;
 
   return (
-    <div className="mt-4 rounded-xl border border-emerald-300/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-emerald-950/40 px-3 py-2">
+    <div className="mt-4 h-full rounded-xl border border-emerald-300/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-emerald-950/40 px-3 py-2">
       <div className="relative h-16 w-full overflow-hidden rounded-lg bg-black/40">
         {lines.map((color, idx) => (
           <motion.svg
@@ -311,10 +322,202 @@ function AssetWispMiniAnimation() {
   );
 }
 
+function ElvisMiniAnimation() {
+  // Lead radar + stat chips (inspired by Elvis hero)
+  const stats = [
+    { label: "Leads", value: "1.2k" },
+    { label: "Active", value: "312" },
+    { label: "Assigned", value: "86" },
+    { label: "Win rate", value: "28%" },
+  ];
+
+  return (
+    <div className="mt-4 h-full rounded-xl border border-violet-400/30 bg-gradient-to-r from-slate-950 via-slate-950/85 to-violet-950/50 px-3 py-2">
+      <div className="flex items-center gap-3">
+        {/* circular lead engine */}
+        <div className="relative h-16 w-16 flex-shrink-0">
+          <div className="absolute inset-1 rounded-full border border-violet-400/40 bg-black/70" />
+          <motion.div
+            className="absolute inset-1 rounded-full"
+            style={{
+              background:
+                "conic-gradient(from 0deg, rgba(139,92,246,0.5), transparent 40%)",
+            }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          />
+          <div className="absolute inset-4 rounded-full bg-black/90 border border-violet-400/40 flex items-center justify-center">
+            <Sparkles className="h-4 w-4 text-violet-300" />
+          </div>
+          {[0, 1, 2].map((ring) => (
+            <motion.div
+              // eslint-disable-next-line react/no-array-index-key
+              key={ring}
+              className="absolute inset-0 rounded-full border border-violet-400/25"
+              animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.15, 1] }}
+              transition={{
+                duration: 3 + ring,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: ring * 0.3,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* stats chips */}
+        <div className="flex-1 grid grid-cols-2 gap-1.5">
+          {stats.map((stat, idx) => (
+            <motion.div
+              key={stat.label}
+              className="rounded-md border border-violet-400/25 bg-black/60 px-2 py-1"
+              animate={{ y: [0, -1.5, 0], opacity: [0.8, 1, 0.8] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: idx * 0.12,
+              }}
+            >
+              <p className="text-[9px] text-slate-300">{stat.label}</p>
+              <p className="text-[11px] font-semibold text-violet-200">
+                {stat.value}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ThinkDocsMiniAnimation() {
+  // Search bar + document list with tags
+  return (
+    <div className="mt-4 rounded-xl border border-sky-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-sky-950/40 px-3 py-2">
+      <div className="space-y-2">
+        {/* search bar */}
+        <motion.div
+          className="flex items-center gap-2 rounded-lg border border-white/10 bg-black/60 px-3 py-1.5"
+          animate={{ opacity: [0.9, 1, 0.9] }}
+          transition={{ duration: 2.2, repeat: Infinity }}
+        >
+          <Search className="h-3.5 w-3.5 text-sky-300" />
+          <span className="text-[10px] text-white/60">
+            Find the contract with expiry in June 2027
+          </span>
+        </motion.div>
+
+        {/* docs list */}
+        <div className="space-y-1.5">
+          {[
+            { label: "Contract_2027.pdf", tag: "Legal" },
+            { label: "Q3_Compliance.pdf", tag: "Compliance" },
+            { label: "Board_deck.docx", tag: "Summary" },
+          ].map((doc, idx) => (
+            <motion.div
+              key={doc.label}
+              className="flex items-center justify-between rounded-md border border-white/8 bg-white/5 px-2 py-1.5"
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.15 + idx * 0.08 }}
+            >
+              <div className="flex items-center gap-2">
+                <FileText className="h-3.5 w-3.5 text-sky-300" />
+                <span className="text-[11px] text-white/85 truncate max-w-[90px]">
+                  {doc.label}
+                </span>
+              </div>
+              <span className="text-[9px] px-1.5 py-[1px] rounded-full bg-sky-500/20 text-sky-200">
+                {doc.tag}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DemoAgentMiniAnimation() {
+  // Step timeline + play waveform
+  const steps = ["Capture", "Generate flow", "Narrate", "Run demo"];
+
+  return (
+    <div className="mt-4 h-full rounded-xl border border-emerald-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-emerald-950/40 px-3 py-2">
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5 text-[10px] text-emerald-200">
+            <button className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/30">
+              <span className="ml-0.5 border-l-[5px] border-y-[3px] border-l-white border-y-transparent" />
+            </button>
+            <span>Live demo script</span>
+          </div>
+          <span className="text-[9px] text-emerald-300/80">Auto‑synced</span>
+        </div>
+
+        <div className="flex items-center gap-1.5">
+          {steps.map((step, idx) => (
+            <motion.div
+              key={step}
+              className="flex-1 rounded-full bg-black/60 border border-white/5 px-2 py-0.5"
+              animate={{
+                borderColor: [
+                  "rgba(148,163,184,0.6)",
+                  "rgba(16,185,129,0.9)",
+                  "rgba(148,163,184,0.6)",
+                ],
+              }}
+              transition={{
+                duration: 2.1,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: idx * 0.15,
+              }}
+            >
+              <span className="block text-[8px] text-emerald-100 text-center truncate">
+                {step}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* waveform */}
+        <div className="relative h-8 w-full overflow-hidden rounded-md bg-black/60 mt-1.5">
+          {[0, 1, 2].map((row) => (
+            <div key={row} className="absolute inset-x-1 flex items-end gap-[3px]">
+              {Array.from({ length: 20 }).map((_, idx) => (
+                <motion.div
+                  key={idx}
+                  className="w-[2px] rounded-full bg-emerald-400"
+                  animate={{
+                    height: [4, 10, 6],
+                    opacity: [0.4, 1, 0.5],
+                  }}
+                  transition={{
+                    duration: 1.4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: (idx * 0.03 + row * 0.2) % 1.2,
+                  }}
+                />
+              ))}
+            </div>
+          ))}
+          <div className="absolute bottom-1 right-1 flex items-center gap-1 rounded-full bg-black/70 px-1.5 py-[1px]">
+            <Mic className="h-3 w-3 text-emerald-300" />
+            <span className="text-[8px] text-emerald-100">AI Voice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SlimSnapMiniAnimation() {
   // Calorie ring + macro bars
   return (
-    <div className="mt-4 rounded-xl border border-rose-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-rose-950/40 px-3 py-2">
+    <div className="mt-4 h-full rounded-xl border border-rose-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-rose-950/40 px-3 py-2">
       <div className="flex items-center gap-3">
         {/* progress ring */}
         <div className="relative h-12 w-12">
@@ -390,7 +593,7 @@ function LotIQMiniAnimation() {
   const slots = Array.from({ length: 6 });
 
   return (
-    <div className="mt-4 rounded-xl border border-sky-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-sky-950/40 px-3 py-2">
+    <div className="mt-4 h-full rounded-xl border border-sky-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-sky-950/40 px-3 py-2">
       <div className="relative h-14 w-full overflow-hidden rounded-lg bg-slate-950/70">
         <div className="grid grid-cols-3 gap-[3px] p-[4px]">
           {slots.map((_, idx) => (
@@ -443,6 +646,8 @@ function LotIQMiniAnimation() {
 
 function renderNewsCardAnimation(id: NewsCard["id"]) {
   switch (id) {
+    case "thinkdocs":
+      return <ThinkDocsMiniAnimation />;
     case "mooglemind":
       return <MoogleMindMiniAnimation />;
     case "review-attendant":
@@ -450,7 +655,10 @@ function renderNewsCardAnimation(id: NewsCard["id"]) {
     case "attendai":
       return <AttendAIMiniAnimation />;
     case "elvis":
-      return <AssetWispMiniAnimation />;
+      return <ElvisMiniAnimation />;
+  
+    case "demo-agent":
+      return <DemoAgentMiniAnimation />;
     case "assetwisp":
       return <AssetWispMiniAnimation />;
     case "slimsnap":
@@ -466,6 +674,8 @@ function renderNewsCardIcon(id: NewsCard["id"]) {
   const commonIconClasses = "w-5 h-5 sm:w-6 sm:h-6";
 
   switch (id) {
+    case "thinkdocs":
+      return <FileText className={commonIconClasses} />;
     case "mooglemind":
       return <Search className={commonIconClasses} />;
     case "review-attendant":
@@ -474,6 +684,9 @@ function renderNewsCardIcon(id: NewsCard["id"]) {
       return <Users className={commonIconClasses} />;
     case "elvis":
       return <Rocket className={commonIconClasses} />;
+ 
+    case "demo-agent":
+      return <Mic className={commonIconClasses} />;
     case "assetwisp":
       return <LineChart className={commonIconClasses} />;
     case "slimsnap":
@@ -539,8 +752,10 @@ export default function ProductSection() {
                     </p>
                   </div>
                 </div>
-                <div className="mt-auto">
-                  <RexCardAnimation />
+                <div className="mt-auto h-24 flex items-stretch">
+                  <div className="w-full">
+                    <RexCardAnimation />
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -584,8 +799,10 @@ export default function ProductSection() {
                     </p>
                   </div>
                 </div>
-                <div className="mt-auto">
-                  <ViraCardAnimation />
+                <div className="mt-auto h-24 flex items-stretch">
+                  <div className="w-full">
+                    <ViraCardAnimation />
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -629,8 +846,10 @@ export default function ProductSection() {
                     </p>
                   </div>
                 </div>
-                <div className="mt-auto">
-                  <IanCardAnimation />
+                <div className="mt-auto h-24 flex items-stretch">
+                  <div className="w-full">
+                    <IanCardAnimation />
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -643,6 +862,8 @@ export default function ProductSection() {
               "review-attendant": "/review-attendant",
               attendai: "/attendai",
               elvis: "/elvis",
+              thinkdocs: "/think-docs",
+              "demo-agent": "/demo-agent",
             };
             const href = productPages[card.id];
 
@@ -675,8 +896,10 @@ export default function ProductSection() {
                       </p>
                     </div>
                   </div>
-                  <div className="mt-auto">
-                    {renderNewsCardAnimation(card.id)}
+                  <div className="mt-auto h-24 flex items-stretch">
+                    <div className="w-full h-full">
+                      {renderNewsCardAnimation(card.id)}
+                    </div>
                   </div>
                 </div>
               </motion.div>

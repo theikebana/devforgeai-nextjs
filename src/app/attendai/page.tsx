@@ -17,7 +17,7 @@ export default function AttendAIPage() {
       <main>
         <AttendAIHero />
         <AttendAIOverview />
-        <div className="max-w-7xl mx-auto rounded-4xl border-2 mt-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
+        <div className="max-w-7xl mx-auto rounded-4xl border-2 my-12 lg:my-24 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
           <AttendAIHowItWorks />
           <AttendAIStatsSection />
         </div>

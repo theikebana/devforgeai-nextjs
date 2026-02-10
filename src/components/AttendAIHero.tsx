@@ -30,7 +30,7 @@ const ATTENDANCE = [
 
 export default function AttendAIHero() {
   return (
-    <section className="relative overflow-hidden bg-[#07090E] pt-24 pb-36">
+    <section className="relative overflow-hidden bg-[#07090E] py-12 lg:py-24">
       {/* Ambient glow */}
       <motion.div
         className="pointer-events-none absolute -top-1/2 -right-1/4 h-[120%] w-[80%] rounded-full bg-sky-500/20 blur-[140px]"

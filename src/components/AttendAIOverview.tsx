@@ -36,10 +36,10 @@ const solutions = [
 
 export default function AttendAIOverview() {
   return (
-    <div className="bg-[#07090E] pb-16 pt-4">
+    <div className="bg-[#07090E]  flex flex-col gap-5">
       {/* Key Features */}
       <AnimateSection type="fadeUp">
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 pt-6">
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 ">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-start">
             <div>
               <p className="text-xs font-semibold tracking-[0.2em] text-amber-300 uppercase mb-3">
@@ -101,8 +101,8 @@ export default function AttendAIOverview() {
 
       {/* Problem Statement & Solution */}
       <AnimateSection type="scaleUp" delay={0.05}>
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 mt-14">
-          <div className="grid gap-10 lg:grid-cols-2 items-start">
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 ">
+          <div className="grid gap-5 lg:grid-cols-2 items-start">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}

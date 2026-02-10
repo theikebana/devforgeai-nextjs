@@ -1,54 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FileCheck, Shield, Lock, Globe } from "lucide-react";
 import AnimateSection from "./AnimateSection";
+import { LucideIcon } from "lucide-react";
 
-const frameworks = [
-  {
-    icon: FileCheck,
-    name: "HIPAA",
-    description: "Healthcare data protection and administrative safeguards",
-  },
-  {
-    icon: Shield,
-    name: "PCI DSS",
-    description: "Payment card industry data security standards",
-  },
-  {
-    icon: Lock,
-    name: "GDPR",
-    description: "Data protection and privacy for EU and global compliance",
-  },
-  {
-    icon: Globe,
-    name: "SOC 2 & more",
-    description: "Security, availability, and confidentiality controls",
-  },
-];
+export interface FeatureItem {
+  icon: LucideIcon;
+  name: string;
+  description: string;
+}
 
-export default function ViraComplianceSection() {
+interface ShineCardsSectionProps {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  items: FeatureItem[];
+  columns?: 2 | 3 | 4;
+  backgroundClass?: string;
+}
+
+export default function ShineCardsSection({
+  eyebrow,
+  title,
+  subtitle,
+  items,
+  columns = 4,
+  backgroundClass = "bg-[#07090E]",
+}: ShineCardsSectionProps) {
+  const gridCols =
+    columns === 2
+      ? "sm:grid-cols-2"
+      : columns === 3
+      ? "sm:grid-cols-2 lg:grid-cols-3"
+      : "sm:grid-cols-2 lg:grid-cols-4";
+
   return (
-    <div className="bg-[#07090E] py-16">
+    <div className={`${backgroundClass} py-16`}>
       <AnimateSection type="fadeUp">
         <section className="max-w-7xl mx-auto px-6 lg:px-8">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <p className="text-xs font-semibold tracking-[0.2em] text-emerald-300 uppercase mb-2">
-              Compliance frameworks
-            </p>
+            {eyebrow && (
+              <p className="text-xs font-semibold tracking-[0.2em] text-emerald-300 uppercase mb-2">
+                {eyebrow}
+              </p>
+            )}
+
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-3">
-              Stay audit-ready with automated compliance checks
+              {title}
             </h2>
-            <p className="text-sm md:text-base text-white/65 leading-relaxed">
-              VIRA continuously maps your Azure posture to industry frameworks,
-              helping you identify gaps and maintain provable compliance.
-            </p>
+
+            {subtitle && (
+              <p className="text-sm md:text-base text-white/65 leading-relaxed">
+                {subtitle}
+              </p>
+            )}
           </div>
 
           {/* Cards */}
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {frameworks.map((item, index) => {
+          <div className={`grid gap-5 ${gridCols}`}>
+            {items.map((item, index) => {
               const Icon = item.icon;
 
               return (
@@ -61,7 +72,7 @@ export default function ViraComplianceSection() {
                   whileHover={{ y: -4 }}
                   className="relative overflow-hidden rounded-2xl border border-emerald-400/15 bg-gradient-to-b from-slate-900/70 via-slate-950 to-black p-6"
                 >
-                  {/* Subtle moving scan line */}
+                  {/* Moving scan line */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/10 to-transparent"
                     animate={{ x: ["-100%", "100%"] }}
@@ -77,11 +88,11 @@ export default function ViraComplianceSection() {
                       <Icon className="h-6 w-6 text-emerald-300" />
                     </div>
 
-                    <h3 className="text-lg font-medium text-white mb-1">
+                    <h3 className="text-md font-medium text-white mb-1">
                       {item.name}
                     </h3>
 
-                    <p className="text-white/65 leading-tight">
+                    <p className="text-sm text-white/65 leading-tight">
                       {item.description}
                     </p>
                   </div>
