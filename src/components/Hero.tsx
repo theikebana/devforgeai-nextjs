@@ -67,72 +67,72 @@ const innerRing = [
 
 /* Outer ring in 720px container: inset-6 = 24px, so ring radius = 360 - 24 = 336 */
 const ORBIT_RADIUS = 400;
-
 const tools = [
   {
     title: "MoogleMind",
     description: "Context-aware AI search across your engineering knowledge.",
     descriptionLong:
-      "Context-aware AI search across your engineering knowledge base. Find code, docs, decisions, and runbooks in one place using semantic search and team context.",
+      "AI-powered search to instantly find code, docs, and decisions across your engineering stack.",
     Icon: FaBrain,
   },
   {
     title: "Review Attendant",
     description: "Automated PR reviews that catch risks before production.",
     descriptionLong:
-      "Automated PR reviews to catch security, quality, and compliance risks early. Enforce coding standards and security checks on every merge with configurable policies.",
+      "Automated PR reviews that enforce security, quality, and compliance standards.",
     Icon: FaClipboardCheck,
   },
   {
     title: "Attend AI",
     description: "Meeting intelligence that turns calls into clear actions.",
     descriptionLong:
-      "Meeting intelligence that converts calls into clear actions. Get automatic summaries, action items, and follow-ups with calendar and collaboration integrations.",
+      "AI meeting intelligence with summaries, action items, and follow-ups.",
     Icon: FaUserCheck,
   },
   {
     title: "REX",
     description: "Execution engine to orchestrate secure cloud workflows.",
     descriptionLong:
-      "Execution engine for orchestrating secure cloud workflows and automations. Run pipelines, approvals, and runbooks with audit trails and role-based access control.",
+      "Workflow engine for secure cloud automation, approvals, and pipelines.",
     Icon: FaRobot,
   },
   {
     title: "VIRA",
     description: "Real-time vulnerability and compliance risk analytics.",
     descriptionLong:
-      "Real-time vulnerability and compliance analytics to stay ahead of threats. Track SBOMs and meet regulatory requirements with continuous scanning and reporting.",
+      "Real-time security and compliance risk monitoring with continuous scanning.",
     Icon: FaShieldAlt,
   },
   {
     title: "IAN",
     description: "Insight assistant for cost, performance, and telemetry.",
     descriptionLong:
-      "Insight assistant for cloud cost, performance, and telemetry. Optimize spend, diagnose incidents, and explore metrics using AI-driven analysis.",
+      "AI assistant for cloud cost optimization and performance insights.",
     Icon: FaChartLine,
   },
   {
     title: "Elvis",
     description: "Job leads management and analytics for sales teams.",
     descriptionLong:
-      "Job Leads Management & Analytics Platform for sales teams. Centralize job lead discovery, assignment, tracking, and performance insights with keyword-driven automation and role-based workflows.",
+      "Sales platform to discover, track, and analyze job leads.",
     Icon: FaBolt,
   },
   {
     title: "ThinkDocs",
     description: "AI-based document management with semantic search.",
     descriptionLong:
-      "AI-based Document Management System that goes beyond storing files. Centralize documents in a secure repository, power semantic search, auto-classification, collaboration, and workflow automation with intelligent insights.",
+      "Smart document management with semantic search and automation.",
     Icon: FaFileAlt,
   },
   {
     title: "Demo Agent (STAGE)",
     description: "Scripted demo automation with AI narration.",
     descriptionLong:
-      "Scripted Tour Automation & Generation Engine that turns any web portal into live-like, narrated product demos. Capture real user flows, generate clean demo scripts, and pair them with written narration plus AI voice for consistent, repeatable demos.",
+      "AI-powered automation for creating narrated product demos.",
     Icon: FaMicrophoneAlt,
   },
 ];
+
 
 
 const PHASE1_DURATION_MS = 8000; // 12 seconds
@@ -190,48 +190,67 @@ export default function Hero() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.5 }}
           >
-           <div className="relative mx-auto w-[1440px] overflow-hidden bg-[#020617]">
-  {/* TOP BORDER LINE */}
-  <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r
+            <div className="relative mx-auto w-[1440px] overflow-hidden bg-[#020617]">
+              {/* TOP BORDER LINE */}
+              <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r
                   from-transparent via-gray-700/80 to-transparent
                   animate-[pulse_4s_ease-in-out_infinite]" />
 
-  {/* BOTTOM BORDER LINE */}
-  <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r
+              {/* BOTTOM BORDER LINE */}
+              <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r
                   from-transparent via-gray-700/80 to-transparent
                   animate-[pulse_4s_ease-in-out_infinite]" />
 
-  {/* LEFT SKEW PANEL */}
-  <div
-    className="absolute left-0 top-0 h-full w-28 bg-[#020617]
+              {/* LEFT SKEW PANEL */}
+              <div
+                className="absolute left-0 top-0 h-full w-28 bg-[#020617]
                -skew-x-12 origin-top-right
                border-l-2 border-gray-900
                shadow-[8px_0_30px_rgba(0,0,0,1)]"
-  />
+              />
 
-  {/* RIGHT SKEW PANEL */}
-  <div
-    className="absolute right-0 top-0 h-full w-28 bg-[#020617]
+              {/* RIGHT SKEW PANEL */}
+              <div
+                className="absolute right-0 top-0 h-full w-28 bg-[#020617]
                skew-x-12 origin-top-left
                border-r-2 border-gray-900
                shadow-[-8px_0_30px_rgba(0,0,0,1)]"
-  />
+              />
 
-  {/* CONTENT */}
-  <div className="relative z-10">
-    <div className="grid grid-cols-3 gap-3 max-w-7xl mx-auto p-5 px-16">
-      {tools.map(({ title, descriptionLong, Icon }, index) => (
+              {/* CONTENT */}
+              <div className="relative z-10">
+              <div className="relative max-w-7xl mx-auto p-5 px-16">
+  <div className="grid grid-cols-5 gap-3">
+    {tools.slice(0, 10).map(({ title, descriptionLong, Icon }, index) => {
+      const positions = [
+        "row-start-1 col-start-2 col-span-1",
+        "row-start-1 col-start-4 col-span-1",
+
+        "row-start-2 col-start-2",
+        "row-start-2 col-start-3",
+        "row-start-2 col-start-4",
+
+        "row-start-3 col-start-1",
+        "row-start-3 col-start-2",
+        "row-start-3 col-start-3",
+        "row-start-3 col-start-4",
+        "row-start-3 col-start-5",
+      ];
+
+      return (
         <motion.div
           key={title}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          className={positions[index]}
+          initial={{ opacity: 0, y: 12, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: index * 0.04, duration: 0.35 }}
-          className={index === 4 ? "col-start-2" : ""}
         >
-          <div className="h-full min-h-[120px] rounded-xl
-                          bg-slate-950/30 border border-sky-300/25
-                          shadow-[0_0_18px_rgba(56,189,248,0.15)]
-                          p-3 backdrop-blur-sm">
+          <div
+            className="h-full min-h-[120px] rounded-xl
+                       bg-slate-950/30 border border-sky-300/25
+                       shadow-[0_0_18px_rgba(56,189,248,0.15)]
+                       p-3 backdrop-blur-sm"
+          >
             <div className="flex items-center gap-2">
               <div className="h-7 w-7 rounded-md bg-sky-500/10 flex items-center justify-center">
                 <Icon className="text-sky-200" />
@@ -243,10 +262,13 @@ export default function Hero() {
             </p>
           </div>
         </motion.div>
-      ))}
-    </div>
+      );
+    })}
   </div>
 </div>
+
+              </div>
+            </div>
 
 
           </motion.div>
