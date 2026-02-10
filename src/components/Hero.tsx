@@ -135,7 +135,7 @@ const tools = [
 ];
 
 
-const PHASE1_DURATION_MS = 80000; // 12 seconds
+const PHASE1_DURATION_MS = 8000; // 12 seconds
 
 export default function Hero() {
   const [phase, setPhase] = useState<1 | 2>(1);
