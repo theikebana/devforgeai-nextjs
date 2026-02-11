@@ -1,4 +1,4 @@
-import { ShieldCheck, Bug, Clock3, Target, Workflow, Layers } from "lucide-react";
+import { ShieldCheck, Bug, Clock3, Workflow, Layers } from "lucide-react";
 import AnimateSection from "./AnimateSection";
 
 const bulletIconClasses =

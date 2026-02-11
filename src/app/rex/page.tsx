@@ -6,7 +6,6 @@ import RexHowItWorks from "@/components/RexHowItWorks";
 import RexScoreSection from "@/components/RexScoreSection";
 import Footer from "@/components/Footer";
 import CallToAction from "@/components/CallToAction";
-import Testimonials from "@/components/Testimonials";
 import TestimonialsInnerPages from "@/components/TestimonialsInnerPages";
 
 export default function RexPage() {

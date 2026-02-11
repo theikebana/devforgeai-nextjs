@@ -1,6 +1,8 @@
 type ClassValue = string | number | null | boolean | undefined | ClassArray | ClassObject;
-interface ClassObject { [key: string]: any; }
-interface ClassArray extends Array<ClassValue> {}
+interface ClassObject {
+  [key: string]: string | number | boolean | null | undefined;
+}
+type ClassArray = ClassValue[];
 
 function clsx(...inputs: ClassValue[]): string {
   const result: string[] = [];

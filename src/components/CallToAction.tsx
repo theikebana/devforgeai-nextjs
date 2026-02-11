@@ -1,13 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CallToAction() {
   return (
     <section className=" relative overflow-hidden">
       {/* Background Image */}
-      <img
+      <Image
         src="/banner-overlay.png"
-        alt="Background"
-        className="block  absolute inset-0 w-full h-full xl:object-contain"
+        alt="Call to action background"
+        fill
+        className="block absolute inset-0 w-full h-full xl:object-contain"
+        priority
       />
 
       {/* Content */}

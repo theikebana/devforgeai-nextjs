@@ -65,7 +65,7 @@ export default function ElvisHero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden pt-8 pb-12 lg:pt-12 lg:pb-12 bg-[#07090E]"
+      className="relative overflow-hidden pt-20 pb-36 lg:pt-28 lg:pb-36 bg-[#07090E]"
     >
       {/* Ambient glow */}
       <motion.div
@@ -79,15 +79,15 @@ export default function ElvisHero() {
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative max-w-7xl 2xl:max-w-[1440px] p-8 mx-auto rounded-4xl bg-[#020617] border border-white/5 px-4 py-8 lg:py-12 lg:p-8">
+      <div className="relative max-w-[1440px] p-12 mx-auto rounded-4xl bg-[#020617] border border-white/5">
         <motion.div
           variants={heroContainer}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-4 items-center gap-12"
+          className="grid gap-12 lg:grid-cols-[1.15fr_1fr] items-center"  
         >
           {/* LEFT — Copy + CTA */}
-          <div className="order-2 lg:order-none lg:col-span-2 space-y-6 text-center lg:text-left">
+          <div className="space-y-6">
             {/* Badge */}
             <motion.div
               variants={heroItem}
@@ -104,9 +104,9 @@ export default function ElvisHero() {
             {/* Headline */}
             <motion.h2
               variants={heroItem}
-              className="text-3xl md:text-[34px] lg:text-[40px] font-semibold tracking-tight text-white text-center lg:text-left leading-tight"
+              className="text-3xl md:text-[34px] lg:text-[40px] font-semibold tracking-tight text-white"
             >
-              Job Leads Management & Analytics 
+              Job Leads Management & Analytics Platform
               <span className="bg-gradient-to-r from-violet-300 via-violet-400 to-violet-200 bg-clip-text text-transparent">
                 {" "}
                 built for modern sales teams
@@ -116,7 +116,7 @@ export default function ElvisHero() {
             {/* Description */}
             <motion.p
               variants={heroItem}
-              className="text-sm hidden lg:inline-block md:text-base text-white/65 leading-relaxed max-w-xl text-center lg:text-left"
+              className="text-sm md:text-base text-white/65 leading-relaxed max-w-xl"
             >
               ELVIS centralizes job lead discovery, intelligent assignment,
               real-time tracking, and performance analytics into a single,
@@ -128,7 +128,7 @@ export default function ElvisHero() {
             {/* CTA buttons (VIRA-style) */}
             <motion.div
               variants={heroItem}
-              className="flex flex-wrap items-center gap-4 pt-2 justify-center lg:justify-start"
+              className="flex flex-wrap items-center gap-4 pt-2"
             >
               <Link
                 href="/book-demo"
@@ -147,7 +147,7 @@ export default function ElvisHero() {
             {/* Trust line */}
             <motion.div
               variants={heroItem}
-              className="flex items-center gap-2 text-[11px] text-white/55 justify-center lg:justify-start"
+              className="flex items-center gap-2 text-[11px] text-white/55"
             >
               <ShieldCheck className="h-4 w-4 text-violet-400" />
               Designed for scale — secure, reliable, and sales-ready
@@ -157,7 +157,7 @@ export default function ElvisHero() {
           {/* RIGHT — Visual + Stats */}
           <motion.div
             variants={heroItem}
-            className="relative mx-auto aspect-square w-full max-w-md order-1 lg:order-none lg:col-span-2"
+            className="relative mx-auto aspect-square w-full max-w-md"
           >
             {/* Base */}
             <div className="absolute inset-0 rounded-full border border-violet-400/20 bg-gradient-to-b from-violet-500/10 to-black/80 backdrop-blur-xl" />

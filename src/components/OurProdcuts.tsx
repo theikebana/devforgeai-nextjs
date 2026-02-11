@@ -1,11 +1,6 @@
 "use client";
 
 import SectionHeader from "./SectionHeader";
-import {
-  RexCardAnimation,
-  ViraCardAnimation,
-  IanCardAnimation,
-} from "./Hero copy";
 import Link from "next/link";
 import {
   Rocket,
@@ -28,6 +23,114 @@ const newsCardVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
 };
+
+// Lightweight hero card animations for REX, VIRA, and IAN
+function RexCardAnimation() {
+  return (
+    <div className="h-full rounded-xl border border-emerald-400/30 bg-gradient-to-r from-slate-950 via-slate-950/80 to-emerald-950/40 px-3 py-2">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-[11px] text-emerald-200/80">Pipeline coverage</p>
+          <p className="mt-1 text-lg font-semibold text-emerald-100">3.4x</p>
+          <p className="mt-1 text-[10px] text-emerald-200/70">
+            Across current quarter
+          </p>
+        </div>
+        <div className="relative h-14 w-24">
+          {[0, 1, 2].map((idx) => (
+            <motion.div
+              key={idx}
+              className="absolute inset-0 rounded-full border border-emerald-400/30"
+              animate={{ opacity: [0.3, 0.9, 0.4], scale: [0.85, 1, 0.9] }}
+              transition={{
+                duration: 2.4 + idx * 0.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+          <motion.div
+            className="absolute inset-3 rounded-full bg-emerald-400/20"
+            animate={{ scale: [0.9, 1.05, 0.95], opacity: [0.6, 1, 0.7] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ViraCardAnimation() {
+  return (
+    <div className="h-full rounded-xl border border-sky-400/35 bg-gradient-to-r from-slate-950 via-slate-950/80 to-sky-950/40 px-3 py-2">
+      <div className="flex items-center gap-3">
+        <div className="flex-1 space-y-1.5">
+          {["Anomaly", "Alert", "Policy"].map((label, idx) => (
+            <motion.div
+              key={label}
+              className="flex items-center justify-between rounded-md bg-black/50 border border-sky-400/25 px-2 py-1"
+              animate={{ x: [0, 3, 0], opacity: [0.7, 1, 0.8] }}
+              transition={{
+                duration: 2 + idx * 0.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <span className="text-[10px] text-sky-100/80">{label}</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-sky-300" />
+            </motion.div>
+          ))}
+        </div>
+        <div className="flex flex-col gap-1 text-right">
+          <span className="text-[10px] text-sky-100/70">Coverage</span>
+          <span className="text-[13px] font-semibold text-sky-100">
+            99.3%
+          </span>
+          <span className="text-[9px] text-sky-200/70">Last 24h</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function IanCardAnimation() {
+  return (
+    <div className="h-full rounded-xl border border-amber-400/30 bg-gradient-to-r from-slate-950 via-slate-950/80 to-amber-950/40 px-3 py-2">
+      <div className="flex items-center gap-3">
+        <div className="flex-1">
+          <div className="flex items-center justify-between text-[10px] text-amber-100/80">
+            <span>Insights processed</span>
+            <span>+42%</span>
+          </div>
+          <div className="mt-1 flex items-end gap-[3px] h-12">
+            {Array.from({ length: 16 }).map((_, idx) => (
+              <motion.div
+                key={idx}
+                className="flex-1 rounded-full bg-amber-300"
+                animate={{
+                  height: [8, 18, 10],
+                  opacity: [0.4, 1, 0.6],
+                }}
+                transition={{
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: idx * 0.05,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col items-end gap-1">
+          <span className="text-[9px] text-amber-100/75">Recommendations</span>
+          <span className="rounded-full bg-amber-500/20 border border-amber-400/40 px-2 py-[2px] text-[10px] text-amber-50">
+            Auto-applied
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 type NewsCard = {
   id:
@@ -336,7 +439,6 @@ function ElvisMiniAnimation() {
           </div>
           {[0, 1, 2].map((ring) => (
             <motion.div
-              // eslint-disable-next-line react/no-array-index-key
               key={ring}
               className="absolute inset-0 rounded-full border border-violet-400/25"
               animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.15, 1] }}
@@ -639,41 +741,41 @@ function LotIQMiniAnimation() {
     <div className="mt-4 h-full rounded-xl border border-sky-400/25 bg-gradient-to-r from-slate-950 via-slate-950/80 to-sky-950/40 px-3 py-2">
       <div className="relative h-14 w-full overflow-hidden rounded-lg bg-slate-950/70">
         <div className="grid grid-cols-3 gap-[3px] p-[4px]">
-          {slots.map((_, idx) => (
-            <motion.div
-              key={idx}
-              className="relative h-4 rounded-[5px] border border-slate-700/80 bg-slate-900/80"
-              animate={{
-                backgroundColor: [
-                  "rgba(15,23,42,0.9)",
-                  idx % 2 === 0
-                    ? "rgba(22,163,74,0.9)"
-                    : "rgba(15,23,42,0.9)",
-                  "rgba(15,23,42,0.9)",
-                ],
-              }}
-              transition={{
-                duration: 2.1,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: idx * 0.2,
-              }}
-            >
-              {idx === 1 || idx === 4 ? (
-                <motion.div
-                  className="absolute inset-y-[1px] left-[1px] right-[1px] rounded-[4px] bg-gradient-to-r from-sky-300 to-emerald-300"
-                  initial={{ x: "-10%" }}
-                  animate={{ x: ["-5%", "5%", "-5%"] }}
-                  transition={{
-                    duration: 1.8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: idx === 1 ? 0.2 : 0.9,
-                  }}
-                />
-              ) : null}
-            </motion.div>
-          ))}
+        {slots.map((_, idx) => (
+          <motion.div
+            key={idx}
+            className="relative h-4 rounded-[5px] border border-slate-700/80 bg-slate-900/80"
+            animate={{
+              backgroundColor: [
+                "rgba(15,23,42,0.9)",
+                idx % 2 === 0
+                  ? "rgba(22,163,74,0.9)"
+                  : "rgba(15,23,42,0.9)",
+                "rgba(15,23,42,0.9)",
+              ],
+            }}
+            transition={{
+              duration: 2.1,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: idx * 0.2,
+            }}
+          >
+            {idx === 1 || idx === 4 ? (
+              <motion.div
+                className="absolute inset-y-[1px] left-[1px] right-[1px] rounded-[4px] bg-gradient-to-r from-sky-300 to-emerald-300"
+                initial={{ x: "-10%" }}
+                animate={{ x: ["-5%", "5%", "-5%"] }}
+                transition={{
+                  duration: 1.8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: idx === 1 ? 0.2 : 0.9,
+                }}
+              />
+            ) : null}
+          </motion.div>
+        ))}
         </div>
         <motion.div
           className="absolute bottom-1 right-2 rounded-full border border-emerald-400/40 bg-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-100"

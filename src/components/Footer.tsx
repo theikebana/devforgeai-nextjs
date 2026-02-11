@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { Github, Twitter, Linkedin } from "lucide-react";
 
 export default function Footer() {
@@ -54,9 +55,11 @@ export default function Footer() {
           <div className="flex flex-col justify-between gap-6">
             <div>
               <span className="flex items-center mb-4">
-                <img
+                <Image
                   src="/site-logo.svg"
                   alt="DevForge Logo"
+                  width={120}
+                  height={32}
                   className="h-7 sm:h-8 w-auto object-contain"
                 />
               </span>

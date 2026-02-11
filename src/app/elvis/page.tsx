@@ -13,18 +13,17 @@ import HowToolWorksSection, {
 } from "@/components/HowToolWorksSection";
 import {
   BarChart3,
-  Mail,
   Search,
   UserPlus,
-  Users,
   Workflow,
-  Zap,
-  LineChart,
-  Target,
-  Bell,
+  Brain,
+  FileCheck,
+  AlertTriangle,
+  ShieldCheck,
+  Scan,
 } from "lucide-react";
-import PulseSection from "@/components/PulseSection";
-import ShineCardsSection from "@/components/ShineCardsSection";
+
+import VerticalTimeline from "@/components/VerticalTimeline";
 
 const elvisSteps: ToolOverviewSectionProps["steps"] = [
   {
@@ -84,47 +83,41 @@ const elvisHowItWorksSteps: HowToolWorksSectionProps["steps"] = [
   },
 ];
 
-const pulseCenterData = {
-  center: {
-    title: "ELVIS Core",
-    subtitle: "Lead intelligence engine",
-  },
-  items: [
-    { id: 1, icon: Search, label: "Keyword filter" },
-    { id: 2, icon: Users, label: "Role-based access" },
-    { id: 3, icon: Zap, label: "AI enrichment" },
-    { id: 4, icon: Bell, label: "Notifications" },
-    { id: 5, icon: LineChart, label: "Analytics" },
-    { id: 6, icon: Target, label: "Assignment" },
-  ],
-};
-
-const keyBenefits = [
+const benefits = [
   {
-    icon: Zap,
-    name: "Keyword-driven automation",
+    icon: Scan,
+    title: "Keyword-driven automation",
     description:
       "Leads are filtered by assigned keywords so reps only see opportunities that match their focus—no more noise.",
   },
   {
-    icon: Users,
-    name: "Role-based workflows",
+    icon: AlertTriangle,
+    title: "Role-based workflows",
     description:
       "Admins, managers, and sales reps each get the right view and actions. Assign, reassign, and track with full history.",
   },
   {
-    icon: LineChart,
-    name: "AI-powered analytics",
+    icon: ShieldCheck,
+    title: "AI-powered analytics",
     description:
       "Job description enrichment, technology trends, and keyword performance over time—all in one place.",
   },
   {
-    icon: Mail,
-    name: "Automated notifications",
+    icon: FileCheck,
+    title: "Automated notifications",
     description:
       "New lead alerts and weekly performance reports keep the team responsive without manual follow-ups.",
   },
+  {
+    icon: Brain,
+    title: "Full visibility & control",
+    description:
+      "One platform for discovery, assignment, and insights—role-based access keeps everyone focused while managers get real-time visibility.",
+  }
 ];
+
+
+
 
 export default function ElvisPage() {
   return (
@@ -162,22 +155,18 @@ export default function ElvisPage() {
           />
         </div>
 
-        <PulseSection
-          center={pulseCenterData.center}
-          items={pulseCenterData.items}
-          sectionTitle="How ELVIS Works"
-          sectionDescription="ELVIS operates as a lead intelligence layer for sales teams. It ingests job leads from your sources, filters by keywords, supports role-based assignment and status aggregation, and delivers AI-powered enrichment, technology trends, and automated notifications—so your team can focus on closing deals instead of chasing leads across spreadsheets and siloed tools."
-        />
 
-        <ShineCardsSection
-          eyebrow="Key benefits"
-          title="Everything your sales team needs in one platform"
-          subtitle="ELVIS unifies discovery, assignment, tracking, and insights so you can close more deals with less manual work."
-          items={keyBenefits}
-          columns={4}
-          backgroundClass="bg-[#07090E]"
-        />
 
+
+        <div className="max-w-7xl mx-auto py-12 lg:py-16">
+          <VerticalTimeline
+            badge="Key benefits"
+            heading="Everything your sales team needs in one platform."
+            subheading="ELVIS unifies discovery, assignment, tracking, and insights so you can close more deals with less manual work. Keyword-driven automation, role-based workflows, and AI-powered analytics all in one place."
+            items={benefits}
+            accentColorClass="emerald"
+          />
+        </div>
         <TestimonialsInnerPages />
         <CallToAction />
       </main>

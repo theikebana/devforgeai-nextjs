@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionHeader from "./SectionHeader";
 
 export default function Products() {
@@ -25,9 +26,11 @@ export default function Products() {
               {/* Feature Item */}
               <div className="p-4 rounded-xl bg-[#FFFFFF0D] border border-white/5 hover:border-blue-500/30 transition-all cursor-default">
                 <div className="flex items-start gap-4">
-                  <img
+                  <Image
                     src="/icons/circle-pointer.svg"
-                    alt="Icon"
+                    alt="Feature icon"
+                    width={32}
+                    height={32}
                     className="w-8 h-8 mt-1"
                   />
                   <div>
@@ -45,9 +48,11 @@ export default function Products() {
               {/* Feature Item */}
               <div className="p-4 rounded-xl bg-[#FFFFFF0D] border border-white/5 hover:border-blue-500/30 transition-all cursor-default">
                 <div className="flex items-start gap-4">
-                  <img
+                  <Image
                     src="/icons/circle-pointer.svg"
-                    alt="Icon"
+                    alt="Feature icon"
+                    width={32}
+                    height={32}
                     className="w-8 h-8 mt-1"
                   />
                   <div>
@@ -65,9 +70,11 @@ export default function Products() {
               {/* Feature Item */}
               <div className="p-4 rounded-xl bg-[#FFFFFF0D] border border-white/5 hover:border-blue-500/30 transition-all cursor-default">
                 <div className="flex items-start gap-4">
-                  <img
+                  <Image
                     src="/icons/circle-pointer.svg"
-                    alt="Icon"
+                    alt="Feature icon"
+                    width={32}
+                    height={32}
                     className="w-8 h-8 mt-1"
                   />
                   <div>
@@ -90,11 +97,12 @@ export default function Products() {
 
             {/* Right Side - Image (Height matches left) */}
             <div className="w-full lg:w-1/2   rounded-xl">
-              <div className="h-full rounded-xl border border-white/16 p-5 pr-0 rounded-xl overflow-hidden  shadow-2xl w-[50vw]">
-                <img
+              <div className="h-full rounded-xl border border-white/16 p-5 pr-0 overflow-hidden shadow-2xl w-[50vw] relative">
+                <Image
                   src="/cards-images/ian-card-image.png"
                   alt="IAN Dashboard"
-                  className="w-full h-full object-cover rounded-l-xl"
+                  fill
+                  className="object-cover rounded-l-xl"
                 />
               </div>
             </div>

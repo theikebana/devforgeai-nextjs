@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import SectionHeader from "./SectionHeader";
 
@@ -127,7 +128,9 @@ export default function Testimonials() {
   ];
 
   const totalPages = Math.ceil(testimonials.length / cardsPerPage);
-  const startIndex = currentPage * cardsPerPage;
+  const safeCurrentPage =
+    totalPages > 0 ? Math.min(currentPage, totalPages - 1) : 0;
+  const startIndex = safeCurrentPage * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
   const displayedTestimonials = testimonials.slice(startIndex, endIndex);
 
@@ -157,13 +160,6 @@ export default function Testimonials() {
       window.removeEventListener("resize", updateCardsPerPage);
     };
   }, []);
-
-  // Ensure current page is valid when cardsPerPage changes
-  useEffect(() => {
-    if (currentPage >= totalPages && totalPages > 0) {
-      setCurrentPage(totalPages - 1);
-    }
-  }, [currentPage, totalPages]);
 
   // Auto-scroll functionality (pauses while dragging)
   useEffect(() => {
@@ -249,15 +245,12 @@ export default function Testimonials() {
     <section className="relative py-8  md:py-12   overflow-hidden  custom-container rounded-4xl border-2 border-gray-900 shadow-sm shadow-black-900/20">
       {/* Top Background Image – Top Half Only */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 pointer-events-none">
-        <div
-          className="
-      absolute hidden md:block
-    "
-        >
-          <img
+        <div className="absolute hidden md:block">
+          <Image
             src="/testimonial-bg.png"
             alt=""
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
             aria-hidden="true"
           />
         </div>
@@ -312,10 +305,11 @@ export default function Testimonials() {
                 >
                   {/* Background Image */}
                   <div className="absolute inset-0">
-                    <img
+                    <Image
                       src="/card-overlay2.png"
                       alt="Testimonial background"
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black/10" />
                   </div>
@@ -347,9 +341,11 @@ export default function Testimonials() {
                       shrink-0
                     "
                       >
-                        <img
+                        <Image
                           src={t.avatar}
                           alt={t.author}
+                          width={40}
+                          height={40}
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -395,7 +391,7 @@ export default function Testimonials() {
                 key={`testimonial-page-${index}`}
                 onClick={() => setCurrentPage(index)}
                 className={`transition-all duration-300 rounded-full ${
-                  currentPage === index
+                  safeCurrentPage === index
                     ? "w-8 h-2 bg-white"
                     : "w-2 h-2 bg-white/30 hover:bg-white/50"
                 }`}

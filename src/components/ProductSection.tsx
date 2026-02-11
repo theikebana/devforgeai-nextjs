@@ -71,7 +71,7 @@ export default function ProductSection() {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id as "rex" | "vira" | "ian")}
                   className={`relative flex items-center justify-center gap-2 px-0 lg:px-5 py-3 w-full
             text-sm  font-medium cursor-pointer
             transition-colors duration-200

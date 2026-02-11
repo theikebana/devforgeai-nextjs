@@ -1,165 +1,192 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimateSection from "./AnimateSection";
 
-const bulletIconClasses = "mt-0.5 text-amber-400 font-bold text-sm shrink-0";
-const bulletContent = "text-xs md:text-sm text-white/80";
-
-const keyFeaturesLeft = [
-  "Dashboard displaying daily user attendance status.",
-  "Report generation by week, month, or custom date range.",
-  "Seamless IP camera integration with advanced face detection and recognition.",
-];
-
-const keyFeaturesRight = [
-  "Detailed reports showing IN/OUT times with user images.",
-  "Automatic reporting for false or unidentified images.",
-  "SaaS-ready architecture with secure, multi-tenant support.",
-];
-
-const problemStatements = [
-  "Current UI design lacks clarity and needs improvement across key pages.",
-  "Attendance accuracy is affected by inconsistent camera quality.",
-  "Environmental conditions impact facial recognition reliability.",
-  "Camera positioning requires hit-and-trial experimentation for optimal results.",
-  "System is not yet SaaS-based, limiting scalability and multi-tenant usage.",
-];
-
-const solutions = [
-  "Redesign and improve the UI for Home, About Us, and feature integration.",
-  "Enhance detection accuracy through the use of higher-quality IP cameras.",
-  "Implement advanced facial recognition and detection algorithms for better reliability.",
-  "Conduct systematic testing to determine optimal camera positioning.",
-  "Convert the platform into a SaaS-based system with pricing plans for scalability.",
-];
+const tabs = ["Key Features", "Problem Statement", "Solution"];
 
 export default function AttendAIOverview() {
+  const [activeTab, setActiveTab] = useState("Key Features");
+
+  const keyFeatures = [
+    {
+      title: "Accurate, automated attendance at scale",
+      desc: "Monitor employee attendance effortlessly with facial recognition and automated logging, eliminating manual tracking and errors.",
+    },
+    {
+      title: "Dashboard displaying daily user attendance status",
+      desc: "Get a real-time overview of daily attendance, highlighting present, absent, and late employees in a single view.",
+    },
+    {
+      title: "Report generation by week, month, or custom date range",
+      desc: "Easily generate attendance reports for any time period, enabling data-driven HR and management decisions.",
+    },
+    {
+      title: "Seamless IP camera integration with advanced face detection and recognition",
+      desc: "Connect multiple IP cameras for automatic face detection, ensuring accurate tracking across locations.",
+    },
+    {
+      title: "Detailed reports showing IN/OUT times with user images",
+      desc: "View precise timestamps of employee entries and exits along with verified user images for audit purposes.",
+    },
+    {
+      title: "Automatic reporting for false or unidentified images",
+      desc: "Identify and flag unrecognized faces or camera errors automatically, improving system reliability.",
+    },
+    {
+      title: "SaaS-ready architecture with secure, multi-tenant support",
+      desc: "Scale effortlessly with a cloud-ready platform that supports multiple organizations securely in a single instance.",
+    },
+  ];
+
+  const problems = [
+    "Current UI design lacks clarity and needs improvement across key pages.",
+    "Attendance accuracy is affected by inconsistent camera quality.",
+    "Environmental conditions impact facial recognition reliability.",
+    "Camera positioning requires hit-and-trial experimentation for optimal results.",
+    "System is not yet SaaS-based, limiting scalability and multi-tenant usage.",
+  ];
+
+  const solutions = [
+    "Redesign and improve the UI for Home, About Us, and feature integration.",
+    "Enhance detection accuracy through the use of higher-quality IP cameras.",
+    "Implement advanced facial recognition and detection algorithms for better reliability.",
+    "Conduct systematic testing to determine optimal camera positioning.",
+    "Convert the platform into a SaaS-based system with pricing plans for scalability.",
+  ];
+
   return (
-    <div className="bg-[#07090E]  flex flex-col gap-5">
-      {/* Key Features */}
+    <div className="bg-[#07090E] ">
       <AnimateSection type="fadeUp">
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 ">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-start">
-            <div>
-              <p className="text-xs font-semibold tracking-[0.2em] text-amber-300 uppercase mb-3">
-                Key Features
-              </p>
-              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-3">
-                Accurate, automated attendance at scale.
-              </h2>
-              <p className="text-sm md:text-base text-white/65 max-w-xl">
-                AttendAI combines facial recognition, IP camera integration, and
-                rich reporting so teams can monitor attendance without manual
-                effort or unreliable spreadsheets.
-              </p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, margin: "-50px" }}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl border border-white/8 bg-gradient-to-br from-slate-900/80 via-slate-950 to-black/95 p-5 lg:p-6 shadow-[0_0_40px_rgba(15,23,42,0.9)]"
-            >
-              <div className="grid gap-4 md:grid-cols-2">
-                <ul className="space-y-2.5 text-xs md:text-sm text-white/75">
-                  {keyFeaturesLeft.map((item, i) => (
-                    <motion.li
-                      key={item}
-                      initial={{ opacity: 0, x: 12 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false, margin: "-30px" }}
-                      transition={{ duration: 0.35, delay: i * 0.04 }}
-                      className="flex gap-3"
-                    >
-                      <span className={bulletIconClasses}>»</span>
-                      <span className={bulletContent}>{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-                <ul className="space-y-2.5 text-xs md:text-sm text-white/75">
-                  {keyFeaturesRight.map((item, i) => (
-                    <motion.li
-                      key={item}
-                      initial={{ opacity: 0, x: 12 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false, margin: "-30px" }}
-                      transition={{ duration: 0.35, delay: (i + 3) * 0.04 }}
-                      className="flex gap-3"
-                    >
-                      <span className={bulletIconClasses}>»</span>
-                      <span className={bulletContent}>{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
+        <section className="max-w-7xl 2xl:max-w-[1440px] mx-auto px-6">
+          {/* Header */}
+          <div className="mb-12">
+            <p className="text-xs font-semibold tracking-[0.22em] text-emerald-300 uppercase mb-3">
+              Platform Overview
+            </p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+              AttendAI: Automated Attendance, Reliable Insights
+            </h2>
+            <p className="text-sm md:text-base text-white/65 max-w-3xl leading-relaxed">
+              AttendAI combines facial recognition, IP camera integration, and advanced reporting 
+              to provide organizations with accurate attendance tracking at scale. Designed for 
+              SaaS-ready deployment, it ensures reliability, security, and ease of monitoring across teams.
+            </p>
           </div>
-        </section>
-      </AnimateSection>
 
-      {/* Problem Statement & Solution */}
-      <AnimateSection type="scaleUp" delay={0.05}>
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 ">
-          <div className="grid gap-5 lg:grid-cols-2 items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-40px" }}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md shadow-[0_0_40px_rgba(15,23,42,0.7)]"
-            >
-              <p className="text-xs font-semibold tracking-[0.18em] text-amber-200/90 uppercase mb-3">
-                Problem Statement
-              </p>
-              <ul className="space-y-2.5 text-xs md:text-sm text-white/80">
-                {problemStatements.map((item, i) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -8 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
-                    className="flex gap-3"
-                  >
-                    <span className={bulletIconClasses}>»</span>
-                    <span className={bulletContent}>{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+          {/* Tabs */}
+          <div className="overflow-x-auto mb-5">
+            <div className="inline-flex rounded-xl border border-white/10 bg-slate-950/80 p-1 min-w-max sm:min-w-0">
+              {tabs.map((tab) => {
+                const isActive = activeTab === tab;
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-2xl border border-sky-400/30 bg-gradient-to-b from-sky-500/15 via-slate-900/95 to-slate-950 p-5 backdrop-blur-md"
-            >
-              <p className="text-xs font-semibold tracking-[0.18em] text-sky-100 uppercase mb-3">
-                Solution
-              </p>
-              <ul className="space-y-2.5 text-xs md:text-sm text-sky-50/90">
-                {solutions.map((item, i) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -8 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ duration: 0.3, delay: 0.08 + i * 0.05 }}
-                    className="flex gap-3"
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className="relative px-4 py-2 text-sm font-medium min-w-[120px] md:min-w-[150px] text-center"
                   >
-                    <span className={bulletIconClasses}>»</span>
-                    <span className={bulletContent}>{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeTab"
+                        className="absolute inset-0 rounded-lg bg-emerald-500/15"
+                        transition={{ type: "spring", stiffness: 320, damping: 28 }}
+                      />
+                    )}
+                    <span
+                      className={`relative z-10 transition-colors ${
+                        isActive
+                          ? "text-emerald-300"
+                          : "text-white/55 hover:text-white"
+                      }`}
+                    >
+                      {tab}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="relative min-h-[450px]">
+            <AnimatePresence mode="wait">
+              {/* Key Features */}
+              {activeTab === "Key Features" && (
+                <motion.div
+                  key="features"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.35 }}
+                  className="space-y-5 max-w-7xl"
+                >
+                  <p className="text-base md:text-lg text-white/80 leading-relaxed">
+                    Key Features of AttendAI for efficient and scalable attendance management:
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                    {keyFeatures.map((item) => (
+                      <div
+                        key={item.title}
+                        className="p-5 rounded-2xl border border-white/5 bg-white/[0.02]"
+                      >
+                        <h4 className="text-emerald-300 text-sm font-medium mb-2">{item.title}</h4>
+                        <p className="text-white/60 text-sm leading-relaxed">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Problem Statement */}
+              {activeTab === "Problem Statement" && (
+                <motion.div
+                  key="problems"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.35 }}
+                  className="grid sm:grid-cols-2 md:grid-cols-3 gap-4"
+                >
+                  {problems.map((problem) => (
+                    <div
+                      key={problem}
+                      className="flex gap-4 p-4 rounded-xl border border-red-500/10 bg-red-500/[0.02]"
+                    >
+                      <span className="text-red-400 text-lg">✕</span>
+                      <p className="text-sm text-white">{problem}</p>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+
+              {/* Solutions */}
+              {activeTab === "Solution" && (
+                <motion.div
+                  key="solutions"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.35 }}
+                  className="grid sm:grid-cols-2 md:grid-cols-3 gap-4"
+                >
+                  {solutions.map((solution) => (
+                    <div
+                      key={solution}
+                      className="flex gap-4 p-4 rounded-xl border border-emerald-500/10 bg-emerald-500/[0.02]"
+                    >
+                      <span className="text-emerald-400 text-lg">✓</span>
+                      <p className="text-sm text-white">{solution}</p>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </section>
       </AnimateSection>
     </div>
   );
 }
-

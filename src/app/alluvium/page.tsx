@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import CallToAction from "@/components/CallToAction";
 import TestimonialsInnerPages from "@/components/TestimonialsInnerPages";
 import AlluviumHero from "@/components/AlluviumHero";
-import AlluviumComplianceTimeline from "@/components/AlluviumComplianceTimeline";
 
 import ToolOverviewSection, {
   ToolOverviewSectionProps,
@@ -27,6 +26,7 @@ import {
   ShieldCheck,
   Workflow,
 } from "lucide-react";
+import VerticalTimeline, { type TimelineItem } from "@/components/VerticalTimeline";
 
 const alluviumSteps: ToolOverviewSectionProps["steps"] = [
   {
@@ -152,28 +152,28 @@ const capabilities = [
   },
 ];
 
-const futureUpdates = [
+const futureUpdates: TimelineItem[] = [
   {
     icon: FileCheck,
-    name: "HIPAA",
+    title: "HIPAA",
     description:
       "Protect sensitive health and financial data with controls aligned to HIPAA administrative and technical safeguards.",
   },
   {
     icon: ShieldCheck,
-    name: "PCI DSS",
+    title: "PCI DSS",
     description:
       "Support for secure processing of payment-related documents and invoices in line with PCI DSS requirements.",
   },
   {
     icon: Lock,
-    name: "GDPR",
+    title: "GDPR",
     description:
       "Data handling practices and access controls that help teams stay compliant with GDPR and global privacy regulations.",
   },
   {
     icon: Activity,
-    name: "SOC 2 & more",
+    title: "SOC 2 & more",
     description:
       "Support for documenting security, availability, and confidentiality controls needed for SOC 2 and related frameworks.",
   },
@@ -202,7 +202,7 @@ export default function AlluviumPage() {
           footerStatus="11k+ invoices · 20+ formats · 76%+ accuracy on key fields"
         />
 
-        <div className="max-w-7xl mx-auto rounded-4xl border-2 my-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
+        <div className="max-w-7xl mx-auto rounded-4xl border-2 my-12 overflow-hidden border border-white/5 bg-[#020617]">
           <HowToolWorksSection
             eyebrow="How Alluvium works"
             accent="emerald"
@@ -228,17 +228,18 @@ export default function AlluviumPage() {
           backgroundClass="bg-[#07090E]"
         />
 
-        <ShineCardsSection
-          eyebrow="Continuous Azure security & compliance"
-          title="Stay audit-ready with automated compliance checks"
-          subtitle="Alluvium helps you keep document processing and extracted data aligned to industry security and privacy frameworks—simplifying audits and reducing compliance risk."
+       
+
+        <div className="max-w-7xl mx-auto py-12 lg:py-16">
+       
+        <VerticalTimeline
+          badge="Key benefits"
+          heading="Stay audit-ready with automated compliance checks"
+          subheading="Alluvium helps you keep document processing and extracted data aligned to industry security and privacy frameworks—simplifying audits and reducing compliance risk."
           items={futureUpdates}
-          columns={4}
-          backgroundClass="bg-[#07090E]"
+          accentColorClass="emerald"
         />
-
-        <AlluviumComplianceTimeline />
-
+        </div>
         <TestimonialsInnerPages />
         <CallToAction />
       </main>

@@ -26,7 +26,7 @@ export default function PulseSection({
   sectionDescription,
 }: PulseSectionProps) {
   return (
-    <section className="relative w-full bg-[#07090E] py-16 overflow-hidden">
+    <section className="relative w-full py-16 overflow-hidden rounded-4xl">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Animation block */}
         <div className="relative flex items-center justify-center min-h-[420px]">
@@ -36,7 +36,7 @@ export default function PulseSection({
               key={i}
               className="
                 absolute rounded-full border border-emerald-400/30
-                w-52 h-52 sm:w-60 sm:h-60 lg:w-72 lg:h-72
+                w-48 h-48 sm:w-60 sm:h-60 lg:w-72 lg:h-72
               "
               animate={{
                 scale: [1, 1.8, 2.6],
@@ -59,7 +59,9 @@ export default function PulseSection({
               border-3 border-emerald-400/30 bg-emerald-500/10
               backdrop-blur-md
               shadow-[0_0_80px_rgba(16,185,129,0.4)]
-              w-52 h-52
+              sm:w-48 sm:h-48
+              w-40 h-40
+
             "
           >
             <h3 className="text-xl font-semibold text-emerald-200">
@@ -77,7 +79,7 @@ export default function PulseSection({
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             {items.map((item, index) => {
               const angle = (index / items.length) * Math.PI * 2;
-              const radius = 180;
+              const radius = 148;
 
               return (
                 <div
@@ -108,7 +110,7 @@ export default function PulseSection({
 
         {/* Section Text */}
         {(sectionTitle || sectionDescription) && (
-          <div className="mt-16 flex flex-col items-center text-center">
+          <div className="sm:mt-8 lg:mt-16 flex flex-col items-center text-center">
             {sectionTitle && (
               <h2 className="text-2xl sm:text-4xl font-semibold text-white">
                 {sectionTitle}

@@ -9,7 +9,7 @@ import IanHero from "@/components/IanHero";
 import ToolOverviewSection from "@/components/Organisms/ToolOverviewSection";
 import { ToolOverviewSectionProps } from "@/components/Organisms/ToolOverviewSection";
 import HowToolWorksSection, { HowToolWorksSectionProps } from "@/components/HowToolWorksSection";
-import { Activity, BarChart3, Brain, Cloud, FileCheck, Globe, LayoutDashboard, Lightbulb, Lock, Radar, Scan, Shield, ShieldCheck } from "lucide-react";
+import { Activity, BarChart3, Brain, Cloud, LayoutDashboard, Lightbulb, Lock, Radar, Scan, Shield, ShieldCheck } from "lucide-react";
 import PulseSection from "@/components/PulseSection";
 import ShineCardsSection from "@/components/ShineCardsSection";
 
@@ -139,7 +139,7 @@ export default function IanPage() {
           title={
             <>
               IAN (Infrastructure Analysis Navigator) <br />
-              <span className="text-sky-400">Complete Cloud Visibility</span>
+              <span className="text-emerald-400">Complete Cloud Visibility</span>
             </>
           }
           description="IAN is your centralized command center for Azure infrastructure monitoring, offering a unified dashboard across core Azure services."
@@ -147,19 +147,19 @@ export default function IanPage() {
           footerStatus="Live telemetry active · Azure services connected"
         />
 
-<div className="max-w-7xl mx-auto rounded-4xl border-2 my-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
-        <HowToolWorksSection
-          eyebrow="How it works"
-          accent="sky"
-          heading={
-            <>
-              From scattered Azure portals to one intelligent dashboard.
-            </>
-          }
-          description="IAN connects to your Azure environment, aggregates metrics and health signals, and surfaces recommendations so you can optimize cost, performance, and security in one place."
-          steps={ianHowItWorksSteps}
-          
-        />
+        <div className="max-w-7xl 2xl:max-w-[1440px] mx-auto rounded-4xl border border-white/5 my-12 overflow-hidden shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.20)]">
+          <HowToolWorksSection
+            eyebrow="How it works"
+            accent="sky"
+            heading={
+              <>
+                From scattered <br /> Azure portals to one intelligent dashboard.
+              </>
+            }
+            description="IAN connects to your Azure environment, aggregates metrics and health signals, and surfaces recommendations so you can optimize cost, performance, and security in one place."
+            steps={ianHowItWorksSteps}
+
+          />
         </div>
         <PulseSection
           center={pulseCenterData.center}
@@ -168,6 +168,8 @@ export default function IanPage() {
           sectionDescription="Our AI operates as a continuously evolving intelligence layer at the core of your system. It ingests real-time signals across users, devices, and applications, analyzes behavioral patterns, detects anomalies, and takes proactive action before risks escalate. With every interaction, the model learns, adapts, and strengthens decision accuracy — ensuring faster responses, reduced false positives, and resilient protection at scale."
 
         />
+
+        <section className="max-w-7xl 2xl:max-w-[1440px] mx-auto rounded-4xl my-12 lg:my-16 xl:my-20 2xl:my-24 border-2 border-dashed border-white/5  bg-[#ffffff08] overflow-hidden shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.20)]">  
         <ShineCardsSection
           eyebrow="Compliance frameworks"
           title="Stay audit-ready with automated compliance checks"
@@ -176,6 +178,7 @@ export default function IanPage() {
           columns={4}
           backgroundClass="bg-[#07090E]"
         />
+        </section>
         <TestimonialsInnerPages />
         <CallToAction />
       </main>

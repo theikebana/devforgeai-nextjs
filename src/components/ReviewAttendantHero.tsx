@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Sparkles, ShieldCheck, ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
 import { BsRobot } from "react-icons/bs";
 import { CiServer } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
@@ -33,20 +33,8 @@ const TESTIMONIALS = [
 ];
 
 export default function ReviewAttendantHero() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Auto-rotate testimonials
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const current = TESTIMONIALS[currentIndex];
-
   return (
-    <section id="hero" className="relative overflow-hidden bg-[#07090E] pt-24 pb-36">
+    <section id="hero" className="relative overflow-hidden bg-[#07090E] py-12 lg:py-16 xl:py-20 2xl:py-24">
       {/* Ambient glow */}
       <motion.div
         className="pointer-events-none absolute -top-1/2 -right-1/4 h-[120%] w-[80%] rounded-full bg-emerald-500/20 blur-[140px]"
@@ -54,40 +42,31 @@ export default function ReviewAttendantHero() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative max-w-[1440px] mx-auto rounded-4xl border border-white/5 bg-[#020617] p-8">
-        <motion.div initial="hidden" animate="visible" className="grid grid-cols-4 items-center gap-12">
+      <div className="relative max-w-7xl 2xl:max-w-[1440px] mx-auto rounded-4xl border border-white/5 bg-[#020617] p-4 lg:p-8">
+        <motion.div initial="hidden" animate="visible" className="grid grid-cols-1 lg:grid-cols-4 items-center gap-12">
           {/* LEFT */}
-          <div className="col-span-2 space-y-6 max-w-xl">
-            <motion.div className="flex items-center gap-3">
-              <motion.div
-                className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600 border border-emerald-400/40 shadow-lg shadow-emerald-500/20"
-                whileHover={{ scale: 1.05, rotate: 2 }}
-              >
-                <span className="text-xl font-bold text-white">M</span>
-              </motion.div>
-              <div>
-                <h1 className="text-2xl md:text-3xl font-bold text-white">Review Attendant</h1>
-                <p className="text-xs md:text-sm text-white/60">Unified Review Management</p>
-              </div>
-            </motion.div>
+          <div className="col-span-1 lg:col-span-2 sm:space-y-6 max-w-xl order-2 lg:order-none text-center lg:text-left flex flex-col gap-4">
+          
 
-            <motion.div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-100/80 backdrop-blur">
+            <motion.div className="hidden lg:inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-100/80 backdrop-blur">
               <Sparkles className="h-3 w-3 text-emerald-300" />
               <span className="uppercase tracking-[0.18em] text-[10px]">
                 Yelp • Google • Facebook • Twitter
               </span>
             </motion.div>
 
-            <motion.h2 className="text-3xl lg:text-[38px] font-semibold tracking-tight text-white">
+         <div>
+         <motion.h2 className="text-2xl lg:text-[38px] font-semibold tracking-tight text-white">
               One platform for all <br /> <span className=" text-[#00d492]">your reviews and reputation.</span>
             </motion.h2>
 
-            <motion.p className="text-base text-white/65 leading-relaxed">
+            <motion.p className="text-sm lg:text-base text-white/65 leading-relaxed">
               Connect your review platforms, let AI classify sentiment, and manage responses from a unified dashboard.
               Real-time alerts and analytics keep your reputation strong.
             </motion.p>
 
-            <motion.div className="flex items-center gap-4 pt-2">
+         </div>
+            <motion.div className="flex flex-col lg:flex-row items-center gap-4 pt-2">
               <button className="group inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(16,185,129,0.35)] hover:bg-emerald-400">
                 Try live dashboard
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
@@ -100,8 +79,8 @@ export default function ReviewAttendantHero() {
           </div>
 
           {/* RIGHT */}
-          <div className="col-span-2 flex flex-col gap-2 relative border border-white/10 shadow-md p-2 rounded-2xl">
-            <div className="h-[300px] relative">
+          <div className="col-span-1 lg:col-span-2 flex flex-col gap-2 relative border border-white/10 shadow-md p-2 rounded-2xl order-1 lg:order-none">
+            <div className="h-[300px] relative w-full">
               <motion.div className="relative h-full overflow-hidden rounded-xl border border-white/10 bg-gradient-to-b from-[#020617] via-[#020617] to-black p-6">
                 {/* Vertical spine */}
                 <motion.div
@@ -122,9 +101,11 @@ export default function ReviewAttendantHero() {
                       {/* Top Section: Avatar + Name/Role */}
                       <div className="flex items-start gap-4">
                         <div className="relative flex-shrink-0">
-                          <img
+                          <Image
                             src={current.avatar}
                             alt={current.name}
+                            width={56}
+                            height={56}
                             className="w-14 h-14 rounded-full border-2 border-emerald-400 object-cover shadow-sm"
                           />
                           <span className="absolute -inset-1 rounded-full border border-emerald-500 opacity-50 animate-pulse"></span>
@@ -198,7 +179,7 @@ export default function ReviewAttendantHero() {
 
             {/* ================= REVIEW STATS ================= */}
             <motion.div
-              className="w-full max-w-5xl mx-auto p-2 rounded-xl bg-[#0b111c]/40  flex flex-nowrap gap-2 justify-center text-white"
+              className="hidden lg:flex w-full max-w-5xl mx-auto p-2 rounded-xl bg-[#0b111c]/40  flex flex-nowrap gap-2 justify-center text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}

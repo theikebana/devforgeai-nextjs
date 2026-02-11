@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -45,10 +46,9 @@ export default function Navbar() {
             /* Desktop */
             lg:rounded-full
             lg:px-6 lg:py-4
-            ${
-              scrolled
-                ? "lg:w-[min(88vw,80rem)]"
-                : "lg:w-[min(92vw,90rem)]"
+            ${scrolled
+              ? "lg:w-[min(88vw,80rem)]"
+              : "lg:w-[min(92vw,90rem)]"
             }
           `}
         >
@@ -59,9 +59,11 @@ export default function Navbar() {
               className="flex items-center hover:opacity-80 transition"
               aria-label="Go to homepage"
             >
-              <img
+              <Image
                 src="/site-logo.svg"
                 alt="DevForge"
+                width={120}
+                height={28}
                 className="h-6 lg:h-7 w-auto"
               />
             </button>
@@ -80,18 +82,20 @@ export default function Navbar() {
 
                 <div
                   className="
-                    absolute left-0 top-full mt-4 w-[420px]
-                    rounded-xl border border-white/10
-                    bg-[#0B0F1A] shadow-xl
-                    opacity-0 translate-y-2 scale-[0.98]
-                    pointer-events-none
-                    transition-all duration-300
-                    group-hover:opacity-100
-                    group-hover:translate-y-0
-                    group-hover:scale-100
-                    group-hover:pointer-events-auto
-                  "
+    absolute left-0 top-full pt-4 w-[420px]
+    z-50
+    rounded-xl border border-white/10
+    bg-[#0B0F1A] shadow-xl
+    opacity-0 translate-y-2 scale-[0.98]
+    pointer-events-none
+    transition-all duration-300
+    group-hover:opacity-100
+    group-hover:translate-y-0
+    group-hover:scale-100
+    group-hover:pointer-events-auto
+  "
                 >
+
                   <div className="p-2 space-y-2">
                     {products.map((item) => {
                       const Icon = item.icon;
@@ -176,9 +180,8 @@ export default function Navbar() {
                 Products
                 <ChevronDown
                   size={16}
-                  className={`transition ${
-                    isProductsOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition ${isProductsOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 

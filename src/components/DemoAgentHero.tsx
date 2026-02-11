@@ -11,11 +11,18 @@ const FEATURES = [
   { label: "Secure access control", icon: FileText },
 ];
 
+const PARTICLE_CONFIGS = [...Array(12)].map(() => ({
+  top: 20 + Math.random() * 60,
+  left: 20 + Math.random() * 60,
+  duration: 3 + Math.random() * 3,
+  delay: Math.random() * 2,
+}));
+
 export default function DemoAgentHero() {
   const thinkDocs = productsById["thinkdocs"];
 
   return (
-    <section className="relative overflow-hidden bg-[#07090E] py-12 lg:py-24">
+    <section className="relative overflow-hidden bg-[#07090E] py-8 lg:py-12">
       {/* Ambient glow */}
       <motion.div
         className="pointer-events-none absolute -top-1/2 -right-1/4 h-[120%] w-[80%] rounded-full bg-emerald-500/20 blur-[140px]"
@@ -23,27 +30,46 @@ export default function DemoAgentHero() {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative max-w-[1440px] mx-auto rounded-4xl border border-white/5 bg-[#020617] p-8">
-        <motion.div className="grid grid-cols-4 items-center gap-12">
+      <div className="relative max-w-7xl 2xl:max-w-[1440px] mx-auto rounded-4xl border border-white/5 bg-[#020617] px-4 py-8 lg:py-12 lg:p-8">
+        <motion.div className="grid grid-cols-1 lg:grid-cols-4 items-center gap-12">
           {/* LEFT */}
-          <div className="col-span-2 space-y-6 max-w-xl">
-
-
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-100/80 backdrop-blur">
+          <div
+            className="order-2 lg:order-none lg:col-span-2 space-y-4
+              text-center lg:text-left"
+          >
+            <div
+              className="inline-flex items-center gap-2
+                mx-auto lg:mx-0
+                rounded-full border border-white/10
+                bg-white/5 px-3 py-1
+                text-[10px] text-emerald-200"
+            >
               <Play className="h-3 w-3 text-emerald-300" />
               <span className="uppercase tracking-[0.18em] text-[10px]">
                 AI document management • Semantic search
               </span>
             </div>
 
-            <h2 className="text-3xl lg:text-[38px] font-semibold tracking-tight text-white">
+            <h2
+              className="font-semibold tracking-snug text-white
+                text-[26px] leading-[1.1]
+                sm:text-[28px]
+                md:text-[32px]
+                lg:text-[36px]
+                xl:text-[40px]"
+            >
               Turn scattered documents into{" "}
               <span className="text-emerald-400">
                 an AI-first, searchable system
               </span>
             </h2>
 
-            <p className="text-base text-white/65 leading-relaxed">
+            <p
+              className="lg:mx-0
+                w-full sm:max-w-md mx-auto
+                text-[14px] sm:text-sm md:text-base
+                leading-relaxed text-white/65"
+            >
               {thinkDocs.description} It ingests documents from every source,
               runs OCR and NLP to extract key information, classifies each file
               automatically, and makes everything{" "}
@@ -53,7 +79,10 @@ export default function DemoAgentHero() {
               — cutting manual document work by over 70%.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2 text-sm text-white/70">
+            <div
+              className="flex flex-wrap gap-3
+                justify-center lg:justify-start text-sm text-white/70"
+            >
               {FEATURES.map((item, i) => {
                 const Icon = item.icon;
                 return (
@@ -70,13 +99,18 @@ export default function DemoAgentHero() {
               })}
             </div>
 
-            <div className="flex items-center gap-4 pt-4">
+            <div
+              className="flex items-center gap-4 pt-4
+                justify-center lg:justify-start"
+            >
               <Link
                 href="/book-demo"
-                className="group inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(16,185,129,0.35)] hover:bg-emerald-400"
+                className="inline-flex items-center gap-2 rounded-xl
+                  bg-emerald-500 px-5 py-3 text-sm font-medium text-black
+                  hover:bg-emerald-400 transition"
               >
                 See ThinkDocs in action
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                <ArrowRight className="h-4 w-4" />
               </Link>
               <span className="flex items-center gap-2 text-xs text-white/55">
                 <ShieldCheck className="h-4 w-4 text-emerald-400" />
@@ -84,147 +118,148 @@ export default function DemoAgentHero() {
               </span>
             </div>
           </div>
+
           {/* RIGHT — DEMO AGENT ANIMATION */}
-          <div className="col-span-2 relative flex items-center justify-center min-h-[380px]">
-            <motion.div className="relative h-[360px] w-full max-w-xl overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#020617] via-[#020617] to-black">
-
-              {/* Outer glow frame */}
-              <motion.div
-                className="absolute inset-6 rounded-2xl border border-emerald-400/15"
-                animate={{ opacity: [0.2, 0.5, 0.2] }}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              />
-
-              {/* Vertical flow spine */}
-              <motion.div
-                className="absolute left-1/2 top-10 bottom-10 w-[2px] -translate-x-1/2 bg-gradient-to-b from-transparent via-emerald-400/60 to-transparent"
-                animate={{ opacity: [0.3, 0.9, 0.3] }}
-                transition={{ duration: 4.5, repeat: Infinity }}
-              />
-
-              {/* LEFT: CAPTURE STREAMS */}
-              {[0, 1, 2, 3].map((i) => (
+          <div className="col-span-1 lg:col-span-2 relative border border-white/10 shadow-2xl p-2 rounded-2xl order-1 lg:order-none">
+            <div className="h-[320px] lg:h-[460px] relative flex items-center justify-center">
+              <motion.div className="relative h-[90%] w-full max-w-xl overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#020617] via-[#020617] to-black">
+                {/* Outer glow frame */}
                 <motion.div
-                  key={`capture-${i}`}
-                  className="absolute left-0 h-[1px] w-[45%] bg-gradient-to-r from-transparent to-emerald-400/60"
-                  style={{ top: 120 + i * 55 }}
-                  animate={{ opacity: [0, 1, 0], x: [-40, 0] }}
+                  className="absolute inset-6 rounded-2xl border border-emerald-400/15"
+                  animate={{ opacity: [0.2, 0.5, 0.2] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                />
+
+                {/* Vertical flow spine */}
+                <motion.div
+                  className="absolute left-1/2 top-10 bottom-10 w-[2px] -translate-x-1/2 bg-gradient-to-b from-transparent via-emerald-400/60 to-transparent"
+                  animate={{ opacity: [0.3, 0.9, 0.3] }}
+                  transition={{ duration: 4.5, repeat: Infinity }}
+                />
+
+                {/* LEFT: CAPTURE STREAMS */}
+                {[0, 1, 2, 3].map((i) => (
+                  <motion.div
+                    key={`capture-${i}`}
+                    className="absolute left-0 h-[1px] w-[45%] bg-gradient-to-r from-transparent to-emerald-400/60"
+                    style={{ top: 120 + i * 55 }}
+                    animate={{ opacity: [0, 1, 0], x: [-40, 0] }}
+                    transition={{
+                      duration: 2.4,
+                      delay: i * 0.4,
+                      repeat: Infinity,
+                      repeatDelay: 2,
+                      ease: "easeOut",
+                    }}
+                  />
+                ))}
+
+                {/* RIGHT: NARRATION STREAMS */}
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={`narrate-${i}`}
+                    className="absolute right-0 h-[1px] w-[45%] bg-gradient-to-l from-transparent to-emerald-400/55"
+                    style={{ top: 140 + i * 65 }}
+                    animate={{ opacity: [0, 1, 0], x: [40, 0] }}
+                    transition={{
+                      duration: 2.8,
+                      delay: 1.2 + i * 0.5,
+                      repeat: Infinity,
+                      repeatDelay: 2,
+                      ease: "easeOut",
+                    }}
+                  />
+                ))}
+
+                {/* CENTER AGENT */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <motion.div
+                    className="flex h-20 w-20 items-center justify-center rounded-full border border-emerald-400/35 bg-[#020617] shadow-[0_0_80px_rgba(16,185,129,0.45)]"
+                    animate={{
+                      scale: [1, 1.08, 1],
+                      boxShadow: [
+                        "0 0 40px rgba(16,185,129,0.3)",
+                        "0 0 120px rgba(16,185,129,0.55)",
+                        "0 0 40px rgba(16,185,129,0.3)",
+                      ],
+                    }}
+                    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <FileText className="h-9 w-9 text-emerald-400" />
+                  </motion.div>
+                </div>
+
+                {/* ORBITING STEPS */}
+                {[0, 1, 2, 3].map((i) => (
+                  <motion.div
+                    key={`step-${i}`}
+                    className="absolute left-1/2 top-1/2 h-3 w-3 rounded-full bg-emerald-400"
+                    animate={{
+                      rotate: 360,
+                    }}
+                    transition={{
+                      duration: 8 + i * 2,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    style={{
+                      transformOrigin: `${80 + i * 18}px center`,
+                    }}
+                  />
+                ))}
+
+                {/* PULSE RING */}
+                <motion.div
+                  className="absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-400/25"
+                  animate={{ scale: [0.7, 1.5], opacity: [0.6, 0] }}
                   transition={{
                     duration: 2.4,
-                    delay: i * 0.4,
                     repeat: Infinity,
-                    repeatDelay: 2,
+                    repeatDelay: 3.5,
                     ease: "easeOut",
                   }}
                 />
-              ))}
 
-              {/* RIGHT: NARRATION STREAMS */}
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={`narrate-${i}`}
-                  className="absolute right-0 h-[1px] w-[45%] bg-gradient-to-l from-transparent to-emerald-400/55"
-                  style={{ top: 140 + i * 65 }}
-                  animate={{ opacity: [0, 1, 0], x: [40, 0] }}
-                  transition={{
-                    duration: 2.8,
-                    delay: 1.2 + i * 0.5,
-                    repeat: Infinity,
-                    repeatDelay: 2,
-                    ease: "easeOut",
-                  }}
-                />
-              ))}
+                {/* FEATURE CHIPS */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
+                  {[
+                    { label: "Ingest", icon: Play },
+                    { label: "Classify", icon: Mic },
+                    { label: "Search", icon: FileText },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      className="flex items-center gap-2 rounded-full bg-[#0b111c]/90 border border-emerald-400/25 px-4 py-1 text-xs text-white"
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 + i * 0.2 }}
+                    >
+                      <item.icon className="h-4 w-4 text-emerald-400" />
+                      {item.label}
+                    </motion.div>
+                  ))}
+                </div>
 
-              {/* CENTER AGENT */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <motion.div
-                  className="flex h-20 w-20 items-center justify-center rounded-full border border-emerald-400/35 bg-[#020617] shadow-[0_0_80px_rgba(16,185,129,0.45)]"
-                  animate={{
-                    scale: [1, 1.08, 1],
-                    boxShadow: [
-                      "0 0 40px rgba(16,185,129,0.3)",
-                      "0 0 120px rgba(16,185,129,0.55)",
-                      "0 0 40px rgba(16,185,129,0.3)",
-                    ],
-                  }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <FileText className="h-9 w-9 text-emerald-400" />
-                </motion.div>
-              </div>
-
-              {/* ORBITING STEPS */}
-              {[0, 1, 2, 3].map((i) => (
-                <motion.div
-                  key={`step-${i}`}
-                  className="absolute left-1/2 top-1/2 h-3 w-3 rounded-full bg-emerald-400"
-                  animate={{
-                    rotate: 360,
-                  }}
-                  transition={{
-                    duration: 8 + i * 2,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  style={{
-                    transformOrigin: `${80 + i * 18}px center`,
-                  }}
-                />
-              ))}
-
-              {/* PULSE RING */}
-              <motion.div
-                className="absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-400/25"
-                animate={{ scale: [0.7, 1.5], opacity: [0.6, 0] }}
-                transition={{
-                  duration: 2.4,
-                  repeat: Infinity,
-                  repeatDelay: 3.5,
-                  ease: "easeOut",
-                }}
-              />
-
-              {/* FEATURE CHIPS */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
-                {[
-                  { label: "Ingest", icon: Play },
-                  { label: "Classify", icon: Mic },
-                  { label: "Search", icon: FileText },
-                ].map((item, i) => (
+                {/* PARTICLES */}
+                {PARTICLE_CONFIGS.map((config, i) => (
                   <motion.div
-                    key={item.label}
-                    className="flex items-center gap-2 rounded-full bg-[#0b111c]/90 border border-emerald-400/25 px-4 py-1 text-xs text-white"
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 + i * 0.2 }}
-                  >
-                    <item.icon className="h-4 w-4 text-emerald-400" />
-                    {item.label}
-                  </motion.div>
+                    key={`particle-${i}`}
+                    className="absolute h-1.5 w-1.5 rounded-full bg-emerald-400/70"
+                    style={{
+                      top: `${config.top}%`,
+                      left: `${config.left}%`,
+                    }}
+                    animate={{ opacity: [0, 1, 0], scale: [0.6, 1, 0.6] }}
+                    transition={{
+                      duration: config.duration,
+                      repeat: Infinity,
+                      delay: config.delay,
+                    }}
+                  />
                 ))}
-              </div>
-
-              {/* PARTICLES */}
-              {[...Array(12)].map((_, i) => (
-                <motion.div
-                  key={`particle-${i}`}
-                  className="absolute h-1.5 w-1.5 rounded-full bg-emerald-400/70"
-                  style={{
-                    top: `${20 + Math.random() * 60}%`,
-                    left: `${20 + Math.random() * 60}%`,
-                  }}
-                  animate={{ opacity: [0, 1, 0], scale: [0.6, 1, 0.6] }}
-                  transition={{
-                    duration: 3 + Math.random() * 3,
-                    repeat: Infinity,
-                    delay: Math.random() * 2,
-                  }}
-                />
-              ))}
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
-
         </motion.div>
       </div>
     </section>

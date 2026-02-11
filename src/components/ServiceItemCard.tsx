@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 
 interface CheckItem {
@@ -43,10 +44,11 @@ export default function ServiceItem({
       overflow-hidden rounded-xl
     "
         >
-          <img
+          <Image
             src={imageSrc}
             alt={title}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
           />
         </div>
 

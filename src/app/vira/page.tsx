@@ -5,16 +5,15 @@ import Footer from "@/components/Footer";
 import CallToAction from "@/components/CallToAction";
 import TestimonialsInnerPages from "@/components/TestimonialsInnerPages";
 import ViraHero from "@/components/ViraHero";
-import ViraKeyBenefits from "@/components/ViraKeyBenefits";
-import ViraComplianceSection from "@/components/ShineCardsSection";
 import ToolOverviewSection, {
   type ToolOverviewSectionProps,
 } from "@/components/Organisms/ToolOverviewSection";
 import HowToolWorksSection, {
   type HowToolWorksSectionProps,
 } from "@/components/HowToolWorksSection";
-import { AlertTriangle, FileCheck, Globe, Lock, Scan, Shield, ShieldCheck } from "lucide-react";
+import { AlertTriangle, Brain, FileCheck, Globe, Lock, Scan, Shield, ShieldCheck } from "lucide-react";
 import ShineCardsSection from "@/components/ShineCardsSection";
+import VerticalTimeline from "@/components/VerticalTimeline";
 
 const viraSteps: ToolOverviewSectionProps["steps"] = [
   {
@@ -89,6 +88,45 @@ const frameworks = [
   },
 ];
 
+const benefits = [
+  {
+    icon: Scan,
+    title: "Continuous security scanning",
+    description:
+      "Always-on monitoring across your entire Azure environment to detect vulnerabilities, risky configurations, and exposure in real time.",
+  },
+  {
+    icon: AlertTriangle,
+    title: "Misconfiguration detection",
+    description:
+      "Automatically identify insecure defaults, exposed services, open ports, and configuration drift across subscriptions.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Least privilege enforcement",
+    description:
+      "Detect over-privileged users, roles, and service identities and reduce your attack surface.",
+  },
+  {
+    icon: FileCheck,
+    title: "Automated compliance checks",
+    description:
+      "Continuously assess your infrastructure against HIPAA, PCI DSS, GDPR, and more.",
+  },
+  {
+    icon: Brain,
+    title: "Threat intelligence insights",
+    description:
+      "Risk-based prioritization so teams fix what matters most — not endless alerts.",
+  },
+  {
+    icon: Lock,
+    title: "Audit-ready reporting",
+    description:
+      "Generate executive-ready reports and stay audit-ready without manual effort.",
+  },
+];
+
 export default function ViraPage() {
   return (
     <div className="min-h-screen bg-[#07090E] text-white overflow-hidden">
@@ -126,18 +164,25 @@ export default function ViraPage() {
           />
         </div>
 
-        <ViraKeyBenefits />
 
-      <section className="max-w-7xl 2xl:max-w-[1440px] mx-auto rounded-4xl my-12 lg:my-16 xl:my-20 2xl:my-24 border-2 border-dashed border-white/5  bg-[#ffffff08] overflow-hidden shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.20)]">
-      <ShineCardsSection
-          eyebrow="Compliance frameworks"
-          title="Stay audit-ready with automated compliance checks"
-          subtitle="VIRA continuously maps your Azure posture to industry frameworks, helping you identify gaps and maintain provable compliance."
-          items={frameworks}
-          columns={4}
-          backgroundClass="bg-[#07090E]"
+        <VerticalTimeline
+          badge="All in one platform"
+          heading="Continuous Azure security & compliance"
+          subheading="One continuous workflow — detect, evaluate, comply, and harden your cloud posture with automated intelligence."
+          items={benefits}
+          accentColorClass="emerald"
         />
-      </section>
+
+        <section className="max-w-7xl 2xl:max-w-[1440px] mx-auto rounded-4xl my-12 lg:my-16 xl:my-20 2xl:my-24 border-2 border-dashed border-white/5  bg-[#ffffff08] overflow-hidden shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.20)]">
+          <ShineCardsSection
+            eyebrow="Compliance frameworks"
+            title="Stay audit-ready with automated compliance checks"
+            subtitle="VIRA continuously maps your Azure posture to industry frameworks, helping you identify gaps and maintain provable compliance."
+            items={frameworks}
+            columns={4}
+            backgroundClass="bg-[#07090E]"
+          />
+        </section>
         <TestimonialsInnerPages />
         <CallToAction />
       </main>

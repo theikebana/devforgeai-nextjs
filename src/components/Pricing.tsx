@@ -99,7 +99,7 @@ export default function Pricing() {
             {/* Features */}
             <div className="relative z-10 border-t border-[#FFFFFF1A] pt-4 sm:pt-6 space-y-3 font-light">
               <h4 className="text-sm sm:text-base text-white mb-4">
-                What's included:
+                What&apos;s included:
               </h4>
 
               {[
@@ -202,7 +202,7 @@ export default function Pricing() {
   {/* Features */}
   <div className="relative z-10 border-t border-[#FFFFFF1A] pt-4 sm:pt-6 space-y-3 font-light">
     <h4 className="text-sm sm:text-base text-white mb-4">
-      What's included:
+      What&apos;s included:
     </h4>
 
     <div className="flex items-start gap-2">

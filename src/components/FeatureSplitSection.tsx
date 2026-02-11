@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Zap } from "lucide-react";
 
 interface Feature {
@@ -57,9 +58,11 @@ const FeatureSplitSection = ({
               className="p-4 mb-4 rounded-xl bg-[#FFFFFF0D] border border-white/5 "
             >
               <div className="flex items-start gap-4">
-                <img
+                <Image
                   src="/icons/circle-pointer.svg"
-                  alt="Icon"
+                  alt="Feature icon"
+                  width={32}
+                  height={32}
                   className="w-8 h-8 mt-1"
                 />
                 <div>
@@ -94,18 +97,21 @@ const FeatureSplitSection = ({
         {/* RIGHT IMAGE */}
         <div className="w-full lg:w-3/5 rounded-l-xl relative  ">
           {/* Background decorative image */}
-          <img
+          <Image
             src="/card-overlay.png"
-            alt="Testimonial background"
+            alt=""
             aria-hidden="true"
+            width={300}
+            height={300}
             className="absolute top-0 left-0 w-auto h-auto max-w-[300px] object-fill opacity-64 z-0 pointer-events-none"
           />
 
           {/* Main image container */}
           <div className="relative h-[600px] border border-[#FFFFFF]/6 bg-[#0C0E13] 2xl:p-8 p-6 pr-0 rounded-l-xl  shadow-2xl w-[70vw] z-10">
-            <img
+            <Image
               src={imageSrc}
               alt={imageAlt}
+              fill
               className="w-full h-full object-fill "
             />
           </div>
@@ -137,9 +143,11 @@ const FeatureSplitSection = ({
 
             {/* IMAGE (MOBILE + TABLET) */}
             <div className="rounded-xl overflow-hidden border border-white/16">
-              <img
+              <Image
                 src={imageSrc}
                 alt={imageAlt}
+                width={800}
+                height={400}
                 className="w-full h-[200px] sm:h-[260px] md:h-[300px] object-fill"
               />
             </div>
@@ -154,9 +162,11 @@ const FeatureSplitSection = ({
                   <div className="flex gap-4">
                     {/* ICON */}
                     <div className="hidden sm:flex items-center justify-center w-8 h-8 rounded-full bg-[#0078D41A] shrink-0">
-                      <img
+                      <Image
                         src="/icons/circle-pointer.svg"
-                        alt="Icon"
+                        alt="Feature icon"
+                        width={16}
+                        height={16}
                         className="w-4 h-4"
                       />
                     </div>

@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import CallToAction from "@/components/CallToAction";
 import TestimonialsInnerPages from "@/components/TestimonialsInnerPages";
 import ThinkDocsHero from "@/components/ThinkDocsHero";
-import ThinkDocsKeyBenefits from "@/components/ThinkDocsKeyBenefits";
 import ToolOverviewSection, {
   type ToolOverviewSectionProps,
 } from "@/components/Organisms/ToolOverviewSection";
@@ -21,6 +20,7 @@ import {
   Workflow,
 } from "lucide-react";
 import ShineCardsSection from "@/components/ShineCardsSection";
+import VerticalTimeline from "@/components/VerticalTimeline";
 
 const thinkDocsSteps: ToolOverviewSectionProps["steps"] = [
   {
@@ -83,39 +83,39 @@ const thinkDocsHowItWorksSteps: HowToolWorksSectionProps["steps"] = [
 const coreCapabilities = [
   {
     icon: FolderOpen,
-    name: "Centralized storage and sharing",
     description:
       "Secure, unified repository with upload, access, and sharing. Role-based permissions control who can view or edit documents.",
+    title: "Centralized storage and sharing",
   },
   {
     icon: Search,
-    name: "AI-powered search and retrieval",
     description:
       "Semantic search by intent or context. Natural language queries make retrieval faster and more intuitive.",
+    title: "AI-powered search and retrieval",
   },
   {
     icon: Tag,
-    name: "Automatic classification & tagging",
     description:
       "AI analyzes content and automatically categorizes and tags documents to improve organization and search.",
+    title: "Automatic classification & tagging",
   },
   {
     icon: Users,
-    name: "Collaboration tools",
     description:
       "Version control, comments, and shared access links for multiple users working on documents.",
+    title: "Collaboration tools",
   },
   {
     icon: Lightbulb,
-    name: "Intelligent insights & summaries",
     description:
       "Generate summaries, extract key data, or answer questions about documents without reading them line-by-line.",
+    title: "Intelligent insights & summaries",
   },
   {
     icon: Workflow,
-    name: "Workflow automation",
     description:
       "Trigger approval routing, notifications, or compliance checks based on document content and status.",
+    title: "Workflow automation",
   },
 ];
 
@@ -157,13 +157,24 @@ export default function ThinkDocsPage() {
           />
         </div>
 
-        <ThinkDocsKeyBenefits />
+      
+        <VerticalTimeline
+          badge="All in one platform"
+          heading="Everything you need to manage documents intelligently"
+          subheading="ThinkDocs combines centralized storage, AI search, auto-tagging, collaboration, insights, and workflow automation so your content is organized, findable, and actionable."
+          items={coreCapabilities}
+          accentColorClass="sky"
+        />
 
         <ShineCardsSection
           eyebrow="Core capabilities"
           title="Everything you need to manage documents intelligently"
           subtitle="ThinkDocs combines centralized storage, AI search, auto-tagging, collaboration, insights, and workflow automation so your content is organized, findable, and actionable."
-          items={coreCapabilities}
+          items={coreCapabilities.map((item) => ({
+            icon: item.icon,
+            name: item.title,
+            description: item.description,
+          }))}
           columns={3}
           backgroundClass="bg-[#07090E]"
         />

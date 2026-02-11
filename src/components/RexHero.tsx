@@ -1,24 +1,7 @@
 // \"use client\";
 
 import { motion } from "framer-motion";
-import { ShieldCheck, Bug, Sparkles } from "lucide-react";
-
-const heroContainer = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const heroItem = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
+import { Bug, Sparkles } from "lucide-react";
 
 export default function RexHero() {
   return (

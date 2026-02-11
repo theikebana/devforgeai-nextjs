@@ -1,7 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import WhyDevForge from "@/components/WhyDevForge";
-import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import CallToAction from "@/components/CallToAction";

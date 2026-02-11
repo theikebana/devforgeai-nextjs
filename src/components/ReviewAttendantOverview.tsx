@@ -46,7 +46,7 @@ const problemStatements = [
 
 export default function ReviewAttendantOverview() {
   return (
-    <div className="bg-[#07090E] pb-16 pt-4">
+    <div className="bg-[#07090E] ">
       {/* ---------------- INTRO ---------------- */}
       <AnimateSection type="fadeUp">
         <section className="max-w-7xl mx-auto px-6 lg:px-8 pt-6">
