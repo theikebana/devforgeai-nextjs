@@ -15,143 +15,147 @@ export default function Navbar() {
 
   const products = productConfigs.filter((p) => p.showInNavbar);
 
+  /* Scroll detection */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Lock body scroll on mobile menu */
+  /* Lock body scroll on mobile */
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
   }, [isOpen]);
 
   return (
     <>
-      {/* NAVBAR */}
-      <nav className="fixed top-0 lg:top-4 left-0 right-0 z-50 flex justify-center pointer-events-none">
+      {/* ================= NAVBAR ================= */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center">
+        {/* Top spacing when scrolled */}
         <div
-          className={`
-            pointer-events-auto
-            backdrop-blur-xl
-            border border-white/10
-            bg-black/12 backdrop-blur-sm sm:bg-[#07090E]/90
-            transition-all duration-300 ease-out
-
-            /* Mobile & Tablet */
-            w-full
-            rounded-none
-            px-4 py-3
-
-            /* Desktop */
-            lg:rounded-full
-            lg:px-6 lg:py-4
-            ${scrolled
-              ? "lg:w-[min(88vw,80rem)]"
-              : "lg:w-[min(92vw,90rem)]"
-            }
-          `}
+          className={`w-full transition-all duration-500 ease-out ${
+            scrolled ? "lg:pt-4" : ""
+          }`}
         >
-          <div className="flex items-center justify-between gap-4">
-            {/* Logo */}
-            <button
-              onClick={() => router.push("/")}
-              className="flex items-center hover:opacity-80 transition"
-              aria-label="Go to homepage"
+          {/* Width Shrink Wrapper */}
+          <div
+            className={`mx-auto transition-all duration-500 ease-out ${
+              scrolled ? "lg:max-w-7xl border border-[#9C9D9F]/10 rounded-full" : "lg:max-w-full border border-[#9C9D9F]/10 rounded-none"
+            }`}
+          >
+            {/* Glass Layer */}
+            <div
+              className={`backdrop-blur-xl  
+              transition-all duration-500 ease-out
+              ${
+                scrolled
+                  ? "lg:rounded-full "
+                  : ""
+              }`}
             >
-              <Image
-                src="/site-logo.svg"
-                alt="DevForge"
-                width={120}
-                height={28}
-                className="h-6 lg:h-7 w-auto"
-              />
-            </button>
+              {/* CONTENT */}
+              <div className="container mx-auto px-4 lg:px-6 py-3 lg:py-4">
+                <div className="flex items-center justify-between gap-4">
+                  {/* Logo */}
+                  <button
+                    onClick={() => router.push("/")}
+                    className="flex items-center hover:opacity-80 transition"
+                  >
+                    <Image
+                      src="/site-logo.svg"
+                      alt="DevForge"
+                      width={120}
+                      height={28}
+                      className="h-6 lg:h-7 w-auto"
+                    />
+                  </button>
 
-            {/* DESKTOP NAV */}
-            <div className="hidden lg:flex items-center gap-6">
-              {/* Products dropdown */}
-              <div className="relative group">
-                <button className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition">
-                  Products
-                  <ChevronDown
-                    size={14}
-                    className="transition-transform duration-300 group-hover:rotate-180"
-                  />
-                </button>
+                  {/* ================= DESKTOP NAV ================= */}
+                  <div className="hidden lg:flex items-center gap-6">
+                    {/* Products Dropdown */}
+                    <div className="relative group">
+                      <button className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition">
+                        Products
+                        <ChevronDown
+                          size={14}
+                          className="transition-transform duration-300 group-hover:rotate-180"
+                        />
+                      </button>
 
-                <div
-                  className="
-    absolute left-0 top-full pt-4 w-[420px]
-    z-50
-    rounded-xl border border-white/10
-    bg-[#0B0F1A] shadow-xl
-    opacity-0 translate-y-2 scale-[0.98]
-    pointer-events-none
-    transition-all duration-300
-    group-hover:opacity-100
-    group-hover:translate-y-0
-    group-hover:scale-100
-    group-hover:pointer-events-auto
-  "
-                >
+                      <div
+                        className="
+                          absolute left-0 top-full pt-4 w-[420px]
+                          z-50
+                          rounded-xl border border-white/10
+                          bg-[#0B0F1A] shadow-xl
+                          opacity-0 translate-y-2 scale-[0.98]
+                          pointer-events-none
+                          transition-all duration-300
+                          group-hover:opacity-100
+                          group-hover:translate-y-0
+                          group-hover:scale-100
+                          group-hover:pointer-events-auto
+                        "
+                      >
+                        <div className="p-2 space-y-2">
+                          {products.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                              <button
+                                key={item.id}
+                                onClick={() => router.push(item.path)}
+                                className="flex gap-4 p-3 rounded-lg
+                                  text-left hover:bg-white/5 transition w-full"
+                              >
+                                <div className="h-10 w-12 flex items-center justify-center rounded-md bg-white/10">
+                                  <Icon size={18} />
+                                </div>
+                                <div>
+                                  <p className="text-sm text-white">
+                                    {item.title}
+                                  </p>
+                                  <p className="text-xs text-white/60">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
 
-                  <div className="p-2 space-y-2">
-                    {products.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <button
-                          key={item.id}
-                          onClick={() => router.push(item.path)}
-                          className="flex gap-4 p-3 rounded-lg
-                            text-left hover:bg-white/5 transition w-full"
-                        >
-                          <div className="h-10 w-12 flex items-center justify-center rounded-md bg-white/10">
-                            <Icon size={18} />
-                          </div>
-                          <div>
-                            <p className="text-sm text-white">{item.title}</p>
-                            <p className="text-xs text-white/60">
-                              {item.description}
-                            </p>
-                          </div>
-                        </button>
-                      );
-                    })}
+                    <button
+                      onClick={() => router.push("/pricing")}
+                      className="text-sm text-white/70 hover:text-white transition"
+                    >
+                      Pricing
+                    </button>
+
+                    <button
+                      onClick={() => router.push("/book-demo")}
+                      className="ml-4  bg-[#0078D4] text-white font-medium transition-all duration-300 cursor-pointer  hover:scale-105 px-5 py-3 text-sm rounded-full"
+                    >
+                      Book a demo
+                    </button>
                   </div>
+
+                  {/* ================= MOBILE TOGGLE ================= */}
+                  <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="lg:hidden p-2 text-white/80 hover:text-white transition"
+                  >
+                    {isOpen ? <X size={20} /> : <Menu size={20} />}
+                  </button>
                 </div>
               </div>
-
-              <button
-                onClick={() => router.push("/pricing")}
-                className="text-sm text-white/70 hover:text-white transition"
-              >
-                Pricing
-              </button>
-
-              <button
-                onClick={() => router.push("/book-demo")}
-                className="ml-4 inline-flex items-center rounded-full
-                  bg-emerald-500 px-5 py-2 text-sm font-medium text-black
-                  hover:bg-emerald-400 transition"
-              >
-                Book a demo
-              </button>
+              {/* END CONTENT */}
             </div>
-
-            {/* MOBILE TOGGLE */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-white/80 hover:text-white transition"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
           </div>
         </div>
       </nav>
 
-      {/* MOBILE / TABLET MENU */}
+      {/* ================= MOBILE MENU ================= */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -166,22 +170,21 @@ export default function Navbar() {
               animate={{ y: 0 }}
               exit={{ y: -24 }}
               onClick={(e) => e.stopPropagation()}
-              className="mx-auto mt-16 w-[92%] max-w-md
+              className="mx-auto mt-20 w-[92%] max-w-md
                 rounded-xl bg-[#07090E]
                 border border-white/10
                 p-4 space-y-4"
             >
-              {/* Products accordion */}
               <button
                 onClick={() => setIsProductsOpen(!isProductsOpen)}
-                className="flex w-full items-center justify-between
-                  text-sm text-white"
+                className="flex w-full items-center justify-between text-sm text-white"
               >
                 Products
                 <ChevronDown
                   size={16}
-                  className={`transition ${isProductsOpen ? "rotate-180" : ""
-                    }`}
+                  className={`transition ${
+                    isProductsOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 

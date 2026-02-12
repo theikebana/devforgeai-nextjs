@@ -1,3 +1,4 @@
+"use client";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Testimonials from "@/components/Testimonials";
@@ -7,6 +8,8 @@ import Footer from "@/components/Footer";
 import OurProdcuts from "@/components/OurProdcuts";
 import AnimateSection from "@/components/AnimateSection"; // <-- import wrapper
 
+import HomePageHero from "@/components/Organisms/HomePageHero";
+
 function App() {
   return (
     <div className="min-h-screen bg-[#07090e] text-white overflow-hidden ">
@@ -14,7 +17,10 @@ function App() {
 
       <main>
         {/* Hero – static, no scroll animation */}
-        <Hero />
+        {/* <Hero /> */}
+
+        <HomePageHero />
+
 
         <AnimateSection type="fadeUp">
           <OurProdcuts />
@@ -24,6 +30,8 @@ function App() {
         <AnimateSection type="zoomIn">
           <Testimonials />
         </AnimateSection>
+
+        
 
         <AnimateSection type="scaleUp">
           <Pricing />
