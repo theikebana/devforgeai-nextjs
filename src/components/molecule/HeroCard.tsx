@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { LucideIcon } from "lucide-react";
 
 interface HeroCardProps {
@@ -7,7 +8,6 @@ interface HeroCardProps {
   description?: string;
   icon?: LucideIcon;
   className?: string;
-  onClick?: () => void;
 }
 
 export default function HeroCard({
@@ -15,45 +15,97 @@ export default function HeroCard({
   description,
   icon: Icon,
   className = "",
-  onClick,
 }: HeroCardProps) {
-  return (
-    <div
-      role={onClick ? "button" : undefined}
-      onClick={onClick}
-      className={`
-        absolute w-[208px] h-[96px] p-3
-        rounded-xl
-        bg-[#0C122812] border border-white/5 
-        backdrop-blur-sm
-        shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.10)]
-        
-        transition-all duration-300 ease-out
-        hover:scale-102
-        hover:-translate-y-2
-        
-        will-change-transform
-        cursor-pointer
-        
-        ${className}
-      `}
-    >
-      {/* Top Section */}
-      <div className="flex items-center gap-3 mb-2">
-        {Icon && (
-          <div className="w-8 h-8 flex items-center justify-center rounded-md bg-[#AEDCFF]/20 transition-transform duration-300 group-hover:scale-110">
-            <Icon className="w-5 h-5 text-[#AEDCFF]" />
-          </div>
-        )}
+  const [open, setOpen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
 
-        <h3 className="text-sm font-semibold text-white">
-          {title}
-        </h3>
+  // Close on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
+
+  return (
+    <>
+      {/* Card */}
+      <div
+        onClick={() => setOpen(true)}
+        className={`
+          absolute w-[208px]
+          p-2
+          rounded-md
+          bg-[#0C122812] 
+          border border-white/5
+          backdrop-blur-md
+          shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.10)]
+          transition-all duration-500
+          cursor-pointer
+          group
+          ${className}
+        `}
+      >
+        <div className="flex items-center gap-3">
+          {Icon && (
+            <div className="w-10 h-10 flex items-center justify-center rounded-md bg-[#AEDCFF]/20">
+              <Icon className="w-6 h-6 text-[#AEDCFF]" />
+            </div>
+          )}
+          <h3 className="font-medium text-white">{title}</h3>
+        </div>
       </div>
 
-      <p className="text-xs text-[#DFF2FE]/80 line-clamp-2">
-        {description}
-      </p>
-    </div>
+      {/* Modal Overlay */}
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md bg-black/30">
+          
+          {/* Expanded Card (Same Style) */}
+          <div
+            ref={modalRef}
+            className="
+              relative
+              w-[420px]
+              p-6
+              rounded-md
+              bg-[#0C122812]
+              border border-white/5
+              backdrop-blur-md
+              shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.10)]
+              transition-all duration-300
+            "
+          >
+            {/* Header Section (Same as Card) */}
+            <div className="flex items-center gap-3">
+              {Icon && (
+                <div className="w-10 h-10 flex items-center justify-center rounded-md bg-[#AEDCFF]/20">
+                  <Icon className="w-6   h-6 text-[#AEDCFF]" />
+                </div>
+              )}
+              <h3 className=" text-xl font-medium text-white">{title}</h3>
+            </div>
+
+            {/* Description */}
+            <div className="mt-4">
+              <p className=" text-[#DFF2FE]/80 leading-relaxed">
+                {description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
