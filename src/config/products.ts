@@ -8,6 +8,7 @@ import {
   Users,
   Layers,
   FileText,
+  Bot,
 } from "lucide-react";
 
 export type ProductId =
@@ -102,7 +103,7 @@ export const products: ProductConfig[] = [
     title: "Alluvium",
     description:
       "AI-enabled data extraction from invoices, contracts, and financial documents.",
-    icon: FileText,
+    icon: Rocket,
     path: "/alluvium",
     showInNavbar: true,
   },
@@ -120,7 +121,7 @@ export const products: ProductConfig[] = [
     title: "Demo Agent (STAGE)",
     description:
       "An automated Demo Agent that simulates real users to deliver consistent, hands-free product walkthroughs.",
-    icon: Layers,
+    icon: Bot,
     path: "/demo-agent",
     showInNavbar: true,
   },

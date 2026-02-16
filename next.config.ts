@@ -4,6 +4,16 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,              // catches React issues
   productionBrowserSourceMaps: false, // hides source maps in prod
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.pravatar.cc",
+        pathname: "/**",
+      },
+    ],
+  },
+
   compiler: {
     removeConsole: true,              // removes console logs in production
   },

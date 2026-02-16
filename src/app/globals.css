@@ -264,3 +264,16 @@ body {
   animation: radar-arc 3s linear infinite;
 }
 
+/* Product hero embedded inside HomePageHero – merge into one section */
+.home-hero-embedded section {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+.home-hero-embedded section > div {
+  background: rgba(2, 6, 23, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 1rem !important;
+  backdrop-filter: blur(12px);
+}

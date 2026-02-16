@@ -7,6 +7,7 @@ interface HeroCardProps {
   description?: string;
   icon?: LucideIcon;
   className?: string;
+  onClick?: () => void;
 }
 
 export default function HeroCard({
@@ -14,9 +15,12 @@ export default function HeroCard({
   description,
   icon: Icon,
   className = "",
+  onClick,
 }: HeroCardProps) {
   return (
     <div
+      role={onClick ? "button" : undefined}
+      onClick={onClick}
       className={`
         absolute w-[208px] h-[96px] p-3
         rounded-xl
