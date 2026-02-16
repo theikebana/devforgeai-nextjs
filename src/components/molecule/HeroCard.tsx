@@ -29,9 +29,8 @@ export default function HeroCard({
         shadow-[inset_0_-1px_2px_rgba(255,255,255,0.05),inset_0_1px_1px_rgba(255,255,255,0.10)]
         
         transition-all duration-300 ease-out
-        hover:scale-110
+        hover:scale-102
         hover:-translate-y-2
-        hover:shadow-[0_20px_40px_rgba(0,150,255,0.35)]
         
         will-change-transform
         cursor-pointer
