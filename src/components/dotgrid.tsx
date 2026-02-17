@@ -36,6 +36,8 @@ export interface DotGridProps {
   maxSpeed?: number;
   resistance?: number;
   returnDuration?: number;
+  /** When true, disables mouse hover/click and runs an automatic animation (no collision with other hover effects) */
+  autoMode?: boolean;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -62,6 +64,7 @@ const DotGrid: React.FC<DotGridProps> = ({
   maxSpeed = 5000,
   resistance = 750,
   returnDuration = 1.5,
+  autoMode = false,
   className = "",
   style,
 }) => {
@@ -192,7 +195,10 @@ const DotGrid: React.FC<DotGridProps> = ({
     };
   }, [buildGrid]);
 
+  // Mouse-driven mode: only attach hover/click when not in autoMode
   useEffect(() => {
+    if (autoMode) return;
+
     const onMove = (e: MouseEvent) => {
       const now = performance.now();
       const pr = pointerRef.current;
@@ -289,6 +295,7 @@ const DotGrid: React.FC<DotGridProps> = ({
       window.removeEventListener("click", onClick);
     };
   }, [
+    autoMode,
     maxSpeed,
     speedTrigger,
     proximity,
@@ -297,6 +304,80 @@ const DotGrid: React.FC<DotGridProps> = ({
     shockRadius,
     shockStrength,
   ]);
+
+  // Auto mode: move a virtual pointer and trigger periodic shocks (no mouse, no collision with card hover)
+  useEffect(() => {
+    if (!autoMode) return;
+
+    let rafId: number;
+    let startTime = 0;
+    const durationMs = 12000; // full loop in ms
+
+    const tick = () => {
+      const wrap = wrapperRef.current;
+      if (!wrap) {
+        rafId = requestAnimationFrame(tick);
+        return;
+      }
+      const { width, height } = wrap.getBoundingClientRect();
+      if (width <= 0 || height <= 0) {
+        rafId = requestAnimationFrame(tick);
+        return;
+      }
+      startTime = startTime || performance.now();
+      const t = ((performance.now() - startTime) % durationMs) / durationMs;
+      // Lissajous-like path so the glow moves smoothly across the grid
+      const cx = width * (0.2 + 0.6 * Math.sin(2 * Math.PI * t));
+      const cy = height * (0.2 + 0.6 * Math.cos(2 * Math.PI * t * 1.1));
+      pointerRef.current.x = cx;
+      pointerRef.current.y = cy;
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+
+    const triggerAutoShock = () => {
+      const wrap = wrapperRef.current;
+      const canvas = canvasRef.current;
+      if (!wrap || !canvas || dotsRef.current.length === 0) return;
+      const { width, height } = wrap.getBoundingClientRect();
+      const cx = width * (0.2 + 0.6 * Math.random());
+      const cy = height * (0.2 + 0.6 * Math.random());
+      for (const dot of dotsRef.current) {
+        const dist = Math.hypot(dot.cx - cx, dot.cy - cy);
+        if (dist < shockRadius && !dot._inertiaApplied) {
+          dot._inertiaApplied = true;
+          gsap.killTweensOf(dot);
+          const falloff = Math.max(0, 1 - dist / shockRadius);
+          const pushX = (dot.cx - cx) * shockStrength * falloff;
+          const pushY = (dot.cy - cy) * shockStrength * falloff;
+          gsap.to(dot, {
+            xOffset: pushX,
+            yOffset: pushY,
+            duration: Math.max(0.2, Math.min(0.8, resistance / 1000)),
+            ease: "power2.out",
+            onComplete: () => {
+              gsap.to(dot, {
+                xOffset: 0,
+                yOffset: 0,
+                duration: returnDuration,
+                ease: "elastic.out(1,0.75)",
+                onComplete: () => {
+                  dot._inertiaApplied = false;
+                },
+              });
+            },
+          });
+        }
+      }
+    };
+
+    const shockInterval = setInterval(triggerAutoShock, 2200);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearInterval(shockInterval);
+    };
+  }, [autoMode, shockRadius, shockStrength, resistance, returnDuration]);
 
   return (
     <section

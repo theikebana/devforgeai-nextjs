@@ -54,7 +54,7 @@ export default function Navbar() {
               }`}
             >
               {/* CONTENT */}
-              <div className="container mx-auto px-4 lg:px-6 py-3 lg:py-4">
+              <div className="container mx-auto px-4 lg:px-6 py-2">
                 <div className="flex items-center justify-between gap-4">
                   {/* Logo */}
                   <button
@@ -134,7 +134,7 @@ export default function Navbar() {
 
                     <button
                       onClick={() => router.push("/book-demo")}
-                      className="ml-4  bg-[#0078D4] text-white font-medium transition-all duration-300 cursor-pointer  hover:scale-105 px-5 py-3 text-sm rounded-full"
+                      className="ml-4  bg-[#0078D4] text-white  transition-all duration-300 cursor-pointer  hover:scale-105 px-5 py-2 text-sm rounded-full"
                     >
                       Book a demo
                     </button>

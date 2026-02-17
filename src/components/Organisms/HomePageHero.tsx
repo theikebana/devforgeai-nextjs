@@ -124,11 +124,12 @@ export default function HomePageHero() {
         gap={15}
         baseColor="#181322ff"
         activeColor="#5227FF"
-        proximity={80}
-        shockRadius={80}
+        proximity={280}
+        shockRadius={280}
         shockStrength={5}
         resistance={450}
         returnDuration={1.5}
+        autoMode
       />
 
       {/* Background Images — pointer-events-none so they don’t block cards */}
@@ -176,6 +177,7 @@ export default function HomePageHero() {
                     icon={product.icon}
                     title={product.title}
                     description={product.description}
+                    href={product.path}
                     cursorDirection={cursorDirection}
                     cursorIntensity={cursorIntensity}
                     className="relative z-20" // ensure each card is clickable
@@ -209,6 +211,7 @@ export default function HomePageHero() {
                     icon={product.icon}
                     title={product.title}
                     description={product.description}
+                    href={product.path}
                     cursorDirection={cursorDirection}
                     cursorIntensity={cursorIntensity}
                     className="relative z-20" // ensure each card is clickable
