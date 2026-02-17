@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroCard from "@/components/molecule/HeroCard";
 import Image from "next/image";
 
 import { productsById, type ProductId } from "@/config/products";
+import DotGrid from "@/components/dotgrid";
 
 const LEFT_COLUMN_IDS: ProductId[] = [
   "rex",
@@ -25,24 +26,113 @@ const RIGHT_COLUMN_IDS: ProductId[] = [
 
 const defaultHero = {
   badge: "AI Enabled Suite",
-  titleHighlight: "AI Enabled ",
-  titleRest: "Property Tools",
+  titleHighlight: "Purpose-built ",
+  titleRest: "AI products",
   description:
-    "Purpose-built AI products that help businesses work smarter, faster, and better.",
+    "Designed to help businesses work smarter, faster, and better.",
   ctaLabel: "Explore Now",
   ctaHref: "/products",
 };
 
 export default function HomePageHero() {
   const heroRef = useRef<HTMLElement>(null);
+  const [cursorDirection, setCursorDirection] = useState(0);
+  const [cursorIntensity, setCursorIntensity] = useState(0);
+
+  // Custom eased smooth scroll for better feel than native scrollIntoView
+  const scrollToProducts = () => {
+    if (typeof window === "undefined") return;
+
+    const target = document.getElementById("products");
+    if (!target) return;
+
+    const startY = window.scrollY || window.pageYOffset;
+    const rect = target.getBoundingClientRect();
+    const targetY = startY + rect.top;
+
+    const duration = 700; // ms
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const eased = easeInOutCubic(progress);
+
+      window.scrollTo(0, startY + (targetY - startY) * eased);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
+    if (!heroRef.current) return;
+
+    const rect = heroRef.current.getBoundingClientRect();
+    const relativeX = (event.clientX - rect.left) / rect.width; // 0 -> 1
+
+    // Normalize to -1 (far left) -> 1 (far right)
+    const direction = Math.max(-1, Math.min(1, (relativeX - 0.5) * 2));
+
+    // Smoothly ease direction toward target to avoid sudden flips
+    setCursorDirection((prev) => prev + (direction - prev) * 0.2);
+
+    // Gently boost intensity toward 1 instead of jumping
+    setCursorIntensity((prev) => {
+      const boosted = prev + (1 - prev) * 0.15;
+      return boosted > 1 ? 1 : boosted;
+    });
+  };
+
+  // Smoothly decay cursor intensity over time so motion settles when cursor stops
+  useEffect(() => {
+    let frameId: number;
+
+    const decay = () => {
+      setCursorIntensity((prev) => {
+        const next = prev * 0.96;
+        return next < 0.01 ? 0 : next;
+      });
+      frameId = window.requestAnimationFrame(decay);
+    };
+
+    frameId = window.requestAnimationFrame(decay);
+
+    return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, []);
 
   return (
     <section
       ref={heroRef}
-      className="relative h-screen overflow-hidden rounded-b-4xl bg-gradient-to-b from-[#020617] via-[#020617] to-[#030712]"
+      onMouseMove={handleMouseMove}
+      className="relative xl:h-screen h-[60vh] overflow-hidden rounded-b-4xl bg-gradient-to-b from-[#020617] via-[#020617] to-[#030712]"
     >
-      {/* Left Image */}
-      <div className="absolute top-0 left-0 pointer-events-none">
+      {/* === DotGrid Animation === */}
+      <DotGrid
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        dotSize={4}
+        gap={15}
+        baseColor="#181322ff"
+        activeColor="#5227FF"
+        proximity={80}
+        shockRadius={80}
+        shockStrength={5}
+        resistance={450}
+        returnDuration={1.5}
+      />
+
+      {/* Background Images — pointer-events-none so they don’t block cards */}
+      <div className="absolute top-0 left-0 pointer-events-none z-0">
         <Image
           src="/herodecorleft.png"
           alt="Hero Background Left"
@@ -50,9 +140,7 @@ export default function HomePageHero() {
           height={1000}
         />
       </div>
-
-      {/* Right Image */}
-      <div className="absolute top-0 right-0 pointer-events-none">
+      <div className="absolute top-0 right-0 pointer-events-none z-0">
         <Image
           src="/herodecorright.png"
           alt="Hero Background Right"
@@ -61,12 +149,11 @@ export default function HomePageHero() {
         />
       </div>
 
-      {/* Center Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[637px] h-[1159px] bg-[#0360A7]/60 blur-[190px] rounded-full pointer-events-none" />
+      {/* Center Glow — also non-interactive */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[637px] h-[1159px] bg-[#0360A7]/60 blur-[190px] rounded-full pointer-events-none z-0" />
 
-      {/* Left & Right Cards — STRICTLY UNCHANGED STRUCTURE */}
-      <div className="relative flex h-full items-center justify-between container mx-auto z-10">
-        
+      {/* === HeroCards Container — above backgrounds, but lets center CTA stay clickable === */}
+      <div className="relative h-full items-center justify-between container mx-auto z-20 hidden xl:flex pointer-events-none">
         {/* Left column */}
         <div>
           {LEFT_COLUMN_IDS.map((id, index) => {
@@ -82,12 +169,16 @@ export default function HomePageHero() {
                 }`}
               >
                 {!isEven && <div />}
-                <div className={isEven ? "col-start-1" : "col-start-2"}>
+                <div
+                  className={`${isEven ? "col-start-1" : "col-start-2"} pointer-events-auto`}
+                >
                   <HeroCard
                     icon={product.icon}
                     title={product.title}
                     description={product.description}
-                    className="relative"
+                    cursorDirection={cursorDirection}
+                    cursorIntensity={cursorIntensity}
+                    className="relative z-20" // ensure each card is clickable
                   />
                 </div>
                 {isEven && <div />}
@@ -111,12 +202,16 @@ export default function HomePageHero() {
                 }`}
               >
                 {!isEven && <div />}
-                <div className={isEven ? "col-start-1" : "col-start-2"}>
+                <div
+                  className={`${isEven ? "col-start-1" : "col-start-2"} pointer-events-auto`}
+                >
                   <HeroCard
                     icon={product.icon}
                     title={product.title}
                     description={product.description}
-                    className="relative"
+                    cursorDirection={cursorDirection}
+                    cursorIntensity={cursorIntensity}
+                    className="relative z-20" // ensure each card is clickable
                   />
                 </div>
                 {isEven && <div />}
@@ -127,7 +222,7 @@ export default function HomePageHero() {
       </div>
 
       {/* Center Hero */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-10">
         <div className="px-6 text-center w-full h-full flex flex-col items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
@@ -143,7 +238,7 @@ export default function HomePageHero() {
                 {defaultHero.badge}
               </div>
 
-              <h1 className="text-5xl md:text-[64px] font-medium leading-[70px] tracking-[-3.2px]">
+              <h1 className="text-5xl md:text-[64px] font-medium xl:leading-[70px] leading-[50px] tracking-[-3.2px]">
                 <span className="bg-gradient-to-r from-[#87CBFF] to-[#C5E6FF] bg-clip-text text-transparent">
                   {defaultHero.titleHighlight}
                 </span>
@@ -151,13 +246,13 @@ export default function HomePageHero() {
                 <span className="text-white">{defaultHero.titleRest}</span>
               </h1>
 
-              <p className="text-white/65 text-lg max-w-md mx-auto pt-4">
+              <p className="text-white/65 text-lg max-w-lg mx-auto pt-4">
                 {defaultHero.description}
               </p>
 
               <button
-                className="mt-12 px-8 py-3 rounded-md bg-[#0078D4] text-white font-medium transition hover:scale-105"
-                onClick={() => (window.location.href = defaultHero.ctaHref)}
+                className="mt-12 px-8 py-3 rounded-md bg-[#0078D4] cursor-pointer z-100 text-white font-medium transition hover:scale-105"
+                onClick={scrollToProducts}
               >
                 {defaultHero.ctaLabel}
               </button>

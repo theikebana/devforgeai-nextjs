@@ -277,3 +277,50 @@ body {
   border-radius: 1rem !important;
   backdrop-filter: blur(12px);
 }
+.glass-card {
+  
+  background: rgba(255, 255, 255, 0.027); /* softer, lighter base */
+  backdrop-filter: blur(28px); /* slightly stronger blur for smoothness */
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.046); /* subtler border */
+
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease; /* smooth hover/interaction transitions */
+}
+
+
+.glass-card::before,
+.glass-card::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.glass-card::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+.glass-card::after {
+  top: 0;
+  left: 0;
+  width: 1.5px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+}

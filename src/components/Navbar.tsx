@@ -64,9 +64,9 @@ export default function Navbar() {
                     <Image
                       src="/site-logo.svg"
                       alt="DevForge"
-                      width={120}
-                      height={28}
-                      className="h-6 lg:h-7 w-auto"
+                      width={180}
+                      height={48}
+                      className="h-6 lg:h-10 w-auto"
                     />
                   </button>
 

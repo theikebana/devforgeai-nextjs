@@ -118,7 +118,7 @@ export const products: ProductConfig[] = [
   },
   {
     id: "demo-agent",
-    title: "Demo Agent (STAGE)",
+    title: "Stage",
     description:
       "An automated Demo Agent that simulates real users to deliver consistent, hands-free product walkthroughs.",
     icon: Bot,
