@@ -36,18 +36,71 @@ export default function HeroCard({
 
   const originalRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Close modal only when user clicks outside (backdrop or anywhere outside modal)
+  // Handle mouse leave from card to close modal
+  const handleCardMouseLeave = () => {
+    // Small delay to allow moving to modal without closing
+    closeTimeoutRef.current = setTimeout(() => {
+      setOpen(false);
+    }, 150);
+  };
+
+  const handleCardMouseEnter = () => {
+    // Cancel close if mouse re-enters card
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  };
+
+  const handleModalMouseEnter = () => {
+    // Cancel close if mouse enters modal
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  };
+
+  const handleModalMouseLeave = () => {
+    // Close when leaving modal
+    setOpen(false);
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Handle click outside to close modal
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      if (
+        open &&
+        modalRef.current &&
+        originalRef.current &&
+        !modalRef.current.contains(event.target as Node) &&
+        !originalRef.current.contains(event.target as Node)
+      ) {
+        // Clear any pending timeout
+        if (closeTimeoutRef.current) {
+          clearTimeout(closeTimeoutRef.current);
+          closeTimeoutRef.current = null;
+        }
         setOpen(false);
       }
     }
+
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
     }
-    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
 
   // Keep modal within viewport (fix cutting on screens below 1440px)
@@ -126,7 +179,11 @@ export default function HeroCard({
       {/* Original Card with subtle wavy motion - always visible for hover */}
       <motion.div
         ref={originalRef}
-        onMouseEnter={handleOpen}
+        onMouseEnter={(e) => {
+          handleCardMouseEnter();
+          handleOpen();
+        }}
+        onMouseLeave={handleCardMouseLeave}
         className={`relative 2xl:w-[208px] w-[180px] glass-card p-2 rounded-md bg-[#0C122812] border border-white/5 backdrop-blur-md shadow cursor-pointer ${className}`}
             animate={{
               // Vertical wave: always present, stronger when cursor is active
@@ -192,9 +249,12 @@ export default function HeroCard({
               aria-hidden
             />
 
+
             {/* Expanded Card */}
             <motion.div
               ref={modalRef}
+              onMouseEnter={handleModalMouseEnter}
+              onMouseLeave={handleModalMouseLeave}
               className="fixed z-50 pointer-events-auto will-change-transform"
               style={{
                 top: modalPosition.top,
@@ -213,8 +273,8 @@ export default function HeroCard({
               }}
               exit={{
                 opacity: 0,
-                scale: 0.96,
-                y: 8,
+                scale: 0.92,
+                y: 12,
               }}
               transition={{
                 duration: 0.35,
@@ -222,16 +282,11 @@ export default function HeroCard({
                 type: "tween",
               }}
             >
-              <div className="relative rounded-md glass-card shadow-lg min-h-[180px] p-6 pb-14 overflow-y-auto flex flex-col !text-center">
+              <div className="relative rounded-md glass-card shadow-lg min-h-[180px] p-6  overflow-y-auto flex flex-col ">
                 {/* Header */}
-                <div className="flex flex-col items-center justify-center gap-2">
-                  {Icon && (
-                    <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-md bg-[#AEDCFF]/8 glass-card">
-                      <Icon className="w-6 h-6 text-[#AEDCFF]" />
-                    </div>
-                  )}
+              
                   <h3 className="2xl:text-xl text-lg font-medium text-white">{title}</h3>
-                </div>
+                
 
                 {/* Description - wraps fully, no truncation */}
                 <div className="mb-4 flex-1">
@@ -241,7 +296,7 @@ export default function HeroCard({
                 </div>
 
                 {/* View more - bottom center, glass-card */}
-                <div className="absolute bottom-4 left-0 right-0  flex justify-center">
+                <div className="bottom-4 left-0 right-0  flex ">
                   {href ? (
                     <Link
                       href={href}

@@ -6,7 +6,7 @@ import AnimateSection from "./AnimateSection";
 
 const tabs = ["Overview", "Capabilities", "Problems", "Solutions"];
 
-export default function MoogleMindOverview() {
+export default function AutonomoAIOverview() {
   const [activeTab, setActiveTab] = useState("Overview");
 
   return (
@@ -22,10 +22,8 @@ export default function MoogleMindOverview() {
               Enterprise search and AI agents, on your terms.
             </h2>
             <p className="text-sm md:text-base text-white/65 max-w-3xl leading-relaxed">
-              MoogleMind is an open-source platform designed for unified search, custom AI
-              agents, and secure self-hosting. We provide the infrastructure for 
-              organizations that want to leverage cutting-edge LLMs while maintaining 
-              absolute sovereignty over their data and internal intelligence.
+            AutonomoAI is a secure enterprise AI platform that connects company knowledge to LLMs for accurate search and intelligent automation.
+            We provide the infrastructure organizations need to leverage cutting-edge language models while maintaining complete sovereignty over their data and internal intelligence through secure, self-hosted deployment and custom AI agents.
             </p>
           </div>
 
@@ -77,7 +75,7 @@ export default function MoogleMindOverview() {
                   className="space-y-8 max-w-4xl"
                 >
                   <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                    MoogleMind acts as the &quot;connective tissue&quot; for your company&apos;s
+                    AutonomoAI acts as the &quot;connective tissue&quot; for your company&apos;s
                     collective memory. By indexing disparate data sources and applying a
                     unified semantic layer, we allow team members to converse with their
                     own documentation, codebases, and project history.
@@ -214,7 +212,7 @@ export default function MoogleMindOverview() {
                   className="max-w-4xl"
                 >
                   <div className="mb-8">
-                    <p className="text-white/80 mb-6">MoogleMind solves these challenges by providing a sovereign intelligence system that scales with your organizational complexity.</p>
+                    <p className="text-white/80 mb-6">AutonomoAI solves these challenges by providing a sovereign intelligence system that scales with your organizational complexity.</p>
                   </div>
                   <div className="grid gap-4">
                     {[

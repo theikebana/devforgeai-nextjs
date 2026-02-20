@@ -1,7 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing";
+// import Pricing from "@/components/Pricing";
 import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 import OurProdcuts from "@/components/OurProdcuts";
@@ -32,9 +32,9 @@ function App() {
 
         
 
-        <AnimateSection type="scaleUp">
+        {/* <AnimateSection type="scaleUp">
           <Pricing />
-        </AnimateSection>
+        </AnimateSection> */}
 
         <AnimateSection type="fadeUp" delay={0.1}>
           <CallToAction />

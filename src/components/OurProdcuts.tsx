@@ -134,7 +134,7 @@ function IanCardAnimation() {
 
 type NewsCard = {
   id:
-    | "mooglemind"
+    | "autonomoai"
     | "review-attendant"
     | "attendai"
     | "elvis"
@@ -148,7 +148,7 @@ type NewsCard = {
 
 const newsCardsRowOne: NewsCard[] = [
   {
-    id: "mooglemind",
+    id: "autonomoai",
   },
   {
     id: "review-attendant",
@@ -173,7 +173,7 @@ const newsCardsRowTwo: NewsCard[] = [
   },
 ];
 
-function MoogleMindMiniAnimation() {
+function AutonomoAIMiniAnimation() {
   // Graph of connected knowledge nodes / queries
   const nodes = [
     { x: "8%", y: "40%" },
@@ -793,8 +793,8 @@ function renderNewsCardAnimation(id: NewsCard["id"]) {
   switch (id) {
     case "thinkdocs":
       return <ThinkDocsMiniAnimation />;
-    case "mooglemind":
-      return <MoogleMindMiniAnimation />;
+    case "autonomoai":
+      return <AutonomoAIMiniAnimation />;
     case "review-attendant":
       return <ReviewAttendantMiniAnimation />;
     case "attendai":
@@ -822,7 +822,7 @@ function renderNewsCardIcon(id: NewsCard["id"]) {
   switch (id) {
     case "thinkdocs":
       return <FileText className={commonIconClasses} />;
-    case "mooglemind":
+    case "autonomoai":
       return <Search className={commonIconClasses} />;
     case "review-attendant":
       return <MessageCircle className={commonIconClasses} />;
@@ -1006,7 +1006,7 @@ export default function ProductSection() {
             const lastRowCards = allCards.slice(8);
 
             const productPages: Record<string, string> = {
-              mooglemind: "/mooglemind",
+              autonomoai: "/autonomoai",
               "review-attendant": "/review-attendant",
               attendai: "/attendai",
               elvis: "/elvis",
@@ -1018,6 +1018,12 @@ export default function ProductSection() {
             const renderCard = (card: NewsCard, index: number) => {
               const href = productPages[card.id];
               const product = productsById[card.id as keyof typeof productsById];
+
+              // Safety check: skip rendering if product is not found
+              if (!product) {
+                console.warn(`Product not found for card ID: ${card.id}`);
+                return null;
+              }
 
               const CardContent = (
                 <motion.div

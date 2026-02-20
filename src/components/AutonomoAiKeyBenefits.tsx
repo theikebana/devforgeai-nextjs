@@ -29,22 +29,22 @@ const benefits = [
     tag: "Self-hosted",
     title: "Own your stack and data",
     description:
-      "Deploy MoogleMind inside your own infrastructure so security, compliance, and data residency remain fully in your control.",
+      "Deploy AutonomoAI inside your own infrastructure so security, compliance, and data residency remain fully in your control.",
     useCases: [
       "Private VPC or on-prem deployments",
       "Strict compliance and regulatory environments",
     ],
   },
   {
-    tag: "Open-source",
-    title: "Open, extensible core",
+    tag: "Extensible Platform",
+    title: "Open, Extensible Core",
     description:
-      "Extend the platform with your own connectors, tools, and workflows instead of waiting on a closed SaaS roadmap.",
+      "Extend the platform with your own connectors, tools, and workflows—without being limited by rigid SaaS constraints.",
     useCases: [
-      "Custom internal tooling and automations",
-      "Proprietary data source integrations",
+      "Custom internal tools and enterprise automations",
+      "Integration with proprietary and legacy data sources",
     ],
-  },
+  }
 ];
 
 type Benefit = (typeof benefits)[number];
@@ -86,7 +86,7 @@ function BenefitItem({ benefit, index, scrollYProgress }: BenefitItemProps) {
   );
 }
 
-export default function MoogleMindKeyBenefitsNarrative() {
+export default function AutonomoAIKeyBenefitsNarrative() {
   const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -101,13 +101,13 @@ export default function MoogleMindKeyBenefitsNarrative() {
           {/* Section Header */}
           <div className="max-w-2xl mb-16">
             <p className="text-xs font-semibold tracking-[0.2em] text-emerald-300 uppercase mb-3">
-              Why teams choose MoogleMind
+              Why teams choose AutonomoAI
             </p>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-4">
               Designed for serious, enterprise-grade AI adoption.
             </h2>
             <p className="text-sm md:text-base text-white/65 leading-relaxed">
-              MoogleMind combines unified search, agent tooling, and full
+              AutonomoAI combines unified search, agent tooling, and full
               self-hosting so you can roll out AI where it matters most—without
               compromising on security, compliance, or control.
             </p>

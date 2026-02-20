@@ -12,7 +12,7 @@ const LEFT_COLUMN_IDS: ProductId[] = [
   "rex",
   "ian",
   "vira",
-  "mooglemind",
+  "autonomoai",
   "review-attendant",
 ];
 

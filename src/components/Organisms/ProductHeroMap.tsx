@@ -4,7 +4,7 @@ import type { ProductId } from "@/config/products";
 import RexHero from "@/components/RexHero";
 import IanHero from "@/components/IanHero";
 import ViraHero from "@/components/ViraHero";
-import MoogleMindHero from "@/components/MoogleMindHero";
+import AutonomoAiHero from "@/components/AutonomoAiHero";
 import ReviewAttendantHero from "@/components/ReviewAttendantHero";
 import AttendAIHero from "@/components/AttendAIHero";
 import ElvisHero from "@/components/ElvisHero";
@@ -16,7 +16,7 @@ const heroMap: Record<ProductId, React.ComponentType> = {
   rex: RexHero,
   ian: IanHero,
   vira: ViraHero,
-  mooglemind: MoogleMindHero,
+  autonomoai: AutonomoAiHero,
   "review-attendant": ReviewAttendantHero,
   attendai: AttendAIHero,
   elvis: ElvisHero,

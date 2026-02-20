@@ -15,7 +15,7 @@ export type ProductId =
   | "rex"
   | "vira"
   | "ian"
-  | "mooglemind"
+  | "autonomoai"
   | "review-attendant"
   | "attendai"
   | "elvis"
@@ -63,12 +63,12 @@ export const products: ProductConfig[] = [
     showInNavbar: true,
   },
   {
-    id: "mooglemind",
-    title: "MoogleMind",
+    id: "autonomoai",
+    title: "Autonomo AI",
     description:
-      "An open‑source AI platform for unified enterprise search, custom agents, and secure self‑hosting.",
+      "A secure, self-hosted AI platform for enterprise search, intelligent agents, and unified knowledge access.",
     icon: Search,
-    path: "/mooglemind",
+    path: "/autonomoai",
     showInNavbar: true,
   },
   {
@@ -84,16 +84,16 @@ export const products: ProductConfig[] = [
     id: "attendai",
     title: "AttendAI",
     description:
-      "A smart face‑recognition attendance system with IP camera support and clear reporting.",
+      "Automate attendance with AI-powered face recognition and get real-time, audit-ready reports.",
     icon: Users,
     path: "/attendai",
     showInNavbar: true,
   },
   {
     id: "elvis",
-    title: "Elvis",
+    title: "ELVIS",
     description:
-      "Job leads management & analytics platform for sales teams.",
+      "An AI-powered lead intelligence system that discovers job opportunities automatically based on your strategic keywords.",
     icon: Layers,
     path: "/elvis",
     showInNavbar: true,

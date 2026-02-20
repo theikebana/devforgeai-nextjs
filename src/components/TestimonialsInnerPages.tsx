@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import SectionHeader from "./SectionHeader";
 
-export default function Testimonials() {
+export default function TestimonialsInnerPages() {
   const AUTO_SCROLL_INTERVAL = 5000; // 5 seconds
   const DRAG_THRESHOLD = 50; // Minimum pixels to drag before changing page
 

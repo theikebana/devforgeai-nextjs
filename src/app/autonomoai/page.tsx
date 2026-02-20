@@ -2,10 +2,10 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import MoogleMindHero from "@/components/MoogleMindHero";
+import AutonomoAIHero from "@/components/AutonomoAiHero";
 import ToolOverviewSection from "@/components/Organisms/ToolOverviewSection";
-import MoogleMindOverview from "@/components/MoogleMindOverview";
-import MoogleMindKeyBenefits from "@/components/MoogleMindKeyBenefits";
+import AutonomoAIOverview from "@/components/AutonomoAiOverview";
+import AutonomoAIKeyBenefitsNarrative from "@/components/AutonomoAiKeyBenefits";
 import TestimonialsInnerPages from "@/components/TestimonialsInnerPages";
 import CallToAction from "@/components/CallToAction";
 import HowToolWorksSection from "@/components/HowToolWorksSection";
@@ -13,7 +13,7 @@ import { AlertTriangle, FileCheck, Scan, ShieldCheck } from "lucide-react";
 import { HowToolWorksSectionProps } from "@/components/HowToolWorksSection";
 
 
-const moogleMindHowItWorksSteps: HowToolWorksSectionProps['steps'] = [
+const AutonomoAIHowItWorksSteps: HowToolWorksSectionProps['steps'] = [
   {
     label: "01",
     title: "Ingest & connect",
@@ -25,7 +25,7 @@ const moogleMindHowItWorksSteps: HowToolWorksSectionProps['steps'] = [
     label: "02",
     title: "Index & understand",
     description:
-      "MoogleMind chunks, embeds, and enriches content with metadata so agents can answer with real context.",
+      "AutonomoAI chunks, embeds, and enriches content with metadata so agents can answer with real context.",
     icon: AlertTriangle,
   },
   {
@@ -44,12 +44,12 @@ const moogleMindHowItWorksSteps: HowToolWorksSectionProps['steps'] = [
   },
 ];
 
-export default function MoogleMindPage() {
+export default function AutonomoAIPage() {
   return (
     <div className="min-h-screen bg-[#07090E] text-white overflow-hidden">
       <Navbar />
       <main>
-        <MoogleMindHero />
+        <AutonomoAIHero />
         <ToolOverviewSection
           badge="How it works"
           accent="emerald"
@@ -58,7 +58,7 @@ export default function MoogleMindPage() {
               From data sources to answers — <span className="text-emerald-400">one pipeline</span>
             </>
           }
-          description="MoogleMind connects your enterprise data, indexes it for unified search, and lets you build custom AI agents that run on your infrastructure with full control."
+          description="AutonomoAI connects your enterprise data, indexes it for unified search, and lets you build custom AI agents that run on your infrastructure with full control."
           steps={[
             {
               title: "Connect sources",
@@ -83,7 +83,7 @@ export default function MoogleMindPage() {
           ]}
           footerStatus="Pipeline runs continuously — search and agents stay up to date."
         />
-        <MoogleMindOverview />
+        <AutonomoAIOverview />
        
 
 
@@ -97,11 +97,11 @@ export default function MoogleMindPage() {
                 From scattered knowledge to <br/>unified, AI-ready search.
               </>
             }
-            description="MoogleMind plugs into your existing stack, builds a search-ready index on top of it, and exposes everything through secure search, chat, and agents."
-            steps={moogleMindHowItWorksSteps}
+            description="AutonomoAI plugs into your existing stack, builds a search-ready index on top of it, and exposes everything through secure search, chat, and agents."
+            steps={AutonomoAIHowItWorksSteps}
           />
         </div>
-        <MoogleMindKeyBenefits />
+        <AutonomoAIKeyBenefitsNarrative />
         <TestimonialsInnerPages />
         <CallToAction />
       </main>

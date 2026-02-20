@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { products as productConfigs } from "@/config/products";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,6 +12,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isDesktopProductsOpen, setIsDesktopProductsOpen] = useState(false);
+
+  const desktopProductsRef = useRef<HTMLDivElement | null>(null);
 
   const products = productConfigs.filter((p) => p.showInNavbar);
 
@@ -27,31 +30,46 @@ export default function Navbar() {
     document.body.style.overflow = isOpen ? "hidden" : "";
   }, [isOpen]);
 
+  /* Close desktop products dropdown on outside click */
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isDesktopProductsOpen &&
+        desktopProductsRef.current &&
+        !desktopProductsRef.current.contains(event.target as Node)
+      ) {
+        setIsDesktopProductsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDesktopProductsOpen]);
+
   return (
     <>
       {/* ================= NAVBAR ================= */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center">
         {/* Top spacing when scrolled */}
         <div
-          className={`w-full transition-all duration-500 ease-out ${
-            scrolled ? "lg:pt-4" : ""
-          }`}
+          className={`w-full transition-all duration-500 ease-out ${scrolled ? "lg:pt-4" : ""
+            }`}
         >
           {/* Width Shrink Wrapper */}
           <div
-            className={`mx-auto transition-all duration-500 ease-out ${
-              scrolled ? "lg:max-w-7xl border border-[#9C9D9F]/10 rounded-full" : "lg:max-w-full border border-[#9C9D9F]/10 rounded-none"
-            }`}
+            className={`mx-auto transition-all duration-500 ease-out ${scrolled ? "lg:max-w-7xl border border-[#9C9D9F]/10 rounded-full" : "lg:max-w-full border border-[#9C9D9F]/10 rounded-none"
+              }`}
           >
             {/* Glass Layer */}
             <div
               className={`backdrop-blur-xl  
               transition-all duration-500 ease-out
-              ${
-                scrolled
+              ${scrolled
                   ? "lg:rounded-full "
                   : ""
-              }`}
+                }`}
             >
               {/* CONTENT */}
               <div className="container mx-auto px-4 lg:px-6 py-2">
@@ -59,7 +77,7 @@ export default function Navbar() {
                   {/* Logo */}
                   <button
                     onClick={() => router.push("/")}
-                    className="flex items-center hover:opacity-80 transition"
+                    className="flex items-center hover:opacity-80 transition cursor-pointer"
                   >
                     <Image
                       src="/site-logo.svg"
@@ -73,64 +91,84 @@ export default function Navbar() {
                   {/* ================= DESKTOP NAV ================= */}
                   <div className="hidden lg:flex items-center gap-6">
                     {/* Products Dropdown */}
-                    <div className="relative group">
-                      <button className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition">
+                    <div
+                      ref={desktopProductsRef}
+                      className="relative"
+                      onMouseEnter={() => setIsDesktopProductsOpen(true)}
+                      onMouseLeave={() => setIsDesktopProductsOpen(false)}
+                    >
+                      <button className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition cursor-pointer pb-4 top-2
+                       relative">
                         Products
                         <ChevronDown
                           size={14}
-                          className="transition-transform duration-300 group-hover:rotate-180"
+                          className={`transition-transform duration-300 ${isDesktopProductsOpen ? "rotate-180" : ""
+                            }`}
                         />
                       </button>
 
+                      {/* Glass card dropdown, centered under navbar */}
+                      {/* Glass card dropdown */}
                       <div
-                        className="
-                          absolute left-0 top-full pt-4 w-[420px]
-                          z-50
-                          rounded-xl border border-white/10
-                          bg-[#0B0F1A] shadow-xl
-                          opacity-0 translate-y-2 scale-[0.98]
-                          pointer-events-none
-                          transition-all duration-300
-                          group-hover:opacity-100
-                          group-hover:translate-y-0
-                          group-hover:scale-100
-                          group-hover:pointer-events-auto
-                        "
+                        className={`
+    absolute right-0 top-full
+    z-50
+    rounded-xl
+    border border-white/12
+    bg-[#050816]/95
+    backdrop-blur-[60px]
+    backdrop-saturate-150
+    shadow-2xl shadow-black/40
+    transition-all duration-300
+    ${isDesktopProductsOpen
+                            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+                            : "opacity-0 translate-y-2 scale-[0.98] pointer-events-none"
+                          }
+  `}
                       >
-                        <div className="p-2 space-y-2">
-                          {products.map((item) => {
-                            const Icon = item.icon;
-                            return (
-                              <button
-                                key={item.id}
-                                onClick={() => router.push(item.path)}
-                                className="flex gap-4 p-3 rounded-lg
-                                  text-left hover:bg-white/5 transition w-full"
-                              >
-                                <div className="h-10 w-12 flex items-center justify-center rounded-md bg-white/10">
-                                  <Icon size={18} />
-                                </div>
-                                <div>
-                                  <p className="text-sm text-white">
+
+                        <div className="p-2">
+                          <div className="flex items-center justify-center gap-2">
+                            {products.map((item) => {
+                              const Icon = item.icon;
+                              return (
+                                <button
+                                  key={item.id}
+                                  onClick={() => {
+                                    router.push(item.path);
+                                    setIsDesktopProductsOpen(false);
+                                  }}
+                                  className="
+              flex flex-col items-center gap-1.5
+              px-3 py-2 rounded-lg
+              hover:bg-white/10
+              transition-all duration-200 cursor-pointer
+              glass-card
+              hover:scale-110
+              group 
+            "
+                                >
+                                  <div className="h-9 w-9 flex items-center justify-center rounded-md bg-white/10 group-hover:text-[#0078D4] glass-card">
+                                    <Icon size={16} />
+                                  </div>
+                                  <span className="text-[11px] font-medium text-white/80 text-center whitespace-nowrap">
                                     {item.title}
-                                  </p>
-                                  <p className="text-xs text-white/60">
-                                    {item.description}
-                                  </p>
-                                </div>
-                              </button>
-                            );
-                          })}
+                                  </span>
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
                       </div>
+
                     </div>
 
-                    <button
+                    {/* <button
                       onClick={() => router.push("/pricing")}
                       className="text-sm text-white/70 hover:text-white transition"
                     >
                       Pricing
-                    </button>
+                    </button> */}
 
                     <button
                       onClick={() => router.push("/book-demo")}
@@ -182,9 +220,8 @@ export default function Navbar() {
                 Products
                 <ChevronDown
                   size={16}
-                  className={`transition ${
-                    isProductsOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition ${isProductsOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 

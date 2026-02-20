@@ -13,7 +13,7 @@ const steps = [
     label: "02",
     title: "Index & understand",
     description:
-      "MoogleMind chunks, embeds, and enriches content with metadata so agents can answer with real context.",
+      "AutonomoAI chunks, embeds, and enriches content with metadata so agents can answer with real context.",
   },
   {
     label: "03",
@@ -29,7 +29,7 @@ const steps = [
   },
 ];
 
-export default function MoogleMindHowItWorks() {
+export default function AutonomoAIHowItWorks() {
   return (
     <div className="bg-[#07090E] py-12">
       <AnimateSection type="fadeUp">
@@ -44,7 +44,7 @@ export default function MoogleMindHowItWorks() {
               </h2>
             </div>
             <p className="text-xs md:text-sm text-white/65 max-w-md">
-              MoogleMind plugs into your existing stack, builds a search-ready
+              AutonomoAI plugs into your existing stack, builds a search-ready
               index on top of it, and exposes everything through secure search,
               chat, and agents.
             </p>

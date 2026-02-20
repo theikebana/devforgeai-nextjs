@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
-  Sparkles,
   BarChart3,
   Target,
   Layers,
@@ -12,9 +12,10 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import DotGrid from "@/components/dotgrid";
 
 /* ----------------------------------------
-   Motion presets
+   Motion presets (same as VIRA)
 ---------------------------------------- */
 const heroContainer = {
   hidden: { opacity: 0, y: 40 },
@@ -31,33 +32,28 @@ const heroItem = {
 };
 
 /* ----------------------------------------
-   ELVIS stats (VIRA-style)
+   ELVIS stats
 ---------------------------------------- */
 const STATS = [
   { label: "Leads Tracked", value: 1240 },
   { label: "Active Opportunities", value: 312 },
   { label: "Assigned Today", value: 86 },
-  { label: "Conversion Rate", value: 28 }, // %
+  { label: "Conversion Rate", value: 28 },
 ];
 
 export default function ElvisHero() {
   const [statsCount, setStatsCount] = useState(STATS.map(() => 0));
 
-  /* Count-up animation */
   useEffect(() => {
     const interval = setInterval(() => {
       setStatsCount((prev) =>
-        prev.map((v, i) => {
-          if (v < STATS[i].value) {
-            return Math.min(
-              v + Math.ceil(STATS[i].value / 60),
-              STATS[i].value
-            );
-          }
-          return v;
-        })
+        prev.map((v, i) =>
+          v < STATS[i].value
+            ? Math.min(v + Math.ceil(STATS[i].value / 60), STATS[i].value)
+            : v
+        )
       );
-    }, 50);
+    }, 40);
 
     return () => clearInterval(interval);
   }, []);
@@ -65,122 +61,119 @@ export default function ElvisHero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden pt-8 pb-12 lg:pt-12 lg:pb-12 bg-[#07090E]"
+      className="relative overflow-hidden rounded-b-4xl bg-gradient-to-b from-[#020617] via-[#020617] to-[#030712] py-12 lg:py-16 xl:py-24 2xl:py-32"
     >
-      {/* Ambient glow */}
-      <motion.div
-        className="pointer-events-none absolute -top-1/2 -right-1/4 w-[80%] h-[120%] rounded-full bg-violet-600/15 blur-[120px]"
-        animate={{ opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="pointer-events-none absolute -bottom-1/3 -left-1/4 w-[70%] h-[90%] rounded-full bg-violet-500/10 blur-[100px]"
-        animate={{ opacity: [0.2, 0.5, 0.2] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      {/* DotGrid — same as VIRA */}
+      <DotGrid
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        dotSize={4}
+        gap={15}
+        baseColor="#181322ff"
+        activeColor="#0078D4"
+        proximity={280}
+        shockRadius={280}
+        shockStrength={5}
+        resistance={450}
+        returnDuration={1.5}
+        autoMode
       />
 
-      <div className="relative max-w-7xl 2xl:max-w-[1440px] p-8 mx-auto rounded-4xl bg-[#020617] border border-white/5 px-4 py-8 lg:py-12 lg:p-8">
+      {/* Background images */}
+      <div className="absolute top-0 left-0 pointer-events-none z-0">
+        <Image src="/herodecorleft.png" alt="" width={1000} height={1000} />
+      </div>
+      <div className="absolute top-0 right-0 pointer-events-none z-0">
+        <Image src="/herodecorright.png" alt="" width={1000} height={1000} />
+      </div>
+
+      {/* Center glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[637px] h-[1159px] bg-[#0360A7]/60 blur-[190px] rounded-full pointer-events-none z-0" />
+
+      <div className="relative z-10 mx-auto max-w-7xl 2xl:max-w-[1440px] px-6 sm:px-8 lg:px-10 xl:px-12">
         <motion.div
           variants={heroContainer}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-4 items-center gap-12"
+          className="grid items-center gap-10 xl:gap-12 lg:grid-cols-2"
         >
-          {/* LEFT — Copy + CTA */}
-          <div className="order-2 lg:order-none lg:col-span-2 space-y-6 text-center lg:text-left">
-            {/* Badge */}
+          {/* LEFT COLUMN */}
+          <div className="order-2 lg:order-1 space-y-5 text-center lg:text-left">
             <motion.div
               variants={heroItem}
-              className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-1 text-xs text-violet-100/80 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 mx-auto lg:mx-0 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-[#C5E6FF]"
             >
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-violet-500/20">
-                <Sparkles className="h-3 w-3 text-violet-300" />
-              </span>
-              <span className="uppercase tracking-[0.18em] text-[10px]">
-                Job leads management & analytics
-              </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-[#38BDF8]" />
+              JOB LEADS MANAGEMENT & ANALYTICS
             </motion.div>
 
-            {/* Headline */}
-            <motion.h2
+            <motion.h1
               variants={heroItem}
-              className="text-3xl md:text-[34px] lg:text-[40px] font-semibold tracking-tight text-white text-center lg:text-left leading-tight"
+              className="font-medium tracking-[-0.02em] text-white text-[26px] leading-[1.15] sm:text-[28px] md:text-[32px] lg:text-[36px] xl:text-[40px] 2xl:text-[44px]"
             >
-              Job Leads Management & Analytics 
-              <span className="bg-gradient-to-r from-violet-300 via-violet-400 to-violet-200 bg-clip-text text-transparent">
+              ELVIS centralizes your sales pipeline —
+              <span className="bg-gradient-to-r from-[#87CBFF] to-[#C5E6FF] bg-clip-text text-transparent">
                 {" "}
-                built for modern sales teams
-              </span>
-            </motion.h2>
+                discovering, assigning
+              </span>{" "}
+              and optimizing leads in real time.
+            </motion.h1>
 
-            {/* Description */}
             <motion.p
               variants={heroItem}
-              className="text-sm hidden lg:inline-block md:text-base text-white/65 leading-relaxed max-w-xl text-center lg:text-left"
+              className="mx-auto lg:mx-0 max-w-[32ch] sm:max-w-md text-sm md:text-base leading-relaxed text-white/65"
             >
-              ELVIS centralizes job lead discovery, intelligent assignment,
-              real-time tracking, and performance analytics into a single,
-              unified system. Replace spreadsheets, manual routing, and
-              disconnected tools with automated workflows and AI-powered
-              visibility across your entire sales pipeline.
+              Replace spreadsheets and manual routing with intelligent lead
+              discovery, automated assignment, and real-time analytics built
+              for modern sales teams.
             </motion.p>
 
-            {/* CTA buttons (VIRA-style) */}
             <motion.div
               variants={heroItem}
-              className="flex flex-wrap items-center gap-4 pt-2 justify-center lg:justify-start"
+              className="flex flex-wrap gap-3 justify-center lg:justify-start"
             >
               <Link
                 href="/book-demo"
-                className="group inline-flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-3 text-sm font-medium text-black shadow-[0_0_30px_rgba(139,92,246,0.45)] hover:bg-violet-400 transition"
+                className="inline-flex items-center gap-2 rounded-md bg-[#0078D4] px-6 py-3 text-sm font-medium text-white transition hover:scale-105"
               >
-                Get a live demo
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                Get a live demo <ArrowRight className="h-4 w-4" />
               </Link>
 
-              <button className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm text-white/80 backdrop-blur hover:bg-white/10 transition">
-                <Play className="h-4 w-4 text-violet-300" />
+              <button className="glass-card inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-[#C5E6FF] hover:bg-white/10 transition">
+                <Play className="h-4 w-4 text-[#38BDF8]" />
                 Product overview
               </button>
             </motion.div>
 
-            {/* Trust line */}
             <motion.div
               variants={heroItem}
-              className="flex items-center gap-2 text-[11px] text-white/55 justify-center lg:justify-start"
+              className="flex items-center gap-2 justify-center lg:justify-start text-[11px] text-white/55"
             >
-              <ShieldCheck className="h-4 w-4 text-violet-400" />
-              Designed for scale — secure, reliable, and sales-ready
+              <ShieldCheck className="h-4 w-4 text-[#38BDF8]" />
+              Built for scale — secure, reliable, and sales-ready
             </motion.div>
           </div>
 
-          {/* RIGHT — Visual + Stats */}
-          <motion.div
-            variants={heroItem}
-            className="relative mx-auto aspect-square w-full max-w-md order-1 lg:order-none lg:col-span-2"
-          >
-            {/* Base */}
-            <div className="absolute inset-0 rounded-full border border-violet-400/20 bg-gradient-to-b from-violet-500/10 to-black/80 backdrop-blur-xl" />
+          {/* RIGHT COLUMN — Radar Style */}
+          <div className="relative mx-auto aspect-square w-full order-1 lg:order-2 max-w-[260px] sm:max-w-[300px] md:max-w-[340px] xl:max-w-md">
+            <div className="absolute inset-0 rounded-full border border-[#38BDF8]/20 bg-gradient-to-b from-[#0360A7]/10 to-black/80" />
 
-            {/* Rotating sweep */}
             <motion.div
               className="absolute inset-0 rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, rgba(139,92,246,0.35), transparent 40%)",
+                  "conic-gradient(from 0deg, rgba(0,120,212,0.35), transparent 38%)",
               }}
               animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
             />
 
-            {/* Rings */}
-            <div className="absolute inset-10 rounded-full border border-violet-400/10" />
-            <div className="absolute inset-24 rounded-full border border-violet-400/10" />
+            <div className="absolute inset-8 rounded-full border border-[#38BDF8]/10" />
+            <div className="absolute inset-20 rounded-full border border-[#38BDF8]/10" />
 
-            {/* Capability nodes */}
+            {/* Feature nodes */}
             {[
-              { icon: Target, label: "Lead Discovery", top: "25%", left: "65%" },
-              { icon: Layers, label: "Smart Assignment", top: "55%", left: "30%" },
+              { icon: Target, label: "Lead Discovery", top: "30%", left: "65%" },
+              { icon: Layers, label: "Smart Assignment", top: "60%", left: "30%" },
               { icon: BarChart3, label: "AI Analytics", top: "70%", left: "70%" },
             ].map((item, i) => (
               <motion.div
@@ -191,46 +184,36 @@ export default function ElvisHero() {
                   left: item.left,
                   transform: "translate(-50%, -50%)",
                 }}
-                animate={{ y: [0, -8, 0], opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 3, repeat: Infinity, delay: i * 0.6 }}
+                animate={{ opacity: [0, 1, 0], scale: [0.9, 1, 0.9] }}
+                transition={{ duration: 3, repeat: Infinity, delay: i * 0.7 }}
               >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-violet-500/30 text-violet-200">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0078D4]/30 text-[#C5E6FF]">
                   <item.icon className="h-4 w-4" />
                 </span>
-                <span className="text-[10px] text-white/70 whitespace-nowrap">
+                <span className="hidden sm:flex text-[10px] text-white whitespace-nowrap bg-[#0078D4]/70 px-2 py-1 rounded-full">
                   {item.label}
                 </span>
               </motion.div>
             ))}
 
-            {/* Stats overlay */}
-            <motion.div
-              className="absolute bottom-[-12px] left-1/2 w-full max-w-lg -translate-x-1/2
-                         rounded-2xl bg-[#0B0D14]/90 border border-white/10
-                         p-3 backdrop-blur-lg flex justify-between gap-3
-                         shadow-xl z-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
+            {/* Stats (exact VIRA glass style) */}
+            <div className="absolute bottom-[-90%] left-1/2 w-[92%] sm:w-full max-w-md xl:max-w-lg -translate-x-1/2 rounded-xl glass-card border border-white/5 bg-[#0C122812]/95 p-3 backdrop-blur-md flex justify-between gap-2">
               {STATS.map((stat, i) => (
                 <div
                   key={i}
-                  className="flex-1 text-center rounded-lg bg-white/5 px-3 py-2
-                             text-sm text-white/80 backdrop-blur-sm
-                             hover:bg-white/10 transition"
+                  className="flex-1 rounded-lg bg-white/5 px-2 py-2 text-center text-sm text-white/80"
                 >
-                  <div className="text-lg font-semibold text-violet-300">
+                  <div className="text-lg font-semibold text-[#AEDCFF]">
                     {statsCount[i]}
                     {stat.label === "Conversion Rate" && "%"}
                   </div>
-                  <div className="uppercase tracking-widest text-[9px] text-white/60">
+                  <div className="text-[9px] uppercase tracking-widest text-white/60">
                     {stat.label}
                   </div>
                 </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
