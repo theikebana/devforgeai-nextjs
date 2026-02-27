@@ -7,18 +7,24 @@ import Footer from "@/components/Footer";
 import OurProdcuts from "@/components/OurProdcuts";
 import AnimateSection from "@/components/AnimateSection"; // <-- import wrapper
 
-import HomePageHero from "@/components/Organisms/HomePageHero";
+import NewHomePage from "@/components/Organisms/NewHomePage";
+
+
+
+
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#07090e] text-white overflow-hidden ">
+    <div className="min-h-screen bg-[#02040a] text-white overflow-hidden ">
       <Navbar />
 
       <main>
-        {/* Hero – static, no scroll animation */}
-        {/* <Hero /> */}
 
-        <HomePageHero />
+
+        <NewHomePage />
+
+
+
 
 
         <AnimateSection type="fadeUp">
@@ -30,11 +36,6 @@ function App() {
           <Testimonials />
         </AnimateSection>
 
-        
-
-        {/* <AnimateSection type="scaleUp">
-          <Pricing />
-        </AnimateSection> */}
 
         <AnimateSection type="fadeUp" delay={0.1}>
           <CallToAction />

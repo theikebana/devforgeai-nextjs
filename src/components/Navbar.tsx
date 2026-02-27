@@ -11,19 +11,13 @@ export default function Navbar() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [isDesktopProductsOpen, setIsDesktopProductsOpen] = useState(false);
 
   const desktopProductsRef = useRef<HTMLDivElement | null>(null);
 
   const products = productConfigs.filter((p) => p.showInNavbar);
 
-  /* Scroll detection */
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+
 
   /* Lock body scroll on mobile */
   useEffect(() => {
@@ -51,148 +45,120 @@ export default function Navbar() {
   return (
     <>
       {/* ================= NAVBAR ================= */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center">
-        {/* Top spacing when scrolled */}
-        <div
-          className={`w-full transition-all duration-500 ease-out ${scrolled ? "lg:pt-4" : ""
-            }`}
-        >
-          {/* Width Shrink Wrapper */}
-          <div
-            className={`mx-auto transition-all duration-500 ease-out ${scrolled ? "lg:max-w-7xl border border-[#9C9D9F]/10 rounded-full" : "lg:max-w-full border border-[#9C9D9F]/10 rounded-none"
-              }`}
+ {/* ================= NAVBAR ================= */}
+<nav className="fixed top-4 left-0 right-0 z-50 flex justify-center z-900">
+  <div className="w-full lg:max-w-[1440px] mx-auto px-4 xl:px-0">
+    {/* Pill Wrapper */}
+    <div
+      className="
+        border border-[#9C9D9F]/4
+        rounded-full 
+        backdrop-blur-xl
+        bg-[#050816]/32
+      "
+    >
+      {/* CONTENT */}
+      <div className="px-4 lg:px-6 py-2">
+        <div className="flex items-center justify-between gap-4">
+          
+          {/* Logo */}
+          <button
+            onClick={() => router.push("/")}
+            className="flex items-center hover:opacity-80 transition cursor-pointer"
           >
-            {/* Glass Layer */}
+            <Image
+              src="/site-logo.svg"
+              alt="DevForge"
+              width={180}
+              height={48}
+              className="h-6 lg:h-10 w-auto"
+            />
+          </button>
+
+          {/* ================= DESKTOP NAV ================= */}
+          <div className="hidden lg:flex items-center gap-6">
+            
+            {/* Products Dropdown */}
             <div
-              className={`backdrop-blur-xl  
-              transition-all duration-500 ease-out
-              ${scrolled
-                  ? "lg:rounded-full "
-                  : ""
-                }`}
+              ref={desktopProductsRef}
+              className="relative"
+              onMouseEnter={() => setIsDesktopProductsOpen(true)}
+              onMouseLeave={() => setIsDesktopProductsOpen(false)}
             >
-              {/* CONTENT */}
-              <div className="container mx-auto px-4 lg:px-6 py-2">
-                <div className="flex items-center justify-between gap-4">
-                  {/* Logo */}
-                  <button
-                    onClick={() => router.push("/")}
-                    className="flex items-center hover:opacity-80 transition cursor-pointer"
-                  >
-                    <Image
-                      src="/site-logo.svg"
-                      alt="DevForge"
-                      width={180}
-                      height={48}
-                      className="h-6 lg:h-10 w-auto"
-                    />
-                  </button>
+              <button className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition cursor-pointer">
+                Products
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-300 ${
+                    isDesktopProductsOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
 
-                  {/* ================= DESKTOP NAV ================= */}
-                  <div className="hidden lg:flex items-center gap-6">
-                    {/* Products Dropdown */}
-                    <div
-                      ref={desktopProductsRef}
-                      className="relative"
-                      onMouseEnter={() => setIsDesktopProductsOpen(true)}
-                      onMouseLeave={() => setIsDesktopProductsOpen(false)}
-                    >
-                      <button className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition cursor-pointer pb-4 top-2
-                       relative">
-                        Products
-                        <ChevronDown
-                          size={14}
-                          className={`transition-transform duration-300 ${isDesktopProductsOpen ? "rotate-180" : ""
-                            }`}
-                        />
-                      </button>
-
-                      {/* Glass card dropdown, centered under navbar */}
-                      {/* Glass card dropdown */}
-                      <div
-                        className={`
-    absolute right-0 top-full
-    z-50
-    rounded-xl
-    border border-white/12
-    bg-[#050816]/95
-    backdrop-blur-[60px]
-    backdrop-saturate-150
-    shadow-2xl shadow-black/40
-    transition-all duration-300
-    ${isDesktopProductsOpen
-                            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-                            : "opacity-0 translate-y-2 scale-[0.98] pointer-events-none"
-                          }
-  `}
-                      >
-
-                        <div className="p-2">
-                          <div className="flex items-center justify-center gap-2">
-                            {products.map((item) => {
-                              const Icon = item.icon;
-                              return (
-                                <button
-                                  key={item.id}
-                                  onClick={() => {
-                                    router.push(item.path);
-                                    setIsDesktopProductsOpen(false);
-                                  }}
-                                  className="
-              flex flex-col items-center gap-1.5
-              px-3 py-2 rounded-lg
-              hover:bg-white/10
-              transition-all duration-200 cursor-pointer
-              glass-card
-              hover:scale-110
-              group 
-            "
-                                >
-                                  <div className="h-9 w-9 flex items-center justify-center rounded-md bg-white/10 group-hover:text-[#0078D4] glass-card">
-                                    <Icon size={16} />
-                                  </div>
-                                  <span className="text-[11px] font-medium text-white/80 text-center whitespace-nowrap">
-                                    {item.title}
-                                  </span>
-                                </button>
-                              );
-                            })}
+              {/* Dropdown */}
+              <div
+                className={`
+                  absolute right-0 top-full mt-4
+                  z-50 rounded-xl
+                  border border-white/12
+                  bg-[#050816]/95
+                  backdrop-blur-[60px]
+                  shadow-2xl shadow-black/40
+                  transition-all duration-300
+                  ${
+                    isDesktopProductsOpen
+                      ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+                      : "opacity-0 translate-y-2 scale-[0.98] pointer-events-none"
+                  }
+                `}
+              >
+                <div className="p-2">
+                  <div className="flex items-center justify-center gap-2">
+                    {products.map((item) => {
+                      const Icon = item.icon;
+                      return (
+                        <button
+                          key={item.id}
+                          onClick={() => {
+                            router.push(item.path);
+                            setIsDesktopProductsOpen(false);
+                          }}
+                          className="flex flex-col items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-white/10 transition-all duration-200 hover:scale-110"
+                        >
+                          <div className="h-9 w-9 flex items-center justify-center rounded-md bg-white/10">
+                            <Icon size={16} />
                           </div>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    {/* <button
-                      onClick={() => router.push("/pricing")}
-                      className="text-sm text-white/70 hover:text-white transition"
-                    >
-                      Pricing
-                    </button> */}
-
-                    <button
-                      onClick={() => router.push("/book-demo")}
-                      className="ml-4  bg-[#0078D4] text-white  transition-all duration-300 cursor-pointer  hover:scale-105 px-5 py-2 text-sm rounded-full"
-                    >
-                      Book a demo
-                    </button>
+                          <span className="text-[11px] font-medium text-white/80 text-center whitespace-nowrap">
+                            {item.title}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
-
-                  {/* ================= MOBILE TOGGLE ================= */}
-                  <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="lg:hidden p-2 text-white/80 hover:text-white transition"
-                  >
-                    {isOpen ? <X size={20} /> : <Menu size={20} />}
-                  </button>
                 </div>
               </div>
-              {/* END CONTENT */}
             </div>
-          </div>
-        </div>
-      </nav>
 
+            <button
+              onClick={() => router.push("/book-demo")}
+              className="ml-4 bg-[#0078D4] text-white hover:scale-105 transition-all duration-300 cursor-pointer px-5 py-2 text-sm rounded-full"
+            >
+              Book a demo
+            </button>
+          </div>
+
+          {/* ================= MOBILE TOGGLE ================= */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 text-white/80 hover:text-white transition"
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
       {/* ================= MOBILE MENU ================= */}
       <AnimatePresence>
         {isOpen && (

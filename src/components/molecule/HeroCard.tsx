@@ -179,11 +179,9 @@ export default function HeroCard({
       {/* Original Card with subtle wavy motion - always visible for hover */}
       <motion.div
         ref={originalRef}
-        onMouseEnter={(e) => {
-          handleCardMouseEnter();
-          handleOpen();
-        }}
+        onMouseEnter={handleCardMouseEnter}
         onMouseLeave={handleCardMouseLeave}
+        onClick={handleOpen}
         className={`relative 2xl:w-[208px] w-[180px] glass-card p-2 rounded-md bg-[#0C122812] border border-white/5 backdrop-blur-md shadow cursor-pointer ${className}`}
             animate={{
               // Vertical wave: always present, stronger when cursor is active
