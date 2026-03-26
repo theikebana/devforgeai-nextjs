@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import SectionHeader from "./SectionHeader";
+import { getPublicAssetUrl } from "@/lib/utlis";
 
 export default function Testimonials() {
   const AUTO_SCROLL_INTERVAL = 5000; // 5 seconds
@@ -247,7 +248,7 @@ export default function Testimonials() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 pointer-events-none">
         <div className="absolute hidden md:block">
           <Image
-            src="/testimonial-bg.png"
+            src={getPublicAssetUrl("/testimonial-bg.png")}
             alt=""
             fill
             className="object-cover"
@@ -306,7 +307,7 @@ export default function Testimonials() {
                   {/* Background Image */}
                   <div className="absolute inset-0">
                     <Image
-                      src="/card-overlay2.png"
+                      src={getPublicAssetUrl("/card-overlay2.png")}
                       alt="Testimonial background"
                       fill
                       className="object-cover"
@@ -342,7 +343,7 @@ export default function Testimonials() {
                     "
                       >
                         <Image
-                          src={t.avatar}
+                          src={getPublicAssetUrl(t.avatar)}
                           alt={t.author}
                           width={40}
                           height={40}

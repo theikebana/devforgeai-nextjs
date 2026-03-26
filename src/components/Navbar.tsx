@@ -98,7 +98,7 @@ export default function Navbar() {
               {/* Dropdown */}
               <div
                 className={`
-                  absolute right-0 top-full mt-4
+                  absolute right-0 top-full mt-2
                   z-50 rounded-xl
                   border border-white/12
                   bg-[#050816]/95
@@ -123,7 +123,7 @@ export default function Navbar() {
                             router.push(item.path);
                             setIsDesktopProductsOpen(false);
                           }}
-                          className="flex flex-col items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-white/10 transition-all duration-200 hover:scale-110"
+                          className="flex flex-col items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-all duration-200 hover:scale-110"
                         >
                           <div className="h-9 w-9 flex items-center justify-center rounded-md bg-white/10">
                             <Icon size={16} />

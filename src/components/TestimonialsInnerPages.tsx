@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import SectionHeader from "./SectionHeader";
+import { getPublicAssetUrl } from "@/lib/utlis";
 
 export default function TestimonialsInnerPages() {
   const AUTO_SCROLL_INTERVAL = 5000; // 5 seconds
@@ -296,7 +297,7 @@ export default function TestimonialsInnerPages() {
                   {/* Background Image */}
                   <div className="absolute inset-0">
                     <Image
-                      src="/card-overlay2.png"
+                      src={getPublicAssetUrl("/card-overlay2.png")}
                       alt="Testimonial background"
                       fill
                       className="object-cover"
@@ -332,7 +333,7 @@ export default function TestimonialsInnerPages() {
                     "
                       >
                         <Image
-                          src={t.avatar}
+                          src={getPublicAssetUrl(t.avatar)}
                           alt={t.author}
                           width={40}
                           height={40}

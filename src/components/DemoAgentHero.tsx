@@ -6,9 +6,9 @@ import { Play, Mic, FileText, ArrowRight, ShieldCheck } from "lucide-react";
 import { productsById } from "@/config/products";
 
 const FEATURES = [
-  { label: "AI document classification", icon: Play },
-  { label: "Semantic search", icon: Mic },
-  { label: "Secure access control", icon: FileText },
+  { label: "One-click walkthroughs", icon: Play },
+  { label: "AI voice narration", icon: Mic },
+  { label: "Docs-driven control", icon: FileText },
 ];
 
 const PARTICLE_CONFIGS = [...Array(12)].map(() => ({
@@ -19,7 +19,7 @@ const PARTICLE_CONFIGS = [...Array(12)].map(() => ({
 }));
 
 export default function DemoAgentHero() {
-  const thinkDocs = productsById["thinkdocs"];
+  const stageProduct = productsById["demo-agent"];
 
   return (
     <section className="relative overflow-hidden bg-[#07090E] py-8 lg:py-12">
@@ -46,7 +46,7 @@ export default function DemoAgentHero() {
             >
               <Play className="h-3 w-3 text-emerald-300" />
               <span className="uppercase tracking-[0.18em] text-[10px]">
-                AI document management • Semantic search
+                Scripted Tour Automation • AI voice • Live Q&A
               </span>
             </div>
 
@@ -58,9 +58,9 @@ export default function DemoAgentHero() {
                 lg:text-[36px]
                 xl:text-[40px]"
             >
-              Turn scattered documents into{" "}
+              Turn any web portal into{" "}
               <span className="text-emerald-400">
-                an AI-first, searchable system
+                a live-like, narrated product demo
               </span>
             </h2>
 
@@ -70,13 +70,12 @@ export default function DemoAgentHero() {
                 text-[14px] sm:text-sm md:text-base
                 leading-relaxed text-white/65"
             >
-              {thinkDocs.description} It ingests documents from every source,
-              runs OCR and NLP to extract key information, classifies each file
-              automatically, and makes everything{" "}
+              {stageProduct.description} STAGE watches real user flows, captures
+              each step, generates a clean demo flow, and pairs it with{" "}
               <span className="text-white/85 font-medium">
-                instantly searchable and access controlled
+                written narration and AI voice
               </span>{" "}
-              — cutting manual document work by over 70%.
+              so your demos feel human, consistent, and repeatable.
             </p>
 
             <div
@@ -109,12 +108,12 @@ export default function DemoAgentHero() {
                   bg-emerald-500 px-5 py-3 text-sm font-medium text-black
                   hover:bg-emerald-400 transition"
               >
-                See ThinkDocs in action
+                See STAGE in action
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <span className="flex items-center gap-2 text-xs text-white/55">
                 <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                Running in production
+                Live-like demos · AI voice
               </span>
             </div>
           </div>
@@ -185,7 +184,7 @@ export default function DemoAgentHero() {
                     }}
                     transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <FileText className="h-9 w-9 text-emerald-400" />
+                    <Play className="h-9 w-9 text-emerald-400" />
                   </motion.div>
                 </div>
 
@@ -223,9 +222,9 @@ export default function DemoAgentHero() {
                 {/* FEATURE CHIPS */}
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
                   {[
-                    { label: "Ingest", icon: Play },
-                    { label: "Classify", icon: Mic },
-                    { label: "Search", icon: FileText },
+                    { label: "Capture", icon: Play },
+                    { label: "Narrate", icon: Mic },
+                    { label: "Run", icon: FileText },
                   ].map((item, i) => (
                     <motion.div
                       key={item.label}

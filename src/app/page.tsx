@@ -7,8 +7,8 @@ import Footer from "@/components/Footer";
 import OurProdcuts from "@/components/OurProdcuts";
 import AnimateSection from "@/components/AnimateSection"; // <-- import wrapper
 
-import NewHomePage from "@/components/Organisms/NewHomePage";
-
+// import NewHomePage from "@/components/Organisms/NewHomePage";
+import HomePageHero from "@/components/Organisms/HomePageHero";
 
 
 
@@ -20,12 +20,8 @@ function App() {
 
       <main>
 
-
-        <NewHomePage />
-
-
-
-
+        {/* <NewHomePage /> */}
+        <HomePageHero />
 
         <AnimateSection type="fadeUp">
           <OurProdcuts />

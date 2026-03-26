@@ -49,3 +49,11 @@ function twMerge(classNames: string): string {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(...inputs));
 }
+
+/** Use for next/image src so assets work on live (basePath + URL-encoding). */
+export function getPublicAssetUrl(path: string): string {
+  if (path.startsWith("http")) return path;
+  const base = (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_BASE_PATH) || "";
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return base + encodeURI(normalized);
+}

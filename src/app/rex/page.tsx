@@ -10,18 +10,18 @@ import TestimonialsInnerPages from "@/components/TestimonialsInnerPages";
 
 export default function RexPage() {
   return (
-    <div className="min-h-screen  text-white overflow-hidden">
+    <div className="min-h-screen  text-white overflow-hidden bg-[#07090E]">
       <Navbar />
       <main>
         <RexHero />
         <RexOverview />
-       <div className="max-w-7xl mx-auto rounded-4xl border-2 mt-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
-        <RexHowItWorks />
-        <RexScoreSection />
-       </div>
+        <div className="max-w-7xl mx-auto rounded-4xl border-2 mt-12 overflow-hidden border-gray-900 shadow-xl shadow-gray-900/50">
+          <RexHowItWorks />
+          <RexScoreSection />
+        </div>
 
-<TestimonialsInnerPages />
-       <CallToAction />
+        <TestimonialsInnerPages />
+        <CallToAction />
       </main>
       <Footer />
     </div>
